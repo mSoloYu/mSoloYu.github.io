@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Android 开发之基础知识（01） | mSolo</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="关注切入点、产品、设计开发和敏捷实践。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Android 开发之基础知识（01） | mSolo">
+    <meta name="twitter:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Android 开发之基础知识（01） | mSolo">
+    <meta property="og:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+  
+    <meta name="author" content="mSolo Yu">
+  
+    <link rel="stylesheet" type="text/css" href="/css/vno.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/solarized_dark.css">
+    <!-- <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  -->
+
+
+    
+    <link rel="icon" type="image/png" href="//favicon.ico" />
+    <link href="//favicon.ico" rel="shortcut icon" type="image/png">
+    
+
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <meta name="generator" content="hexo" />
+    
+    <link rel="alternate" type="application/rss+xml" title="mSolo" href="/atom.xml">
+    
+    
+    <link rel="canonical" href="https://msoloyu.github.io/2015/03/22/android-basic-01/" />
+
+    
+    <link rel="author" href="https://www.google.com/+LenboMa" />
+    
+</head>
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 mSolo 的主页"><img src="/images/logo2.jpg" width="80" alt="mSolo logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for mSolo">mSolo</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">月光独奏</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">关注切入点、产品、设计开发和敏捷实践</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/about">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/mSoloYu" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://www.google.com/+LenboMa" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/lenbo_" title="上Twitter找我" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-disabled"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-03-22T06:14:54.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Android/">Android</a>
+</span>
+      <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
+    </div>
+    <h1 class="post-title">Android 开发之基础知识（01）</h1>
+  </header>
+
+  <section class="post">
+    <blockquote>
+<p>Android 启动简史 + Android 的进程与线程 + Android Package Manager和Package Installer</p>
+</blockquote>
+<hr>
+<h3 id="Android_启动简史">Android 启动简史</h3><blockquote>
+<p>当按下Android设备电源键时究竟发生了什么？</p>
+</blockquote>
+<ul>
+<li>启动过程是怎么样的？</li>
+<li>什么是Linux内核？</li>
+<li>桌面系统linux内核与Android系统linux内核有什么区别？</li>
+<li>什么是引导装载程序？</li>
+<li>什么是Zygote？</li>
+<li>什么是X86以及ARM linux？</li>
+<li>什么是init.rc?</li>
+<li>什么是系统服务？</li>
+</ul>
+<p><img src="http://7xi7e6.com1.z0.glb.clouddn.com/android_boot_internal.png" alt="android 启动"></p>
+<ol>
+<li>启动电源以及系统启动</li>
+<li>引导程序（\bootable\bootloader\legacy\usbloader）</li>
+<li>内核</li>
+<li>init进程（挂载目录 + 运行init.rc脚本）<ul>
+<li>init进程可以在/system/core/init找到。</li>
+<li>init.rc文件可以在/system/core/rootdir/init.rc（有特定的格式以及规则）找到。</li>
+<li>readme.txt可以在/system/core/init/readme.txt找到。</li>
+</ul>
+</li>
+<li>Zygote加载进程（/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java）</li>
+<li>系统服务或服务（系统服务可以认为是一个进程。同一个系统服务在Android SDK可以以System Services形式获得）</li>
+</ol>
+<blockquote>
+<p>核心服务：</p>
+<ul>
+<li>启动电源管理器</li>
+<li>创建Activity管理器</li>
+<li>启动电话注册</li>
+<li>启动包管理器</li>
+<li>设置Activity管理服务为系统进程</li>
+<li>启动上下文管理器</li>
+<li>启动系统Context Providers</li>
+<li>启动电池服务</li>
+<li>启动定时管理器</li>
+<li>启动传感服务</li>
+<li>启动窗口管理器</li>
+<li>启动蓝牙服务</li>
+<li>启动挂载服务</li>
+</ul>
+</blockquote>
+<p><strong>一旦系统服务在内存中跑起来后，Android就完成了引导过程。<br>这个时候“ACTION_BOOT_COMPLETED”开机启动广播就会发出去。</strong></p>
+<p>原文转载：<a href="http://android.jobbole.com/67931/" target="_blank" rel="external">《Android启动过程深入解析》</a></p>
+<hr>
+<h3 id="Android_的进程与线程">Android 的进程与线程</h3><p>当一个 Android 应用程序组件启动的时候，如果此时这个程序的其他组件没有正在运行，那么系统会为这个程序以单一线程的形式启动一个新的 Linux 进程。<br>默认情况下，同一应用程序下的所有组件都运行再相同的进程和线程（一般称为程序的“主”线程）中。<br>如果一个应用组件启动但这个应用的进程已经存在了，那么这个组件将会在这个进程中启动，同时在这个应用的主线程里面执行。然而，你也可以让你的应用里面的组件运行在不同的进程里面，也可以为任何进程添加额外的线程。</p>
+<h4 id="进程">进程</h4><ul>
+<li>默认情况下，同一程序的所有组件都运行在相同的进程里面。</li>
+<li>Manifest 文件里面为每一个组件元素：<strong>activity</strong>, <strong>service</strong>, <strong>receiver</strong> 和 <strong>provider</strong> 提供了 <strong>android:process</strong> 属性，通过设置这个属性你可以让组件运行在特定的进程中。</li>
+<li><strong>application</strong> 元素也支持 <strong>android:process</strong> 属性，设置这个属性可以让这个应用里面的所有组件都默认继承这个属性。</li>
+</ul>
+<blockquote>
+<p>Android 可能在系统剩余内存较少，而其他直接服务用户的进程又要申请内存的时候shut down 一个进程， 这时这个进程里面的组件也会依次被kill掉。当这些组件有新的任务到达时，他们对应的进程又会被启动。<br>在决定哪些进程需要被kill的时候，Android系统会权衡这些进程跟用户相关的重要性。</p>
+</blockquote>
+<h5 id="进程的生命周期">进程的生命周期</h5><p>重要性层级:</p>
+<ol>
+<li>Foreground 进程 : 一个正在和用户进行交互的进程。 如果一个进程处于下面的状态之一，该进程即为 foreground 进程<ul>
+<li>进程包含了一个与用户交互的 Activity ( onResume() 方法被调用)。</li>
+<li>进程包含了一个绑定了与用户交互的activity的 Service 。</li>
+<li>进程包含了一个运行在”in the foreground”状态的 Service（ startForeground() 方法被调用 ）。</li>
+<li>进程包含了一个正在运行的它的生命周期回调函数 (onCreate(), onStart(), oronDestroy())的 Service 。</li>
+<li>进程包含了一个正在运行 onReceive() 方法的 BroadcastReceiver 。</li>
+</ul>
+</li>
+<li>Visible 进程 : 一个进程没有任何 foreground 组件, 但是它还能影响屏幕上的显示。<ul>
+<li>进程包含了一个没有在 foreground 状态的 Activity ，但是它仍然被用户可见 ( onPause() 方法已经被调用)。这种情况是有可能出现的。比如，一个 activity 启动了一个 dialog，这样就会让之前的 activity 在dialog的后面部分可见。</li>
+<li>进程包含了一个绑定在一个visible（或者 foreground）activity的 Service 。</li>
+</ul>
+</li>
+<li>Service 进程 : 一个包含着已经以 startService() 方法启动的 Service 的进程，同时还没有进入上面两种更高级别的种类。</li>
+<li>Background 进程 一个包含了已不可见的 activity 的进程 ( onStop() 已经被调用)。</li>
+<li>Empty 进程 : 一个不包含任何活动的应用组件的进程。 这种进程存在的唯一理由就是缓存。为了提高一个组件的启动的时间需要让组件在这种进程里运行。</li>
+</ol>
+<blockquote>
+<p>因为进程里面运行着一个 service 的评级要比一个包含background activities的进程要高，所以当一个 activity 启动长时操作时，最好启动一个 service 来做这个操作，而不是简单的创建一个worker线程—特别是当这个长时操作可能会拖垮这个activity。比如，一个需要上传图片到一个网站的activity 应当开启一个来执行这个上传操作。这样的话，即使用户离开来这个activity也能保证上传动作在后台继续。使用 service 可以保证操作至少处于”service process” 这个优先级，无论这个activity发生了什么。这也是为什么 broadcast receivers 应该使用 services 而不是简单的将耗时的操作放到线程里面。</p>
+</blockquote>
+<h4 id="线程">线程</h4><p>关于Android单线程模型的规则：</p>
+<ol>
+<li>不要阻塞 UI 线程</li>
+<li>不要在非UI线程里访问 Android UI toolkit</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 违反第2条规则</span></span><br><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">            Bitmap b = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">            mImageView.setImageBitmap(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Activity.runOnUiThread(Runnable)</li>
+<li>View.post(Runnable)</li>
+<li>View.postDelayed(Runnable, long)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 随着操作复杂性的增长，代码会变得越来越复杂，越来越难维护</span></span><br><span class="line"><span class="comment">// 解决： 使用 Handler 或 AsyncTask</span></span><br><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">final</span> Bitmap bitmap = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">            mImageView.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    mImageView.setImageBitmap(bitmap);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br></pre></td></tr></table></figure>
+<p>原文转载：<a href="http://android.jobbole.com/80640/" target="_blank" rel="external">《Android的进程与线程》 </a></p>
+<h3 id="Android_的_Package_Manager">Android 的 Package Manager</h3><ul>
+<li>什么是Package Manager（包管理器）和Package Installer（程序安装包）？</li>
+<li>APK文件保存在Android的哪个地方？</li>
+<li>APK文件安装过程的细节是怎样的？</li>
+<li>Package Manager（包管理器）是怎样保存数据的？</li>
+<li>应该去哪里找Package Manager和Package Installer的源码？</li>
+</ul>
+<h4 id="什么是Package_Manager和Package_Installer">什么是Package Manager和Package Installer</h4><p>PackageInstaller是安卓上默认的应用程序，用它来交互式地安装普通包文件。<br>PackageInstaller提供了用户界面来管理应用或者包文件。<br>PackageInstaller调用一个叫InstallAppProgress的activity来获取用户发出的指令。InstallAppProgress会请求Package Manager服务，然后通过installd来安装包文件。源码提供在/packages/apps/PackageInstaller上。</p>
+<p>Package Manger是一个实际上管理应用程序安装、卸载和升级的API。<br>当我们安装APK文件时，Package Manager会解析APK包文件和显示确认信息。<br>当我们点击OK按钮后，Package Manger会调用一个叫“InstallPackage”的方法，这个方法有四个参数，也就是uri、installFlags、observer和installPackagename。Package Manger会启动一个叫“package”的service（服务），现在所有模糊的东西会发生在这个service中。</p>
+<p><strong>Package Manger服务运行在系统服务进程中，而安装守护程序（installd）作为一个本地进程运行着，他们都在系统启动时开始运行。</strong></p>
+<h4 id="APK文件保存在Android的哪个地方？">APK文件保存在Android的哪个地方？</h4><ul>
+<li>预装程序（即相机，日历和浏览器等）保存在/system/app/中。</li>
+<li>用户安装程序（APIDemo，Any.do等）保存在/data/app/中。</li>
+<li>目录/data/data/ 则来保存数据库、shared preference、本地函数库和缓存数据。</li>
+</ul>
+<h4 id="APK文件安装过程的细节是怎样的？">APK文件安装过程的细节是怎样的？</h4><p>下面的过程执行在Package Manger服务中。</p>
+<ul>
+<li>等待；</li>
+<li>添加一个包文件到安装进程的队列中；</li>
+<li>确定合适的地方来安装包文件；</li>
+<li>复制apk文件到一个给定的目录下；</li>
+<li>确定应用的UID；</li>
+<li>请求installd守护程序进程；</li>
+<li>创建应用目录和设置权限；</li>
+<li>提取dex代码到缓存目录中；</li>
+<li>解析packages.list、system、data和packages.xml的最新状态；</li>
+<li>向系统发送广播消息，消息带有安装完成效果的名字Intent.ACTION_PACKAGE_ADDED：如果是更新，会带有新的（Intent.ACTION_PACKAGE_REPLACED）。</li>
+</ul>
+<h4 id="Package_Manager(包管理器)是怎样保存数据的？">Package Manager(包管理器)是怎样保存数据的？</h4><p>Package Manager保存应用程序的信息在/data/system目录下的三个文件里。</p>
+<ul>
+<li>packages.xml：这个文件包含所有的权限和Packages/Applications。</li>
+<li>packages.list： 这是一个简单的文本文件，包含了包名、用户id、flag和数据目录</li>
+<li>packages-stoped.xml：这个文件包含了已经是停止状态的包的列表，停止状态的应用是不能接收任何的广播的。</li>
+</ul>
+<h4 id="去哪里可以找到Package_Manager和Package_Installer的源码？">去哪里可以找到Package Manager和Package Installer的源码？</h4><p><strong>Package Manger</strong></p>
+<blockquote>
+<p>frameworks/base/services/java/com/android/server/pm/Settings.java<br>frameworks/base/services/java/com/android/server/pm/PackageManagerService.java<br>frameworks/base/services/java/com/android/server/pm/IPackageManager.aidl<br>frameworks/base/services/java/com/android/server/pm/PackageSignatures.java<br>frameworks/base/services/java/com/android/server/pm/PreferredActivity.java<br>frameworks/services/java/com/android/server/PreferredComponent.java<br>frameworks/core/java/android/content/IntentFilter.java<br>frameworks/base/core/java/android/content/pm/PackageParser.java<br>frameworks/base/services/java/com/android/server/pm/Installer.java<br>frameworks/base/core/java/com/android/internal/app/IMediaContainerService.aidl<br>frameworks/base/packages/DefaultContainerService/src/com/android/defcontainer/DefaultContainerService.java</p>
+</blockquote>
+<p><strong>Package Installer</strong></p>
+<blockquote>
+<p>packages/apps/PackageInstaller/src/com/android/packageinstaller/PackageInstallerActivity.java<br>packages/apps/PackageInstaller/src/com/android/packageinstaller/PackageUtil.java<br>packages/apps/PackageInstaller/src/com/android/packageinstaller/InstallAppProgress.java</p>
+</blockquote>
+<p>原文转载: <a href="http://android.jobbole.com/67286/" target="_blank" rel="external">深入安卓Package Manager和Package Installer</a></p>
+
+  </section>
+
+</article>
+
+
+
+			 <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">
+    </a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">
+    </a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">
+    </a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">
+    </a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到：",
+            "viewSize": "16"
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 
+            'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' 
+                    + ~ ( - new Date() / 36e5)];
+</script>
+              <footer class="footer">
+	   <span class="footer__copyright"> 本站由 <a href="http://mlongbo.com/aboutme" rel="author">@Longbo Ma</a> 使用<a href="http://hexo.io">Hexo</a> 创建，并使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题, 修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>. </span>
+	    <span class="footer__copyright">采用<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">知识共享署名-非商业性使用 3.0 国际版本许可协议进行许可</a> </span>
+	    <span class="footer__copyright">&copy;&nbsp;2014-2015&nbsp;All&nbsp;rights&nbsp;reserved. </span>
+</footer>
+        </div>
+    </div>
+    
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-42596364-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
