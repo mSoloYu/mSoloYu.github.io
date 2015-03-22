@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Android 系统的内存回收机制 | mSolo</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="关注切入点、产品、设计开发和敏捷实践。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Android 系统的内存回收机制 | mSolo">
+    <meta name="twitter:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Android 系统的内存回收机制 | mSolo">
+    <meta property="og:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+  
+    <meta name="author" content="mSolo Yu">
+  
+    <link rel="stylesheet" type="text/css" href="/css/vno.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/solarized_dark.css">
+    <!-- <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  -->
+
+
+    
+    <link rel="icon" type="image/png" href="//favicon.ico" />
+    <link href="//favicon.ico" rel="shortcut icon" type="image/png">
+    
+
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <meta name="generator" content="hexo" />
+    
+    <link rel="alternate" type="application/rss+xml" title="mSolo" href="/atom.xml">
+    
+    
+    <link rel="canonical" href="https://msoloyu.github.io/2015/03/22/android-memory-clean/" />
+
+    
+    <link rel="author" href="https://www.google.com/+LenboMa" />
+    
+</head>
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 mSolo 的主页"><img src="/images/logo2.jpg" width="80" alt="mSolo logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for mSolo">mSolo</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">月光独奏</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">关注切入点、产品、设计开发和敏捷实践</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/about">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/mSoloYu" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://www.google.com/+LenboMa" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/lenbo_" title="上Twitter找我" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-disabled"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-03-22T15:56:04.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/内存机制/">内存机制</a>
+</span>
+      <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
+    </div>
+    <h1 class="post-title">Android 系统的内存回收机制</h1>
+  </header>
+
+  <section class="post">
+    <h3 id="Android_内存回收原则">Android 内存回收原则</h3><p>回收优先级：</p>
+<ul>
+<li>IMPORTANCE_FOREGROUND:</li>
+<li>IMPORTANCE_VISIBLE:</li>
+<li>IMPORTANCE_SERVICE:</li>
+<li>IMPORTANCE_BACKGROUND:</li>
+<li>IMPORTANCE_EMPTY:</li>
+</ul>
+<ul>
+<li>ActivityManagerService 集中管理所有进程的内存资源分配。</li>
+<li>所有进程需要申请或释放内存之前必须调用 ActivityManagerService 对象，获得其“许可”之后才能进行下一步操作，或者 ActivityManagerService 将直接“代劳”。</li>
+<li>类 ActivityManagerService 中涉及到内存回收的几个重要的成员方法如下：trimApplications()，updateOomAdjLocked()，activityIdleInternal()。</li>
+</ul>
+<p>系统中的内存回收可分为两个层次，即默认内存回收与内核级内存回收。</p>
+<h3 id="回收动作入口：activityIdleInternal()">回收动作入口：activityIdleInternal()</h3><p>Android 系统中内存回收的触发点大致可分为三种情况。</p>
+<ol>
+<li>用户程序调用 StartActivity(), 使当前活动的 Activity 被覆盖；</li>
+<li>用户按 back 键，退出当前应用程序；</li>
+<li>启动一个新的应用程序。</li>
+</ol>
+<p>这些能够触发内存回收的事件最终调用的函数接口就是 activityIdleInternal()。当 ActivityManagerService 接收到异步消息 IDLE_TIMEOUT_MSG 或者 IDLE_NOW_MSG 时，activityIdleInternal() 将会被调用。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IDLE_NOW_MSG 的处理方式</span></span><br><span class="line"><span class="keyword">case</span> IDLE_NOW_MSG:&#123;</span><br><span class="line"> IBinder token = (Ibinder)msg.obj;</span><br><span class="line">    activityIdle(token, <span class="keyword">null</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// IDLE_TIMEOUT_MSG 的处理方式</span></span><br><span class="line"><span class="keyword">case</span> IDLE_TIMEOUT_MSG: &#123;</span><br><span class="line"> <span class="keyword">if</span> (mDidDexOpt) &#123;</span><br><span class="line">        mDidDexOpt = <span class="keyword">false</span>;</span><br><span class="line">        Message nmsg = mHandler.obtainMessage(IDLE_TIMEOUT_MSG);</span><br><span class="line">        nmsg.obj = msg.obj;</span><br><span class="line">        mHandler.sendMessageDelayed(nmsg, IDLE_TIMEOUT);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    IBinder token = (IBinder)msg.obj;</span><br><span class="line">    Slog.w(TAG, <span class="string">"Activity idle timeout for "</span> + token);</span><br><span class="line">    activityIdleInternal(token, <span class="keyword">true</span>, <span class="keyword">null</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<p>activityIdleInternal() 的主要任务是改变系统中 Activity 的状态信息，并将其添加到不同状态列表中。其主要工作如下：</p>
+<ul>
+<li>首先，调用 scheduleAppGcsLocked() 方法通知所有进行中的任务进行垃圾回收。scheduleAppGcsLocked() 将进行调度 JVM 的 garbage collect，回收一部分内存空间，这里仅仅是通知每个进程自行进程垃圾检查并调度回收时间，而非同步回收。</li>
+<li>然后，取出 mStoppingActivities 和 mFinishigActivities 列表中的所有内容，暂存在临时变量中。这两个列表分别存储了当前状态为 stop 和 finishi 的 activity 对象。对于 stop 列表，<ul>
+<li>如果其中的 activity 的 finish 状态为 true，判断是不是要立即停止，如果要立即停止则调用 destroyActivityLocked() 通知目标进程调用 onDestroy() 方法，否则，先调用 resumeTopActivity() 运行下一个 Activity。</li>
+<li>如果 finish 状态为 false，则调用 stopActivityLocked() 通知客户进程停止该 Activity，这种情况一般发生在调用 startActivity() 后。对于 finish 列表，直接调用 destroyActivityLocked() 通知客户进程销毁目标 Activity。</li>
+</ul>
+</li>
+</ul>
+<p>这里的 destroyActivityLocked 等函数并没有真正意义上改变内存的使用，只是将其状态改变为“允许回收”，真正的回收在下面即将调用的 trimApplications() 函数中。</p>
+<h4 id="回收过程函数_trimApplications()">回收过程函数 trimApplications()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">trimApplications</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">        <span class="comment">// First remove any unused application processes whose package</span></span><br><span class="line">        <span class="comment">// has been removed.</span></span><br><span class="line">        <span class="keyword">for</span> (i=mRemovedProcesses.size()-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">           (<span class="number">1</span>)<span class="comment">//kill process;</span></span><br><span class="line">        &#125;</span><br><span class="line">          <span class="keyword">if</span> (!updateOomAdjLocked()) &#123;</span><br><span class="line">           (<span class="number">2</span>)<span class="comment">//do something default</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Finally, if there are too many activities now running, try to</span></span><br><span class="line">        <span class="comment">// finish as many as we can to get back down to the limit.</span></span><br><span class="line">           (<span class="number">3</span>)do something</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>当程序执行到 trimApplications() 之后，首先检查 mRemovedProcesses 列表中的进程。mRemovedProcesses 列表中主要包含了 crash 的进程、5 秒内没有响应并被用户选在强制关闭的进程、以及应用开发这调用 killBackgroundProcess 想要杀死的进程。调用 Process.killProcess 将所有此类进程全部杀死。</li>
+<li>调用 updateOomAdjLocked() 函数，若成功返回，说明 Linux 内核支持 setOomAdj() 接口，updateOomAdjLocked 将修改 adj 的值并通知 linux 内核，内核根据 adj 值以及内存使用情况动态管理进程资源（lowmemorykiller 和 oom_killer）。若 updateOomAdjLocked() 返回为假，则表示当前系统不支持 setOomAdj() 接口，将在本地进行默认的资源回收。</li>
+<li>最后，如果当前依然运行了过多的 Activity，对多余的 Activity 进行回收。 trimApplications() 的大多数的代码都在处理 Oom_killer 不存在情况下的默认资源回收，<br>下面对其默认回收过程（即代码清单中标记（2）的位置）进行进一步分析。其回收过程可大致描述如下。<ul>
+<li>步骤一，获取当前所有运行的进程 mLruProcesses，mLruProcesses 中的排序规则是按最近使用时间。对 mLruProcesses 中不能被关闭的进程进行计数，这些不能被关闭的进程包括运行 service 的进程，运行 broadcast receiver 的进程等，见如下代码。</li>
+<li>步骤二， 设当前最大运行进程数 curMaxProcs = curMaxProcs + numServiceProcs（即默认最大进程数与运行 Service 的进程数之和），如果当前进程的数量 mRemovedProcesses.size() 大于这个值，则遍历所有当前运行的进程，杀死符合条件的那些进程并释放内存。清理过程见清单 5（部分代码省略）。从清单 5 的代码中可以看出，进程被杀死的条件（缺一不可）是：<ul>
+<li>必须是非 persistent 进程，即非系统进程；</li>
+<li>必须是空进程，即进程中没有任何 activity 存在。如果杀死存在 Activity 的进程，有可能关闭用户正在使用的程序，或者使应用程序恢复的时延变大，从而影响用户体验；</li>
+<li>必须无 broadcast receiver。运行 broadcast receiver 一般都在等待一个事件的发生，用户并不希望此类程序被系统强制关闭；</li>
+<li>进程中 service 的数量必须为 0。存在 service 的进程很有可能在为一个或者多个程序提供某种服务，如 GPS 定位服务。杀死此类进程将使其他进程无法正常服务。</li>
+</ul>
+</li>
+<li>步骤三，再次检查当前运行的进程，如果 mRemovedProcesses.size() 仍然大于 curMaxProcs，则放宽条件再次进行回收。判断条件见代码清单 6（部分代码省略）。下面代码中，布尔变量 canQuit 的值为真时，那么这个进程可以被回收。canQuit 的取值分两个步骤，首先是根据进程的属性赋值。 1. 必须是非 persistent 进程，即非系统进程；2. 必须无 broadcast receiver；3. 进程中 service 的数量必须为 0；4. persistent 类型的 activity 数量为 0。与步骤二唯一的不同在第 4 条，这里不要求进程是空进程，只要进程中没有 persistent 类型的 Activity 就可以（Activity 是否是 persistent 类型在开发阶段指定）。这些条件都满足时，再检查进程中每个 Activity 的属性，当该进程中所有的 Activity 都还必须满足三个条件：Activity 的状态已经保存，当前处在不可见状态并且 Activity 已经 Stop。这时杀掉进程只会降低下次调用程序时的加载速度，下次启动时将恢复到关闭之前的状态，并不会在用户体验上造成致命的影响，所以，canQuit 置位为真。这种情况与步骤二的回收方式也有所不同，由于进程中 Activity 的数量不是 0，下一步需要对每个 activity 执行 destroyActivityLocked() 销毁，最后才杀死进程。</li>
+<li><ul>
+<li>步骤四，上面 3 个过程都是针对整个 process 进行的资源回收。在以上过程执行完毕之后，将在更小的粒度上对 Activity 的资源进行回收。与上面所述类似，列表 mLRUActivities 存储了当前所有运行中的 Activity，排序规则同样为最少访问原则。mLRUActivities.size() 返回系统中运行的 Activity 的数量，当其大于 MAX_ACTIVITIES（MAX_ACTIVITIES 是一个常量，一般值为 20，代表系统中最大允许同时存在的 Activity）时。将回收部分满足条件的 Activity 以减少内存的使用。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行 destroyActivityLocked() 销毁</span></span><br><span class="line"><span class="keyword">boolean</span> canQuit = !app.persistent &amp;&amp; app.curReceiver == <span class="keyword">null</span></span><br><span class="line"> &amp;&amp; app.services.size() == <span class="number">0</span></span><br><span class="line">    &amp;&amp; app.persistentActivities == <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">int</span> NUMA = app.activities.size();</span><br><span class="line"> <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;NUMA &amp;&amp; canQuit; j++) &#123;</span><br><span class="line">    HistoryRecord r = (HistoryRecord)app.activities.get(j);</span><br><span class="line">    canQuit = (r.haveState || !r.stateNotNeeded)</span><br><span class="line">            &amp;&amp; !r.visible &amp;&amp; r.stopped;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span> (canQuit) &#123;</span><br><span class="line">    <span class="comment">// Finish all of the activities, and then the app itself.</span></span><br><span class="line">    <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;NUMA; j++) &#123;</span><br><span class="line">        HistoryRecord r = (HistoryRecord)app.activities.get(j);</span><br><span class="line">        <span class="keyword">if</span> (!r.finishing) &#123;</span><br><span class="line">            destroyActivityLocked(r, <span class="keyword">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r.resultTo = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (app.pid &gt; <span class="number">0</span> &amp;&amp; app.pid != MY_PID) &#123;</span><br><span class="line">        Process.killProcess(app.pid);</span><br><span class="line">    &#125;</span><br><span class="line">    cleanUpApplicationRecordLocked(app, <span class="keyword">false</span>, i);</span><br><span class="line">    i--;</span><br><span class="line">    <span class="comment">//dump();</span></span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// 回收条件代码</span></span><br><span class="line"><span class="comment">//Finally, if there are too many activities now running, try to</span></span><br><span class="line"><span class="comment">//finish as many as we can to get back down to the limit.</span></span><br><span class="line"> <span class="keyword">for</span> ( i=<span class="number">0</span>; i&lt;mLRUActivities.size() &amp;&amp; mLRUActivities.size()  &gt; curMaxActivities; i++) &#123;</span><br><span class="line">   <span class="keyword">final</span> HistoryRecord r = (HistoryRecord)mLRUActivities.get(i);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// We can finish this one if we have its icicle saved and</span></span><br><span class="line">    <span class="comment">// it is not persistent.</span></span><br><span class="line">    <span class="keyword">if</span> ((r.haveState || !r.stateNotNeeded) &amp;&amp; !r.visible</span><br><span class="line">         &amp;&amp; r.stopped &amp;&amp; !r.persistent &amp;&amp; !r.finishing) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> origSize = mLRUActivities.size();</span><br><span class="line">        destroyActivityLocked(r, <span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">if</span> (origSize  &gt; mLRUActivities.size()) &#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Linux_内核中的内存回收">Linux 内核中的内存回收</h3><h4 id="lowmemorykiller">lowmemorykiller</h4><p>上面提到，trimApplications() 函数中会执行一个叫做 updateOomAdjLocked() 的函数，如果返回 false，则执行默认回收，若返回 true 则不执行默认内存回收。updateOomAdjLocked 将针对每一个进程更新一个名为 adj 的变量，并将其告知 Linux 内核，内核维护一个包含 adj 的数据结构（即进程表），并通过 lowmemorykiller 检查系统内存的使用情况，在内存不足的情况下杀死一些进程并释放内存。下面将对这种 Android Framework 与 Linux 内核相配合的内存回收机制进行研究。</p>
+<p>由于 Android 操作系统中的所有应用程序都运行在独立的 Dalvik 虚拟机环境中，Linux 内核无法获知每个进程的运行状态，也就无法为每个进程维护一个合适的 adj 值，因此，Android Application Framework 中必须提供一套机制以动态的更新每个进程的 adj。这就是 updateOomAdjLocked()。</p>
+<p>updateOomAdjLocked() 位于 ActivityManagerService 中，其主要作用是为进程选择一个合适的 adj 值，并通知 Linux 内核更新这个值。updateOomAdjLocked 首先调用 computeOomAdjLocked() 初步计算 adj 的值，然后回到 updateOomAdjLocked() 对其值进行进一步修正。估算流程可参见代码。</p>
+<p>关于 adj，其定义在 task_struct-&gt;signal_struct-&gt;adj, 文件 /kernel/include/linux/sched.h 中。实质为进程数据结构中的一个变量，用来表示发生 Out of Memory 时杀死进程的优先级顺序。lowmemorykiller 利用这个变量对进程的重要程度进行判断，并在内存不足时释放部分空间，其实现在文件 /kernel/drivers/staging/android/lowmemorykiller.c 中。lowmemorykiller 定义了两个数组：lowmem_adj 和 lowmem_minfree。其中 lowmen_adj 定义了一系列 adj 键值，而 lowmem_minfree 的每个元素代表一个内存阈值。如下代码中四个阈值分别是 6MB，8MB，16MB 和 64MB，分别代表当内存小于 64MB 时，adj 大于或等于 12 的那些进程将被杀死并回收，内存小于 16MB 时，adj 大于等于 6 的那些进程将被杀死并回收，内存小于 8MB 时，adj 大于等于 1 的那些进程将被杀死并回收，内存小于 6MB 时，adj 大于等于 0 的所有进程将被杀死并回收。内核中的每个进程都持有一个 adj，取值范围 -17 到 15，值越小代表进程的重要性越高，回收优先级越低，其中 -17 代表禁用自动回收。Android 系统中，只有 0-15 被使用。</p>
+<p>lowmemorykiller 注册一个 lowmem_shrinker，lowmem_shrinker 利用了标准 Linux 内核中的 Cache Shrinker 来实现，当空闲内存页面不足时，内核线程 kswapd 将用已注册的 lowmem_shrinker 来回收内存页面。</p>
+<p>lowmem_shrink 的代码在函数 lowmem_shrink 中，下面给出该函数的主要结构。lowmem_shrink 根据上述规则遍历所有进程，选出需要结束的进程，通过发送一个无法忽略的信号 SIGKILL 强制结束这些进程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">lowmem_shrink</span><span class="params">(<span class="keyword">struct</span> shrinker *s, <span class="keyword">int</span> nr_to_scan, gfp_t gfp_mask)</span></span><br><span class="line"> </span>&#123;</span><br><span class="line">        for_each_process(p) &#123;</span><br><span class="line">           <span class="comment">//Select processes to be forced</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (selected) &#123;</span><br><span class="line">               force_sig(SIGKILL, selected);</span><br><span class="line">               rem -= selected_tasksize;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">        rem = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> rem;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Oom_killer">Oom_killer</h4><p>如果上述各种方法都无法释放出足够的内存空间，那么当为新的进程分配应用程序时将发生 Out of Memory 异常，OOM_killer 将尽最后的努力杀掉一些进程来释放空间。Android 中的 OOM_killer 继承自标准 Linux 2.6 内核，用于分配内存时 Out of Memory 的处理。Android 并没有对其实现方式进行修改。其位置在 linux/mm/oom_kill.c。 oom_killer 遍历进程，并计算所有进程的 badness 值，选择 badness 最大的那个进程将其杀掉。函数 badness 的声明如下：</p>
+<p>unsigned long badness(struct task_struct *p, unsigned long uptime) 函数 select_bad_process 返回将要杀掉的那个进程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">struct</span> task_struct *select_bad_process(<span class="keyword">unsigned</span> <span class="keyword">long</span> *ppoints, <span class="keyword">struct</span> mem_cgroup *mem)</span><br><span class="line">&#123;</span><br><span class="line">       for_each_process(p) &#123;</span><br><span class="line">              points = badness(p, uptime.tv_sec);</span><br><span class="line">              <span class="keyword">if</span> (points &gt; *ppoints || !chosen) &#123;</span><br><span class="line">                      chosen = p;</span><br><span class="line">                      *ppoints = points;</span><br><span class="line">              &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> chosen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，和 lowmemorykiller 一样，通过发送 SIGKILL 结束选中的进程。由于 oom_killer 与标准 Linux 内核并无不同，这里不再详细研究。</p>
+
+  </section>
+
+</article>
+
+
+
+			 <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">
+    </a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">
+    </a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">
+    </a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">
+    </a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到：",
+            "viewSize": "16"
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 
+            'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' 
+                    + ~ ( - new Date() / 36e5)];
+</script>
+              <footer class="footer">
+	   <span class="footer__copyright"> 本站由 <a href="http://mlongbo.com/aboutme" rel="author">@Longbo Ma</a> 使用<a href="http://hexo.io">Hexo</a> 创建，并使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题, 修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>. </span>
+	    <span class="footer__copyright">采用<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">知识共享署名-非商业性使用 3.0 国际版本许可协议进行许可</a> </span>
+	    <span class="footer__copyright">&copy;&nbsp;2014-2015&nbsp;All&nbsp;rights&nbsp;reserved. </span>
+</footer>
+        </div>
+    </div>
+    
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-42596364-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>

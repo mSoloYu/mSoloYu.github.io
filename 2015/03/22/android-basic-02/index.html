@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Android 开发之基础知识（02） | mSolo</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="关注切入点、产品、设计开发和敏捷实践。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Android 开发之基础知识（02） | mSolo">
+    <meta name="twitter:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Android 开发之基础知识（02） | mSolo">
+    <meta property="og:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+  
+    <meta name="author" content="mSolo Yu">
+  
+    <link rel="stylesheet" type="text/css" href="/css/vno.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/solarized_dark.css">
+    <!-- <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  -->
+
+
+    
+    <link rel="icon" type="image/png" href="//favicon.ico" />
+    <link href="//favicon.ico" rel="shortcut icon" type="image/png">
+    
+
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <meta name="generator" content="hexo" />
+    
+    <link rel="alternate" type="application/rss+xml" title="mSolo" href="/atom.xml">
+    
+    
+    <link rel="canonical" href="https://msoloyu.github.io/2015/03/22/android-basic-02/" />
+
+    
+    <link rel="author" href="https://www.google.com/+LenboMa" />
+    
+</head>
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 mSolo 的主页"><img src="/images/logo2.jpg" width="80" alt="mSolo logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for mSolo">mSolo</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">月光独奏</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">关注切入点、产品、设计开发和敏捷实践</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/about">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/mSoloYu" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://www.google.com/+LenboMa" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/lenbo_" title="上Twitter找我" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-disabled"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-03-22T14:45:32.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Android/">Android</a>
+</span>
+      <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
+    </div>
+    <h1 class="post-title">Android 开发之基础知识（02）</h1>
+  </header>
+
+  <section class="post">
+    <blockquote>
+<p>Activity 和 Fragment 的生命周期 + Android 在横竖屏切换时到底发生了什么？ + Android 线程和 Handler 基础入门</p>
+</blockquote>
+<h3 id="Activity_和_Fragment_的生命周期">Activity 和 Fragment 的生命周期</h3><p><img src="http://7xi7e6.com1.z0.glb.clouddn.com/activity_lifecycle_1.png" alt="Activity生命周期1"><br><img src="http://7xi7e6.com1.z0.glb.clouddn.com/activity_lifecycle_2.png" alt="Activity生命周期2"><br><img src="http://7xi7e6.com1.z0.glb.clouddn.com/activity_lifecycle_3.png" alt="Activity生命周期3"><br><img src="http://7xi7e6.com1.z0.glb.clouddn.com/activity-fragment_lifecycle_4.png" alt="Activity和Fragment生命周期4"></p>
+<p>节选自：《Android in Action》, 《Professional Android, 4th》 …</p>
+<hr>
+<h3 id="Android在横竖屏切换时到底发生了什么？">Android在横竖屏切换时到底发生了什么？</h3><h4 id="基于orientation_changes">基于orientation changes</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    Log.d(<span class="string">"Square"</span>, <span class="string">"onCreate()"</span>);</span><br><span class="line">    <span class="keyword">if</span> (savedInstanceState == <span class="keyword">null</span>) &#123;</span><br><span class="line">      Log.d(<span class="string">"Square"</span>, <span class="string">"Requesting orientation change"</span>);</span><br><span class="line">      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onResume();</span><br><span class="line">    Log.d(<span class="string">"Square"</span>, <span class="string">"onResume()"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onPause();</span><br><span class="line">    Log.d(<span class="string">"Square"</span>, <span class="string">"onPause()"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDestroy();</span><br><span class="line">    Log.d(<span class="string">"Square"</span>, <span class="string">"onDestroy()"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其运行情况如下：</p>
+<ol>
+<li>onCreate()</li>
+<li>Requesting orientation change</li>
+<li>onResume()</li>
+<li>onPause()</li>
+<li>onDestroy()</li>
+<li>onCreate()</li>
+<li>onResume()</li>
+</ol>
+</blockquote>
+<h4 id="Orientation_changes_和Android主线程">Orientation changes 和Android主线程</h4><p>反射读取主线程消息队列里面内容的spy代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainLooperSpy</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Field messagesField;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Field nextField;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> MessageQueue mainMessageQueue;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">MainLooperSpy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Field queueField = Looper.class.getDeclaredField(<span class="string">"mQueue"</span>);</span><br><span class="line">      queueField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">      messagesField = MessageQueue.class.getDeclaredField(<span class="string">"mMessages"</span>);</span><br><span class="line">      messagesField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">      nextField = Message.class.getDeclaredField(<span class="string">"next"</span>);</span><br><span class="line">      nextField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">      Looper mainLooper = Looper.getMainLooper();</span><br><span class="line">      mainMessageQueue = (MessageQueue) queueField.get(mainLooper);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dumpQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Message nextMessage = (Message) messagesField.get(mainMessageQueue);</span><br><span class="line">      Log.d(<span class="string">"MainLooperSpy"</span>, <span class="string">"Begin dumping queue"</span>);</span><br><span class="line">      dumpMessages(nextMessage);</span><br><span class="line">      Log.d(<span class="string">"MainLooperSpy"</span>, <span class="string">"End dumping queue"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dumpMessages</span><span class="params">(Message message)</span> <span class="keyword">throws</span> IllegalAccessException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (message != <span class="keyword">null</span>) &#123;</span><br><span class="line">      Log.d(<span class="string">"MainLooperSpy"</span>, message.toString());</span><br><span class="line">      Message next = (Message) nextField.get(message);</span><br><span class="line">      dumpMessages(next);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>记录orientation change发生之后消息队列里面的内容：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> MainLooperSpy mainLooperSpy = <span class="keyword">new</span> MainLooperSpy();</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    Log.d(<span class="string">"Square"</span>, <span class="string">"onCreate()"</span>);</span><br><span class="line">    <span class="keyword">if</span> (savedInstanceState == <span class="keyword">null</span>) &#123;</span><br><span class="line">      Log.d(<span class="string">"Square"</span>, <span class="string">"Requesting orientation change"</span>);</span><br><span class="line">      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);</span><br><span class="line">      mainLooperSpy.dumpQueue();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 输出：</span><br><span class="line"> * onCreate()</span><br><span class="line"> * Requesting orientation change</span><br><span class="line"> * Begin dumping queue</span><br><span class="line"> * &#123; what=118 when=-94ms obj=&#123;1.0 208mcc15mnc en_US ldltr sw360dp w598dp h335dp 320dpi nrml land finger -keyb/v/h -nav/h s.44?spn&#125; &#125;</span><br><span class="line"> * &#123; what=126 when=-32ms obj=ActivityRecord&#123;41fd2b48 token=android.os.BinderProxy@41fcce50 no component name&#125; &#125;</span><br><span class="line"> * End dumping queue</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityThread</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">H</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CONFIGURATION_CHANGED   = <span class="number">118</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> RELAUNCH_ACTIVITY       = <span class="number">126</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>当Activity第一次启动的时候，主线程的消息队列是空的。</li>
+<li>当前要执行的消息就是 LAUNCH_ACTIVITY，即创建一个Activity实例，先后调用 onCreate() 方法和 onResume() 方法。接下来主线程的looper才能处理消息队列里面下一个消息。</li>
+</ul>
+<blockquote>
+<p>如果你真的需要使用handler.post()还要保持Activity引用</p>
+<ul>
+<li>在 Activity 的 onPause()方法里面通过 handler.removeCallbacks() 方法从消息队列移除这个消息。</li>
+</ul>
+</blockquote>
+<h4 id="关于runOnUiThread()的一些话">关于runOnUiThread()的一些话</h4><p>不像 handler.post(), runOnUiThread() 在当前线程为主线程的情况下是不会发送这个runnable的，它会同步地调用 run() 方法。</p>
+<h4 id="IntentService">IntentService</h4><p>在它内部，使用了一个 Looper 在一个专用 HandlerThread 的来处理这些Intents。当这个service 被销毁的时候，这个Looper会让你结束当前intent的处理，然后终结这个后台线程。</p>
+<p>文章转载：<a href="http://android.jobbole.com/80638/" target="_blank" rel="external">Android在横竖屏切换时到底发生了什么？</a></p>
+
+  </section>
+
+</article>
+
+
+
+			 <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">
+    </a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">
+    </a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">
+    </a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">
+    </a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到：",
+            "viewSize": "16"
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 
+            'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' 
+                    + ~ ( - new Date() / 36e5)];
+</script>
+              <footer class="footer">
+	   <span class="footer__copyright"> 本站由 <a href="http://mlongbo.com/aboutme" rel="author">@Longbo Ma</a> 使用<a href="http://hexo.io">Hexo</a> 创建，并使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题, 修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>. </span>
+	    <span class="footer__copyright">采用<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">知识共享署名-非商业性使用 3.0 国际版本许可协议进行许可</a> </span>
+	    <span class="footer__copyright">&copy;&nbsp;2014-2015&nbsp;All&nbsp;rights&nbsp;reserved. </span>
+</footer>
+        </div>
+    </div>
+    
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-42596364-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
