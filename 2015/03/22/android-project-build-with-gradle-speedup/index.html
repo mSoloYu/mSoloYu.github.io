@@ -173,12 +173,11 @@
 <p>同时上面的这些参数也可以配置到前面的用户目录下的gradle.properties文件里，那样就不是针对一个项目生效，而是针对所有项目生效。</p>
 <p>上面的配置文件主要就是做， 增大gradle运行的java虚拟机的大小，让gradle在编译的时候使用独立进程，让gradle可以平行的运行。</p>
 <h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="修改android_studio配置">修改android studio配置</h3><p>在android studio的配置中，开启offline模式，以及修改配置。实际上的配置和上面的一大段一样，主要是在这个地方配置的只会在ide构建的时候生效，命令行构建不会生效。</p>
 <p><img src="http://7xi7e6.com1.z0.glb.clouddn.com/0001_as_gradle_offline.png" alt="gradle offline config"><br><img src="http://7xi7e6.com1.z0.glb.clouddn.com/0002_as_gradle_config.png" alt="gradle compiler config"></p>
 <h3 id="命令行构建">命令行构建</h3><p>基于上面的配置，命令行构建时在命令后面加上这个参数即可 —daemon —parallel —offline。</p>
-<h3 id="引入依赖库时使用aar">引入依赖库时使用aar</h3><p>使用网上第三方的依赖库时尽量使用aar，可以在maven<a href="http://gradleplease.appspot.com/或者githuhttps://github.com/Goddchen/mvn-repo搜索。" target="_blank" rel="external">http://gradleplease.appspot.com/或者githuhttps://github.com/Goddchen/mvn-repo搜索。</a></p>
-<p>自己的库模块也可以打包成aar，关于这个可以参考stormzhang的文章<a href="http://www.stormzhang.com/android/2015/03/01/android-reference-local-aar/。" target="_blank" rel="external">http://www.stormzhang.com/android/2015/03/01/android-reference-local-aar/。</a></p>
+<h3 id="引入依赖库时使用aar">引入依赖库时使用aar</h3><p>使用网上第三方的依赖库时尽量使用aar，可以在<a href="http://gradleplease.appspot.com/" target="_blank" rel="external">maven</a>或者<a href="https://github.com/Goddchen/mvn-repo" target="_blank" rel="external">github</a>搜索。</p>
+<p>自己的库模块也可以打包成aar，关于这个可以参考<a href="http://www.stormzhang.com/android/2015/03/01/android-reference-local-aar/" target="_blank" rel="external">stormzhang</a>的文章。</p>
 <p>转载出处: <a href="http://blog.isming.me/2015/03/18/android-build-speed-up/" target="_blank" rel="external">加速Android Studio/Gradle构建</a></p>
 
   </section>
@@ -187,6 +186,40 @@
 
 
 
+			 <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">
+    </a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">
+    </a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">
+    </a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">
+    </a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到：",
+            "viewSize": "16"
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 
+            'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' 
+                    + ~ ( - new Date() / 36e5)];
+</script>
               <footer class="footer">
 	   <span class="footer__copyright"> 本站由 <a href="http://mlongbo.com/aboutme" rel="author">@Longbo Ma</a> 使用<a href="http://hexo.io">Hexo</a> 创建，并使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题, 修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>. </span>
 	    <span class="footer__copyright">采用<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">知识共享署名-非商业性使用 3.0 国际版本许可协议进行许可</a> </span>
