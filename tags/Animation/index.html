@@ -57,7 +57,7 @@
     </span>
 
     
-<header class="panel-cover " style="background-image: url(/images/background-cover.jpg)">
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
   <div class="panel-main">
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
@@ -153,47 +153,6 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/23/android-basic-03/" title="link to post.title">Android 开发之基础知识（03）</a></h2>
-      <p class="excerpt">
-    
-      使用 Service
-
-
-使用 Service定义 Intent
-optionally populate the Intent with other information that further  describes  how  to  handle  the  request.
-as a messaging construct that you can dispatch to request some sort of “action” from one of the other compo
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-23T06:42:04.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Android/">Android</a>
-</span><a class="btn-border-small" href="/2015/03/23/android-basic-03/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/23/android-advanced-custom-view/" title="link to post.title">Android 进阶之自定义视图（View）</a></h2>
-      <p class="excerpt">
-    
-      基础知识View 的类层次
-View
-ViewParent (interface)
-defines the protocol for any object that wants to play the role of a parent to other views. 
-
-
-ViewGroup (extends View and implements ViewParent)
-defines the protocol for a collection of child views.
-plays a 
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-23T04:46:58.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Android/">Android</a>
-</span><a class="btn-border-small" href="/2015/03/23/android-advanced-custom-view/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
       <h2 class="post-list__post-title post-title"><a href="/2015/03/23/android-basic-04/" title="link to post.title">Android 开发之基础知识（04）</a></h2>
       <p class="excerpt">
     
@@ -211,143 +170,6 @@ which holds a list of drawable assets which def
       <div class="post-list__meta"><time datetime="2015-03-23T02:17:35.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/Animation/">Animation</a>
 </span><a class="btn-border-small" href="/2015/03/23/android-basic-04/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/android-memory-clean/" title="link to post.title">Android 系统的内存回收机制</a></h2>
-      <p class="excerpt">
-    
-      Android 内存回收原则回收优先级：
-
-IMPORTANCE_FOREGROUND:
-IMPORTANCE_VISIBLE:
-IMPORTANCE_SERVICE:
-IMPORTANCE_BACKGROUND:
-IMPORTANCE_EMPTY:
-
-
-ActivityManagerService 集中管理所有进程的内存资源分配。
-所有进程需要申请或释放内存之前必须调用 ActivityManagerService 对象，获得其“许可”之后才能进行下一步操作，或者 ActivityManage
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T15:56:04.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/内存机制/">内存机制</a>
-</span><a class="btn-border-small" href="/2015/03/22/android-memory-clean/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/android-basic-02/" title="link to post.title">Android 开发之基础知识（02）</a></h2>
-      <p class="excerpt">
-    
-      Activity 和 Fragment 的生命周期 + Android 在横竖屏切换时到底发生了什么？ + Android 线程和 Handler 基础入门
-
-Activity 和 Fragment 的生命周期
-节选自：《Android in Action》, 《Professional Android, 4th》 …
-
-Android在横竖屏切换时到底发生了什么？基于orientation changes12345678910111213141516171819202122232425publ
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T14:45:32.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Android/">Android</a>
-</span><a class="btn-border-small" href="/2015/03/22/android-basic-02/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/android-basic-01/" title="link to post.title">Android 开发之基础知识（01）</a></h2>
-      <p class="excerpt">
-    
-      Android 启动简史 + Android 的进程与线程 + Android Package Manager和Package Installer
-
-
-Android 启动简史
-当按下Android设备电源键时究竟发生了什么？
-
-
-启动过程是怎么样的？
-什么是Linux内核？
-桌面系统linux内核与Android系统linux内核有什么区别？
-什么是引导装载程序？
-什么是Zygote？
-什么是X86以及ARM linux？
-什么是init.rc?
-什么是系统服务？
-
-
-
-启动电源以及系统启动
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T06:14:54.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Android/">Android</a>
-</span><a class="btn-border-small" href="/2015/03/22/android-basic-01/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/android-ui-screen-adapter/" title="link to post.title">Android UI 之开发适配</a></h2>
-      <p class="excerpt">
-    
-      Android 3.2 (API Level 13) 起
-resource-small: Screen measuring at least 426dp×320dp
-resource-medium: Screen measuring at least 470dp×320dp
-resource-large: Screen measuring at least 640dp×480dp
-resource-xlarge: Screen measuring at least 960dp×720dp
-
-
-
-
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T04:48:06.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/UI/">UI</a>
-</span><a class="btn-border-small" href="/2015/03/22/android-ui-screen-adapter/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/android-project-build-with-gradle-speedup/" title="link to post.title">加速 Android 工程构建之 Gradle</a></h2>
-      <p class="excerpt">
-    
-      开启gradle单独的守护进程在下面的目录下面创建gradle.properties文件：
-
-/home//.gradle/ (Linux)
-/Users//.gradle/ (Mac)
-C:\Users\.gradle (Windows)
-
-并在文件中增加：
-1org.gradle.daemon=true
-同时修改项目下的gradle.properties文件也可以优化：
-12345678910111213141516171819202122# Project-wide Gradle sett
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T03:55:45.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/Gradle/">Gradle</a>
-</span><a class="btn-border-small" href="/2015/03/22/android-project-build-with-gradle-speedup/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/21/hello-hexo/" title="link to post.title">Hello Hexo</a></h2>
-      <p class="excerpt">
-    
-      Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
-M
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-21T07:34:56.000Z" class="post-list__meta--date date">2015-03-21</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/第一次/">第一次</a>
-</span><a class="btn-border-small" href="/2015/03/21/hello-hexo/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   

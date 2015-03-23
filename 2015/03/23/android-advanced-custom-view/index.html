@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Android 进阶之自定义视图（View） | mSolo</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="关注切入点、产品、设计开发和敏捷实践。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Android 进阶之自定义视图（View） | mSolo">
+    <meta name="twitter:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Android 进阶之自定义视图（View） | mSolo">
+    <meta property="og:description" content="关注切入点、产品、设计开发和敏捷实践。"">
+
+  
+    <meta name="author" content="mSolo Yu">
+  
+    <link rel="stylesheet" type="text/css" href="/css/vno.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/solarized_dark.css">
+    <!-- <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  -->
+
+
+    
+    <link rel="icon" type="image/png" href="//favicon.ico" />
+    <link href="//favicon.ico" rel="shortcut icon" type="image/png">
+    
+
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <meta name="generator" content="hexo" />
+    
+    <link rel="alternate" type="application/rss+xml" title="mSolo" href="/atom.xml">
+    
+    
+    <link rel="canonical" href="https://msoloyu.github.io/2015/03/23/android-advanced-custom-view/" />
+
+    
+    <link rel="author" href="https://www.google.com/+LenboMa" />
+    
+</head>
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 mSolo 的主页"><img src="/images/logo2.jpg" width="80" alt="mSolo logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for mSolo">mSolo</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">天勤地善 &amp; 商信业精</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">关注切入点、产品、设计开发和敏捷实践</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/projects">项目作品</a></li>
+            
+              <li class="navigation__item"><a href="/about">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/mSoloYu" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+  <!-- Google Plus -->
+  
+  <li class="navigation__item">
+    <a href="https://www.google.com/+LenboMa" title="Google+" target="_blank">
+      <i class='social fa fa-google-plus-square'></i>
+      <span class="label">Google+</span>
+    </a>
+  </li>
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/lenbo_" title="上Twitter找我" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-disabled"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-03-23T04:46:58.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/Android/">Android</a>
+</span>
+      <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
+    </div>
+    <h1 class="post-title">Android 进阶之自定义视图（View）</h1>
+  </header>
+
+  <section class="post">
+    <h3 id="基础知识">基础知识</h3><h4 id="View_的类层次">View 的类层次</h4><ul>
+<li>View</li>
+<li>ViewParent (interface)<ul>
+<li>defines the protocol for any object that wants to play the role of a parent to other views. </li>
+</ul>
+</li>
+<li>ViewGroup (extends View and implements ViewParent)<ul>
+<li>defines the protocol for a collection of child views.</li>
+<li>plays a central role in placing the controls (views) at the right place.</li>
+<li>also controls the background and animation of its child views.</li>
+</ul>
+</li>
+<li>ViewRoot (aslo called ViewRootImplementation, implements ViewParent)<ul>
+<li>this class is important for understanding how drawing is done in Android.</li>
+</ul>
+</li>
+</ul>
+<h4 id="View_的生命周期">View 的生命周期</h4><p><img src="http://7xi7e6.com1.z0.glb.clouddn.com/view_lifecycle.png" alt="View lifecycle"></p>
+<p><strong>Layout Phase : Measurement and Layout</strong></p>
+<ul>
+<li>目的 -&gt; 获取 View 的大小和位置。</li>
+<li>该阶段包含两个过程：measure + layout<ul>
+<li>public final void measure(int widthMeasureSpec, int heightMeasureSpec)<ul>
+<li>The derived views need to set their dimensions by calling setMeasuredDimension().</li>
+<li>If the inherited custom view is a collection of other views, as in a ViewGroup, then you need to call measure() on child views in your onMeasure() method.</li>
+</ul>
+</li>
+<li>public void layout(int left, int top, int right, int bottom)<ul>
+<li>protected void onSizeChanged(int w, int h, int oldw, int oldh)</li>
+<li>protected void onLayout(boolean changed, int left, int top, int right, int bottom)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Drawing Phase : Mechanics of onDraw</strong></p>
+<blockquote>
+<p>The protocol implemented by this method is:</p>
+<ul>
+<li>Draw the background</li>
+<li>Draw view’s content by delegating to onDraw()</li>
+<li>Draw children by delegating to dispatchDraw()</li>
+<li>Draw decorations such as scroll bars</li>
+</ul>
+</blockquote>
+<h4 id="实践_Measure_过程">实践 Measure 过程</h4><ul>
+<li><p>Android passes something called a mode bit to onMeasure( ) to give context to calculating the size of the view. This mode bit can be one of three: <strong>AT_MOST</strong>, <strong>UNSPECIFIED</strong>, and <strong>EXACT</strong>.</p>
+</li>
+<li><p>Default Implementation of onMeasure() by the View Class</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">    setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),</span><br><span class="line">            getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getDefaultSize</span><span class="params">(<span class="keyword">int</span> size, <span class="keyword">int</span> measureSpec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = size;</span><br><span class="line">    <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</span><br><span class="line">    <span class="keyword">int</span> specSize = MeasureSpec.getSize(measureSpec);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">switch</span> (specMode) &#123;</span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">        result = size;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.AT_MOST:</span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">        result = specSize;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另一种方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">    setMeasuredDimension(getImprovedDefaultWidth(widthMeasureSpec),</span><br><span class="line">            getImprovedDefaultHeight(heightMeasureSpec));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getImprovedDefaultHeight</span><span class="params">(<span class="keyword">int</span> measureSpec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</span><br><span class="line">    <span class="keyword">int</span> specSize =  MeasureSpec.getSize(measureSpec);</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">switch</span> (specMode) &#123;</span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">        <span class="keyword">return</span> hGetMaximumHeight();</span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">        <span class="keyword">return</span> specSize;</span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.AT_MOST:</span><br><span class="line">        <span class="keyword">return</span> hGetMinimumHeight();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//you shouldn't come here</span></span><br><span class="line">    Log.e(tag,<span class="string">"unknown specmode"</span>);</span><br><span class="line">    <span class="keyword">return</span> specSize;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">hGetMinimumHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.getSuggestedMinimumHeight();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">hGetMinimumWidth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.getSuggestedMinimumWidth();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="onDraw()">onDraw()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line">    <span class="keyword">int</span> w = <span class="keyword">this</span>.getWidth();</span><br><span class="line">    <span class="keyword">int</span> h = <span class="keyword">this</span>.getHeight();</span><br><span class="line">    <span class="keyword">int</span> t = <span class="keyword">this</span>.getTop();</span><br><span class="line">    <span class="keyword">int</span> l = <span class="keyword">this</span>.getLeft();</span><br><span class="line">    <span class="keyword">int</span> ox = w/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> oy = h/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> rad = Math.min(ox,oy)/<span class="number">2</span>;</span><br><span class="line">    canvas.drawCircle(ox, oy, rad, getBrush());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> Paint <span class="title">getBrush</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Paint p = <span class="keyword">new</span> Paint();</span><br><span class="line">    p.setAntiAlias(<span class="keyword">true</span>);</span><br><span class="line">    p.setStrokeWidth(strokeWidth);</span><br><span class="line">    p.setColor(strokeColor);</span><br><span class="line">    p.setStyle(Paint.Style.STROKE);</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="响应事件">响应事件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CircleView</span></span><br><span class="line"><span class="keyword">extends</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line">....<span class="function">other stuff</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initCircleView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...other stuff</span><br><span class="line">        <span class="keyword">this</span>.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">this</span>.setClickable(<span class="keyword">true</span>);</span><br><span class="line">        ...other stuff</span><br><span class="line">    &#125;</span><br><span class="line">    ....<span class="function">other stuff</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//increase the radius</span></span><br><span class="line">        defRadius *= <span class="number">1.2</span>;</span><br><span class="line">        adjustMinimumHeight();</span><br><span class="line">        requestLayout();</span><br><span class="line">        invalidate();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">adjustMinimumHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setMinimumHeight(defRadius * <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">this</span>.setMinimumWidth(defRadius * <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ....other stuff</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义属性">自定义属性</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</span><br><span class="line">    xmlns:circleViewPkg="http://schemas.android.com/apk/res/com.androidbook.custom"</span><br><span class="line">    .... </span><br><span class="line">&lt;com.androidbook.custom.CircleView</span><br><span class="line">    android:id="@+id/circle_view_id"</span><br><span class="line">    android:layout_width="wrap_content"</span><br><span class="line">    android:layout_height="wrap_content"</span><br><span class="line">    circleViewPkg:strokeWidth="5"</span><br><span class="line">    circleViewPkg:strokeColor="@android:color/holo_red_dark"</span><br><span class="line">    /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br><span class="line">...</span><br><span class="line">&lt;resources&gt;</span><br><span class="line">&lt;declare-styleable name="CircleView"&gt;</span><br><span class="line">    &lt;attr name="strokeWidth" format="integer"/&gt;</span><br><span class="line">    &lt;attr name="strokeColor" format="color|reference" /&gt;</span><br><span class="line">&lt;/declare-styleable&gt;</span><br><span class="line">&lt;/resources&gt;</span><br><span class="line">...</span><br><span class="line">&lt;!--</span><br><span class="line">  R.attr.strokeWidth (int)</span><br><span class="line">  R.attr.srokeColor (int)</span><br><span class="line">  R.styleable.CircelView (an array of ints)</span><br><span class="line">  R.styleable.CircleView_strokeWidth (offset into the array)</span><br><span class="line">  R.styleable.CircelView_strokeColor (offset into the array)</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">CircleView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(context, attrs, defStyle);</span><br><span class="line">    <span class="comment">//Use the array constant to read the bag once</span></span><br><span class="line">    TypedArray t = context.obtainStyledAttributes(attrs,</span><br><span class="line">                     R.styleable.CircleView,</span><br><span class="line">                     defStyle,   <span class="comment">//if any values are in the theme, do you have your own style group</span></span><br><span class="line">                     <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    strokeColor = t.getColor(R.styleable.CircleView_strokeColor, strokeColor);</span><br><span class="line">    strokeWidth = t.getInt(R.styleable.CircleView_strokeWidth, strokeWidth);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Recycle the typed array</span></span><br><span class="line">    t.recycle();</span><br><span class="line"></span><br><span class="line">    initCircleView();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>文章转载：《Expert Android》 + 《Android Programming Pushing》</p>
+
+  </section>
+
+</article>
+
+
+
+			 <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">
+    </a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">
+    </a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">
+    </a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">
+    </a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": "分享到：",
+            "viewSize": "16"
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 
+            'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' 
+                    + ~ ( - new Date() / 36e5)];
+</script>
+              <footer class="footer">
+	   <span class="footer__copyright"> 本站由 <a href="http://mlongbo.com/aboutme" rel="author">@Longbo Ma</a> 使用<a href="http://hexo.io">Hexo</a> 创建，并使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题, 修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>. </span>
+	    <span class="footer__copyright">采用<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">知识共享署名-非商业性使用 3.0 国际版本许可协议进行许可</a> </span>
+	    <span class="footer__copyright">&copy;&nbsp;2014-2015&nbsp;All&nbsp;rights&nbsp;reserved. </span>
+</footer>
+        </div>
+    </div>
+    
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-42596364-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
