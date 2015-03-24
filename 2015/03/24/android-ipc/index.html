@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android IPC (上) | mSolo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IPC is a framework for the exchange of signals and data across multiple processes.
+
+Parcel123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class CustomData">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android IPC (上)">
+<meta property="og:url" content="https://msoloyu.github.io/2015/03/24/android-ipc/index.html">
+<meta property="og:site_name" content="mSolo">
+<meta property="og:description" content="IPC is a framework for the exchange of signals and data across multiple processes.
+
+Parcel123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class CustomData">
+<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/binder_ipc_01.png">
+<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/binder_ipc_02.png">
+<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/messenger_ipc_01.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android IPC (上)">
+<meta name="twitter:description" content="IPC is a framework for the exchange of signals and data across multiple processes.
+
+Parcel123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class CustomData">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">天勤地善 &amp; 商信业精</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">��ҳ</a></li>
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/projects">��Ŀ</a></li>
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/about">����</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="q" value="site:https://msoloyu.github.io"></form>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/Android/">Android</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-android-ipc" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Android IPC (上)
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/03/24/android-ipc/" class="article-date">
+  <time datetime="2015-03-24T06:08:37.000Z" itemprop="datePublished">2015-03-24</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <blockquote>
+<p>IPC is a framework for the exchange of signals and data across multiple processes.</p>
+</blockquote>
+<h3 id="Parcel">Parcel</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomData</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;CustomData&gt; CREATOR = <span class="keyword">new</span> Parcelable.Creator&lt;CustomData&gt;() &#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> CustomData <span class="title">createFromParcel</span><span class="params">(Parcel parcel)</span> </span>&#123;</span><br><span class="line">            CustomData customData = <span class="keyword">new</span> CustomData();</span><br><span class="line">            customData.mName = parcel.readString();</span><br><span class="line">            customData.mReferences = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">            parcel.readStringList(customData.mReferences);</span><br><span class="line">            customData.mCreated = <span class="keyword">new</span> Date(parcel.readLong());</span><br><span class="line">            <span class="keyword">return</span> customData;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="keyword">public</span> CustomData[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> CustomData[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> String mName;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; mReferences;</span><br><span class="line">    <span class="keyword">private</span> Date mCreated;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mName = “”;</span><br><span class="line">        mReferences = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        mCreated = <span class="keyword">new</span> Date();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel parcel, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        parcel.writeString(mName);</span><br><span class="line">        parcel.writeStringList(mReferences);</span><br><span class="line">        parcel.writeLong(mCreated.getTime());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        CustomData that = (CustomData) o;</span><br><span class="line">        <span class="keyword">return</span> mCreated.equals(that.mCreated) &amp;&amp; mName.equals(that.mName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = mName.hashCode();</span><br><span class="line">        result = <span class="number">31</span> * result + mCreated.hashCode();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="The_Binder_Terminology">The Binder Terminology</h3><p><img src="http://7xi7e6.com1.z0.glb.clouddn.com/binder_ipc_01.png" alt="Binder IPC"></p>
+<ul>
+<li>Binder (Framework) : The overall IPC architecture</li>
+<li>Binder Driver : The kernel-level driver that fascinates the communication across process boundaries</li>
+<li>Binder Protocol : Low-level protocol (ioctl-based) used to communicate with the Binder driver</li>
+<li>IBinder Interface : A well-defined behavior (i.e. methods) that Binder Objects must implement</li>
+<li>AIDL : Android Interface Definition Language used to describe business operations on an IBinder Interface</li>
+<li>Binder (Object) : A generic implementation of the IBinder interface</li>
+<li>Binder Token : An abstract 32-bit integer value that uniquely identifies a Binder object across all processes on the system</li>
+<li>Binder Service : An actual implementation of the Binder (Object) that implements the business operations</li>
+<li>Binder Client : An object wanting to make use of the behavior offered by a binder service</li>
+<li>Binder Transaction : An act of invoking an operation (i.e. a method) on a remote Binder object, which may involve sending/receiving data, over the Binder Protocol</li>
+<li>Parcel : “Container for a message (data and object references) that can be sent through an IBinder.” A unit of transactional data - one for the outbound request, and another for the inbound reply</li>
+<li>Marshalling : A procedure for converting higher level applications data structures (i.e. request/response parameters) into parcels for the purposes of embedding them into Binder transactions</li>
+<li>Unmarshalling : A procedure for reconstructing higher-level application data-structures (i.e. request/response parameters) from parcels received through Binder transactions</li>
+<li>Proxy : An implementation of the AIDL interface that un/marshals data and maps method calls to transactions submitted via a wrapped IBinder reference to the Binder object</li>
+<li>Stub : A partial implementation of the AIDL interface that maps transactions to Binder Service method calls while un/marshalling data</li>
+<li>Context Manager (a.k.a. servicemanager) : A special Binder Object with a known handle (registered as handle 0) that is used as a registry/lookup service for other Binder Objects (name → handle mapping)</li>
+</ul>
+<p><img src="http://7xi7e6.com1.z0.glb.clouddn.com/binder_ipc_02.png" alt="Binder IPC Details"></p>
+<h3 id="Binder_Transactions">Binder Transactions</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">performCustomBinderTransaction</span><span class="params">(IBinder binder, String arg0, <span class="keyword">int</span> arg1, <span class="keyword">float</span> arg2)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    Parcel request = Parcel.obtain();</span><br><span class="line">    Parcel response = Parcel.obtain();</span><br><span class="line">    <span class="comment">// Populate request data...</span></span><br><span class="line">    request.writeString(arg0);</span><br><span class="line">    request.writeInt(arg1);</span><br><span class="line">    request.writeFloat(arg2);</span><br><span class="line">    <span class="comment">// Perform transaction</span></span><br><span class="line">    binder.transact(IBinder.FIRST_CALL_TRANSACTION, request, response, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// Read the result from the response…</span></span><br><span class="line">    String result = response.readString();</span><br><span class="line">    <span class="comment">// Recycle the objects</span></span><br><span class="line">    request.recycle();</span><br><span class="line">    response.recycle();</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//If you implement a custom Binder object in your Service without using an AIDL, </span></span><br><span class="line"><span class="comment">//you need to implement the method Binder.onTransact()</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomBinder</span> <span class="keyword">extends</span> <span class="title">Binder</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">onTransact</span><span class="params">(<span class="keyword">int</span> code, Parcel request, Parcel response, <span class="keyword">int</span> flags)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="comment">// Read the data in the request</span></span><br><span class="line">        String arg0 = request.readString();</span><br><span class="line">        <span class="keyword">int</span> arg1 = request.readInt();</span><br><span class="line">        <span class="keyword">float</span> arg2 = request.readFloat();</span><br><span class="line">        String result = buildResult(arg0, arg1, arg2);</span><br><span class="line">        <span class="comment">// Write the result to the response Parcel</span></span><br><span class="line">        response.writeString(result);</span><br><span class="line">        <span class="comment">// Return true on success</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">buildResult</span><span class="params">(String arg0, <span class="keyword">int</span> arg1, <span class="keyword">float</span> arg2)</span> </span>&#123;</span><br><span class="line">        String result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// TODO Build the result</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Link_to_Death">Link to Death</h3><ul>
+<li>When a client receives an IBinder object in the onServiceConnected() method, the client can call linkToDeath() with a callback implementing the interface IBinder.DeathRecipient.</li>
+<li>IBinder.pingBinder().</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkToDeathSample</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = “LinkToDeathSample”;</span><br><span class="line">    <span class="comment">// Service methods exclude for brevity...</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">notifyRemoteServiceDeath</span><span class="params">(IBinder iBinder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            iBinder.linkToDeath(<span class="keyword">new</span> MyLinkToDeathCallback(), <span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">            Log.e(TAG, “Error registering <span class="keyword">for</span> link to death.”, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyLinkToDeathCallback</span> <span class="keyword">implements</span> <span class="title">IBinder</span>.<span class="title">DeathRecipient</span> </span>&#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">binderDied</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// TODO Handle death of remote binder...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="AIDL">AIDL</h3><ul>
+<li><p>CustomData.aidl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aptl.sampleapi;</span><br><span class="line"><span class="keyword">import</span> com.aptl.sampleapi.CustomData;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ApiInterfaceV1</span> </span>&#123;</span><br><span class="line">    <span class="javadoc">/**</span><br><span class="line">     * Simple remote method for checking if a number is a prime.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">long</span> value)</span></span>;</span><br><span class="line">    <span class="javadoc">/**</span><br><span class="line">     * Retrieve all CustomData objects since timestamp.</span><br><span class="line">     * Will get at most result.length objects.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getAllDataSince</span><span class="params">(<span class="keyword">long</span> timestamp, out CustomData[] result)</span></span>;</span><br><span class="line">    <span class="javadoc">/**</span><br><span class="line">     * Stores the CustomData object.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">storeData</span><span class="params">(in CustomData data)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>service</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AidlService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;CustomData&gt; mCustomDataCollection;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        mCustomDataCollection = <span class="keyword">new</span> ArrayList&lt;CustomData&gt;();</span><br><span class="line">        <span class="comment">// TODO Populate the list with stored values...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mBinder;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPrimeImpl</span><span class="params">(<span class="keyword">long</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Implementation left out for brevity...</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getDataSinceImpl</span><span class="params">(CustomData[] result, Date since)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = mCustomDataCollection.size();</span><br><span class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size &amp;&amp; pos &lt; result.length; i++) &#123;</span><br><span class="line">            CustomData storedValue = mCustomDataCollection.get(i);</span><br><span class="line">            <span class="keyword">if</span>(since.after(storedValue.getCreated())) &#123;</span><br><span class="line">                result[pos++] = storedValue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">storeDataImpl</span><span class="params">(CustomData data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = mCustomDataCollection.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            CustomData customData = mCustomDataCollection.get(i);</span><br><span class="line">            <span class="keyword">if</span>(customData.equals(data)) &#123;</span><br><span class="line">                mCustomDataCollection.set(i, data);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        mCustomDataCollection.add(data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ApiInterfaceV1.Stub mBinder = <span class="keyword">new</span> ApiInterfaceV1.Stub() &#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">long</span> value)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> isPrimeImpl(value);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAllDataSince</span><span class="params">(<span class="keyword">long</span> timestamp, CustomData[] result)</span> </span><br><span class="line">                                    <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            getDataSinceImpl(result, <span class="keyword">new</span> Date(timestamp));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">storeData</span><span class="params">(CustomData data)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">            storeDataImpl(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>client</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApiClient</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">ServiceConnection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ApiInterfaceV1 mService;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.main);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onResume();</span><br><span class="line">        bindService(<span class="keyword">new</span> Intent(“com.aptl.sampleapi.AIDL_SERVICE”), <span class="keyword">this</span>, BIND_AUTO_CREATE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCheckForPrime</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        EditText numberToCheck = (EditText) findViewById(R.id.number_input);</span><br><span class="line">        <span class="keyword">long</span> number = Long.valueOf(numberToCheck.getText().toString());</span><br><span class="line">        <span class="keyword">boolean</span> isPrime = mService.isPrime(number);</span><br><span class="line">        String message = isPrime ?</span><br><span class="line">                getString(R.string.number_is_prime, number)</span><br><span class="line">                : getString(R.string.number_not_prime, number);</span><br><span class="line">        Toast.makeText(<span class="keyword">this</span>, message, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onPause();</span><br><span class="line">        unbindService(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName componentName, IBinder iBinder)</span> </span>&#123;</span><br><span class="line">        mService = ApiInterfaceV1.Stub.asInterface(iBinder);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName componentName)</span> </span>&#123;</span><br><span class="line">        mService = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Callbacks with AIDL</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.aptl.sampleapi;</span><br><span class="line"><span class="keyword">import</span> com.aptl.sampleapi.CustomData;</span><br><span class="line">oneway <span class="class"><span class="keyword">interface</span> <span class="title">AidlCallback</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onDataUpdated</span><span class="params">(in CustomData[] data)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">private</span> AidlCallback.Stub mAidlCallback = <span class="keyword">new</span> AidlCallback.Stub() &#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDataUpdated</span><span class="params">(CustomData[] data)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        Toast.makeText(MyApiClient.<span class="keyword">this</span>, “Data was updated!”,</span><br><span class="line">                       Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCallback</span><span class="params">(<span class="keyword">final</span> AidlCallback callback)</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    mCallbacks.add(callback);</span><br><span class="line">    callback.asBinder().linkToDeath(<span class="keyword">new</span> DeathRecipient() &#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">binderDied</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            mCallbacks.remove(callback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Messenger_IPC">Messenger IPC</h3><ul>
+<li>Messenger represents a reference to a Handler that can be sent to a remote process via an Intent;</li>
+<li>Messages sent by the remote process via the messenger are delivered to the local handler;</li>
+<li>Messages are like Intents, in that they can designate the “operation” (aMessage.what) and data (aMessage.getData());</li>
+<li>Still asynchronous, but lower latency/overhead</li>
+<li>Great for efficient call-backs from the service to the client</li>
+<li>Messages are by default handled on the Looper thread<br><img src="http://7xi7e6.com1.z0.glb.clouddn.com/messenger_ipc_01.png" alt="Messenger IPC"></li>
+<li><p>example 1</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadClientActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CALLBACK_MSG = <span class="number">0</span>;</span><br><span class="line">    …</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">      Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.marakana.android.download.service.SERVICE"</span>);</span><br><span class="line">      ArrayList&lt;Uri&gt; uris = …</span><br><span class="line">      intent.putExtra(<span class="string">"uris"</span>, uris);</span><br><span class="line">      Messenger messenger = <span class="keyword">new</span> Messenger(<span class="keyword">new</span> ClientHandler(<span class="keyword">this</span>));</span><br><span class="line">      intent.putExtra(<span class="string">"callback-messenger"</span>, messenger);</span><br><span class="line">      <span class="keyword">super</span>.startService(intent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ClientHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</span><br><span class="line">      <span class="keyword">private</span> <span class="keyword">final</span> WeakReference&lt;DownloadClientActivity&gt; clientRef;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="title">ClientHandler</span><span class="params">(DownloadClientActivity client)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.clientRef = <span class="keyword">new</span> WeakReference&lt;DownloadClientActivity&gt;(client);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="annotation">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;   <span class="comment">// Receive responses via a call-back on the handler</span></span><br><span class="line">        Bundle data = msg.getData();</span><br><span class="line">        DownloadClientActivity client = clientRef.get();</span><br><span class="line">        <span class="keyword">if</span> (client != <span class="keyword">null</span> &amp;&amp; msg.what == CALLBACK_MSG &amp;&amp; data != <span class="keyword">null</span>) &#123;</span><br><span class="line">          Uri completedUri = data.getString(<span class="string">"completed-uri"</span>);  <span class="comment">// Get the response data</span></span><br><span class="line">          <span class="comment">// client now knows that completedUri is done</span></span><br><span class="line">          …</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ---</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessengerDemoService</span> <span class="keyword">extends</span> <span class="title">IntentService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CALLBACK_MSG = <span class="number">0</span>;</span><br><span class="line">    …</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onHandleIntent</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// Handle the request from our client (which could be local or remote)</span></span><br><span class="line">      ArrayList&lt;Uri&gt; uris = intent.getParcelableArrayListExtra(<span class="string">"uris"</span>);</span><br><span class="line">      Messenger messenger = intent.getParcelableExtra(<span class="string">"callback-messenger"</span>);</span><br><span class="line">      <span class="keyword">for</span> (Uri uri : uris) &#123;</span><br><span class="line">        <span class="comment">// download the uri</span></span><br><span class="line">        …</span><br><span class="line">        <span class="keyword">if</span> (messenger != <span class="keyword">null</span>) &#123;</span><br><span class="line">          Message message = Message.obtain();</span><br><span class="line">          message.what = CALLBACK_MSG;</span><br><span class="line">          Bundle data = <span class="keyword">new</span> Bundle(<span class="number">1</span>);</span><br><span class="line">          data.putParcelable(<span class="string">"completed-uri"</span>, uri);</span><br><span class="line">          message.setData(data);</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            messenger.send(message);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">            …</span><br><span class="line">          &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            message.recycle();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>example 2</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessengerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Handler mMessageHandler;</span><br><span class="line">    <span class="keyword">private</span> Messenger mMessenger;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        HandlerThread handlerThread = <span class="keyword">new</span> HandlerThread(“MessengerService”);</span><br><span class="line">        handlerThread.start();</span><br><span class="line">        mMessageHandler = <span class="keyword">new</span> Handler(handlerThread.getLooper(), <span class="keyword">new</span> MyHandlerCallback());</span><br><span class="line">        mMessenger = <span class="keyword">new</span> Messenger(mMessageHandler);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mMessenger.getBinder();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        mMessageHandler.getLooper().quit();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MyHandlerCallback</span> <span class="keyword">implements</span> <span class="title">Handler</span>.<span class="title">Callback</span> </span>&#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">boolean</span> delivered = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">switch</span> (message.what) &#123;</span><br><span class="line">                <span class="keyword">case</span> MessageAPI.SEND_TEXT_MSG:</span><br><span class="line">                    delivered = sendTextMessage((String) message.obj);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> MessageAPI.SEND_PHOTO_MSG:</span><br><span class="line">                    delivered = sendPhotoMessage((Bitmap) message.obj);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Message reply = Message.obtain(<span class="keyword">null</span>, MessageAPI.MESSAGE_DELIVERED_MSG, delivered);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                message.replyTo.send(reply);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">                Log.e(“MessengerService”, “Error sending message reply!”, e);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Return true when delivered</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">sendPhotoMessage</span><span class="params">(Bitmap photo)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Implementation left out for brevity</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Return true when delivered</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">sendTextMessage</span><span class="params">(String textMessage)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Implementation left out for brevity</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMessengerClient</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">ServiceConnection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ApiInterfaceV1 mService;</span><br><span class="line">    <span class="keyword">private</span> Messenger mRemoteMessenger;</span><br><span class="line">    <span class="keyword">private</span> Messenger mReplyMessenger;</span><br><span class="line">    <span class="keyword">private</span> Handler mReplyHandler;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.main);</span><br><span class="line">        HandlerThread handlerThread = <span class="keyword">new</span> HandlerThread(“ReplyMessenger”);</span><br><span class="line">        handlerThread.start();</span><br><span class="line">        mReplyHandler = <span class="keyword">new</span> Handler(handlerThread.getLooper(),</span><br><span class="line">                                    <span class="keyword">new</span> ReplyHandlerCallback())</span><br><span class="line">        mReplyMessenger = <span class="keyword">new</span> Messenger(mReplyHandler);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onResume();</span><br><span class="line">        bindService(<span class="keyword">new</span> Intent(“com.aptl.sampleapi.MESSENGER_SERVICE”), <span class="keyword">this</span>, BIND_AUTO_CREATE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSendTextPressed</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        String textMessage = ((EditText)findViewById(R.id.message_input)).getText().toString();</span><br><span class="line">        Message message = Message.obtain();</span><br><span class="line">        message.what = MessageAPI.SEND_TEXT_MSG;</span><br><span class="line">        message.obj = textMessage;</span><br><span class="line">        message.replyTo = mReplyMessenger;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            mRemoteMessenger.send(message);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">            <span class="comment">// Remote service is dead...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onPause();</span><br><span class="line">        unbindService(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        mReplyHandler.getLooper().quit();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceConnected</span><span class="params">(ComponentName componentName, IBinder iBinder)</span> </span>&#123;</span><br><span class="line">        mRemoteMessenger = <span class="keyword">new</span> Messenger(iBinder);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServiceDisconnected</span><span class="params">(ComponentName componentName)</span> </span>&#123;</span><br><span class="line">        mRemoteMessenger = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ReplyHandlerCallback</span> <span class="keyword">implements</span> <span class="title">Handler</span>.<span class="title">Callback</span> </span>&#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">switch</span> (message.what) &#123;</span><br><span class="line">                <span class="keyword">case</span> MessageAPI.MESSAGE_DELIVERED_MSG:</span><br><span class="line">                    <span class="comment">// TODO Handle async reply from service</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>文章出处：《Android Programming Pushing》</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="https://msoloyu.github.io/2015/03/24/android-ipc/" data-id="ci7nam62l000vcwnl9n2owo8n" class="article-share-link">分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="twitter" href="/"><i id="icon-twitter" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="facebook" href="/"><i id="icon-facebook" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="google_plus" href="/"><i id="icon-google_plus" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/msoloyu/"><i id="icon-github" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="weibo" href="/"><i id="icon-weibo" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="/"><i id="icon-rss" class="icon"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/03/23/android-recycleview-study/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">Android 中的 RecyclerView</p>
+      <i class="icon" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post">
+        
+          <li>
+            <div class="item-thumbnail">
+              <a href="/2015/03/24/android-ipc/" class="thumbnail">
+  
+    <span style="background-image:url(http://7xi7e6.com1.z0.glb.clouddn.com/binder_ipc_01.png
+)" alt="Android IPC (上)" class="thumbnail-image"></span>
+  
+
+</a>
+            </div>
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+              <p class="item-title"><a href="/2015/03/24/android-ipc/" class="title">Android IPC (上)</a></p>
+              <p class="item-date"><time datetime="2015-03-24T06:08:37.000Z" itemprop="datePublished">2015-03-24</time></p>
+            </div>
+          </li>
+        
+          <li>
+            <div class="item-thumbnail">
+              <a href="/2015/03/23/android-recycleview-study/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+
+</a>
+            </div>
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+              <p class="item-title"><a href="/2015/03/23/android-recycleview-study/" class="title">Android 中的 RecyclerView</a></p>
+              <p class="item-date"><time datetime="2015-03-23T09:22:12.000Z" itemprop="datePublished">2015-03-23</time></p>
+            </div>
+          </li>
+        
+          <li>
+            <div class="item-thumbnail">
+              <a href="/2015/03/23/android-basic-04/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+
+</a>
+            </div>
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+              <p class="item-title"><a href="/2015/03/23/android-basic-04/" class="title">Android 开发之基础知识（04）</a></p>
+              <p class="item-date"><time datetime="2015-03-23T08:57:38.000Z" itemprop="datePublished">2015-03-23</time></p>
+            </div>
+          </li>
+        
+          <li>
+            <div class="item-thumbnail">
+              <a href="/2015/03/23/android-basic-03/" class="thumbnail">
+  
+    <span style="background-image:url(http://7xi7e6.com1.z0.glb.clouddn.com/intent-attr-data-construct.png
+)" alt="Android 开发之基础知识（03）" class="thumbnail-image"></span>
+  
+
+</a>
+            </div>
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+              <p class="item-title"><a href="/2015/03/23/android-basic-03/" class="title">Android 开发之基础知识（03）</a></p>
+              <p class="item-date"><time datetime="2015-03-23T06:42:04.000Z" itemprop="datePublished">2015-03-23</time></p>
+            </div>
+          </li>
+        
+          <li>
+            <div class="item-thumbnail">
+              <a href="/2015/03/23/android-advanced-custom-view/" class="thumbnail">
+  
+    <span style="background-image:url(http://7xi7e6.com1.z0.glb.clouddn.com/view_lifecycle.png
+)" alt="Android 进阶之自定义视图（View）" class="thumbnail-image"></span>
+  
+
+</a>
+            </div>
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Android/">Android</a></p>
+              <p class="item-title"><a href="/2015/03/23/android-advanced-custom-view/" class="title">Android 进阶之自定义视图（View）</a></p>
+              <p class="item-date"><time datetime="2015-03-23T04:46:58.000Z" itemprop="datePublished">2015-03-23</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其它/">其它</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">11</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/">Animation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradle/">Gradle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存机制/">内存机制</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第一次/">第一次</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a><a href="/tags/Animation/" style="font-size: 10px;">Animation</a><a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a><a href="/tags/UI/" style="font-size: 15px;">UI</a><a href="/tags/内存机制/" style="font-size: 10px;">内存机制</a><a href="/tags/第一次/" style="font-size: 10px;">第一次</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon" id="icon-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 mSolo Yu</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
