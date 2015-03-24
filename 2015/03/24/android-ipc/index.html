@@ -1,94 +1,79 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>Android IPC (上) | mSolo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IPC is a framework for the exchange of signals and data across multiple processes.
+  <meta name="author" content="mSolo Yu">
 
-Parcel123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class CustomData">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android IPC (上)">
-<meta property="og:url" content="https://msoloyu.github.io/2015/03/24/android-ipc/index.html">
-<meta property="og:site_name" content="mSolo">
-<meta property="og:description" content="IPC is a framework for the exchange of signals and data across multiple processes.
+  
+  <meta name="description" content="关注切入点、产品、设计开发和敏捷实践">
+  
+  
 
-Parcel123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class CustomData">
-<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/binder_ipc_01.png">
-<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/binder_ipc_02.png">
-<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/messenger_ipc_01.png">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android IPC (上)">
-<meta name="twitter:description" content="IPC is a framework for the exchange of signals and data across multiple processes.
+  <link rel="alternate" href="/atom.xml" title="mSolo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="/js/jquery-1.11.1.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5243064-16']);
+  _gaq.push(['_trackPageview']);
 
-Parcel123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class CustomData">
-  
-    <link rel="alternative" href="/atom.xml" title="mSolo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
 </head>
+
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">mSolo</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">天勤地善 &amp; 商信业精</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="sub-nav">
-        
-          <a id="nav-home-icon" class="nav-icon" href="/"></a>
-        
-          <a id="nav-archives-icon" class="nav-icon" href="/projects"></a>
-        
-          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
-        
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-      </nav>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-android-ipc" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
+  <header id="header" class="inner"><nav>
+  <ul>
     
-      <header class="article-header">
-        
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/projects">项目</a></li>
+    
+      <li><a href="/my-career">职业</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="post">
   
-    <h1 class="article-title" itemprop="name">
-      Android IPC (上)
-    </h1>
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title">Android IPC (上)</h1>
   
 
-      </header>
+    <time datetime="2015-03-24T06:08:37.000Z">
+  <span class="day">24</span><span class="month">Mar</span>
+</time>
+  </header>
+  <div class="entry-content">
     
-    <time class="article-date" datetime="2015-03-24T06:08:37.000Z" itemprop="datePublished">03-24-2015</time>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
+      <blockquote>
 <p>IPC is a framework for the exchange of signals and data across multiple processes.</p>
 </blockquote>
 <h3 id="Parcel">Parcel</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomData</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Parcelable.Creator&lt;CustomData&gt; CREATOR = <span class="keyword">new</span> Parcelable.Creator&lt;CustomData&gt;() &#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> CustomData <span class="title">createFromParcel</span><span class="params">(Parcel parcel)</span> </span>&#123;</span><br><span class="line">            CustomData customData = <span class="keyword">new</span> CustomData();</span><br><span class="line">            customData.mName = parcel.readString();</span><br><span class="line">            customData.mReferences = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">            parcel.readStringList(customData.mReferences);</span><br><span class="line">            customData.mCreated = <span class="keyword">new</span> Date(parcel.readLong());</span><br><span class="line">            <span class="keyword">return</span> customData;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="keyword">public</span> CustomData[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> CustomData[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">private</span> String mName;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; mReferences;</span><br><span class="line">    <span class="keyword">private</span> Date mCreated;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mName = “”;</span><br><span class="line">        mReferences = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        mCreated = <span class="keyword">new</span> Date();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel parcel, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        parcel.writeString(mName);</span><br><span class="line">        parcel.writeStringList(mReferences);</span><br><span class="line">        parcel.writeLong(mCreated.getTime());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        CustomData that = (CustomData) o;</span><br><span class="line">        <span class="keyword">return</span> mCreated.equals(that.mCreated) &amp;&amp; mName.equals(that.mName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = mName.hashCode();</span><br><span class="line">        result = <span class="number">31</span> * result + mCreated.hashCode();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -149,54 +134,47 @@ Parcel12345678910111213141516171819202122232425262728293031323334353637383940414
 </ul>
 <p>文章出处：《Android Programming Pushing》</p>
 
+    
+    
+    <footer class="meta">
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://msoloyu.github.io/2015/03/24/android-ipc/" data-id="ci7nflnhp000v1wnlgpz8q13h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+  <div class="cats">
+<a href="/categories/Android/">Android</a></div>
 
+      
+  <div class="tags">
+<a href="/tags/Android/">Android</a></div>
+
+      
     </footer>
-  </div>
-  
     
-<nav id="article-nav">
-  
-  
-    <a href="/2015/03/23/android-recycleview-study/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android 中的 RecyclerView</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 mSolo Yu<br>
-      <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank">Athena</a> by <a href="http://steven5538.tw" target="_blank">Steven5538</a> | Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
   </div>
-</footer>
-    </div>
-    
+  
+</article></div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+    <a class="github" href="https://github.com/msoloyu" title="GitHub">GitHub</a>
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2015 mSolo Yu
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
 
-
-<script src="/js/script.js" type="text/javascript"></script>
-  </div>
 </body>
 </html>

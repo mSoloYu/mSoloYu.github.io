@@ -1,114 +1,79 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>加速 Android 工程构建之 Gradle | mSolo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="开启gradle单独的守护进程在下面的目录下面创建gradle.properties文件：
+  <meta name="author" content="mSolo Yu">
 
-/home//.gradle/ (Linux)
-/Users//.gradle/ (Mac)
-C:\Users\.gradle (Windows)
-
-并在文件中增加：
-1org.gradle.daemon=true
-同时修改项目下的gradle.properties文件也可以优化：
-12345678910">
-<meta property="og:type" content="article">
-<meta property="og:title" content="加速 Android 工程构建之 Gradle">
-<meta property="og:url" content="https://msoloyu.github.io/2015/03/22/android-project-build-with-gradle-speedup/index.html">
-<meta property="og:site_name" content="mSolo">
-<meta property="og:description" content="开启gradle单独的守护进程在下面的目录下面创建gradle.properties文件：
-
-/home//.gradle/ (Linux)
-/Users//.gradle/ (Mac)
-C:\Users\.gradle (Windows)
-
-并在文件中增加：
-1org.gradle.daemon=true
-同时修改项目下的gradle.properties文件也可以优化：
-12345678910">
-<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/0001_as_gradle_offline.png">
-<meta property="og:image" content="http://7xi7e6.com1.z0.glb.clouddn.com/0002_as_gradle_config.png">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="加速 Android 工程构建之 Gradle">
-<meta name="twitter:description" content="开启gradle单独的守护进程在下面的目录下面创建gradle.properties文件：
-
-/home//.gradle/ (Linux)
-/Users//.gradle/ (Mac)
-C:\Users\.gradle (Windows)
-
-并在文件中增加：
-1org.gradle.daemon=true
-同时修改项目下的gradle.properties文件也可以优化：
-12345678910">
   
-    <link rel="alternative" href="/atom.xml" title="mSolo" type="application/atom+xml">
+  <meta name="description" content="关注切入点、产品、设计开发和敏捷实践">
   
   
-    <link rel="icon" href="/favicon.png">
+
+  <link rel="alternate" href="/atom.xml" title="mSolo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="/js/jquery-1.11.1.min.js"></script>
   
-  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5243064-16']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
 </head>
+
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">mSolo</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">天勤地善 &amp; 商信业精</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="sub-nav">
-        
-          <a id="nav-home-icon" class="nav-icon" href="/"></a>
-        
-          <a id="nav-archives-icon" class="nav-icon" href="/projects"></a>
-        
-          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
-        
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-      </nav>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-android-project-build-with-gradle-speedup" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
+  <header id="header" class="inner"><nav>
+  <ul>
     
-      <header class="article-header">
-        
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/projects">项目</a></li>
+    
+      <li><a href="/my-career">职业</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="post">
   
-    <h1 class="article-title" itemprop="name">
-      加速 Android 工程构建之 Gradle
-    </h1>
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <header>
+    
+  
+    <h1 class="title">加速 Android 工程构建之 Gradle</h1>
   
 
-      </header>
+    <time datetime="2015-03-22T03:55:45.000Z">
+  <span class="day">22</span><span class="month">Mar</span>
+</time>
+  </header>
+  <div class="entry-content">
     
-    <time class="article-date" datetime="2015-03-22T03:55:45.000Z" itemprop="datePublished">03-22-2015</time>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="开启gradle单独的守护进程">开启gradle单独的守护进程</h3><p>在下面的目录下面创建gradle.properties文件：</p>
+      <h3 id="开启gradle单独的守护进程">开启gradle单独的守护进程</h3><p>在下面的目录下面创建gradle.properties文件：</p>
 <ul>
 <li>/home/<username>/.gradle/ (Linux)</username></li>
 <li>/Users/<username>/.gradle/ (Mac)</username></li>
@@ -128,63 +93,47 @@ C:\Users\.gradle (Windows)
 <p>自己的库模块也可以打包成aar，关于这个可以参考<a href="http://www.stormzhang.com/android/2015/03/01/android-reference-local-aar/" target="_blank" rel="external">stormzhang</a>的文章。</p>
 <p>转载出处: <a href="http://blog.isming.me/2015/03/18/android-build-speed-up/" target="_blank" rel="external">加速Android Studio/Gradle构建</a></p>
 
+    
+    
+    <footer class="meta">
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://msoloyu.github.io/2015/03/22/android-project-build-with-gradle-speedup/" data-id="ci7nflnhg000l1wnl1fyrywfm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle/">Gradle</a></li></ul>
+  <div class="cats">
+<a href="/categories/Android/">Android</a></div>
 
+      
+  <div class="tags">
+<a href="/tags/Android/">Android</a><a href="/tags/Gradle/">Gradle</a></div>
+
+      
     </footer>
-  </div>
-  
     
-<nav id="article-nav">
-  
-    <a href="/2015/03/22/android-ui-screen-adapter/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android UI 之开发适配
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/03/21/hello-hexo/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello Hexo</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 mSolo Yu<br>
-      <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank">Athena</a> by <a href="http://steven5538.tw" target="_blank">Steven5538</a> | Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
   </div>
-</footer>
-    </div>
-    
+  
+</article></div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+    <a class="github" href="https://github.com/msoloyu" title="GitHub">GitHub</a>
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2015 mSolo Yu
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
 
-
-<script src="/js/script.js" type="text/javascript"></script>
-  </div>
 </body>
 </html>
