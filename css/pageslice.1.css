@@ -401,6 +401,7 @@
   	top: 0%;
   	transform: translateY(0%);
 	}
+	.incubator-right .incubator-addr div h2, .incubator-right .incubator-addr div span, .incubator-right section p {padding: 0 0.875rem; }
 	.incubator-content .incubator-addr div h2, .incubator-content .incubator-addr div span, .incubator-content .incubator-addr div p {padding-left: 0.625rem; }
 	.incubator-content .incubator-addr div h2 {
 		/*margin: 1.34375rem 0 0.375rem;*/
@@ -411,6 +412,10 @@
 		display: inline-block;
 		padding-right: 0.46875rem;
 		font-size: 14px;
+	}
+	.incubator-content section p {
+		margin-top: 0.1875rem;
+		margin-bottom: 0;
 	}
 	.incubator-img {
 		display: block;
