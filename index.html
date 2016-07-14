@@ -35,10 +35,10 @@
 	<script type="text/javascript">
 		!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("欢迎来到VR第十区！");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=a.navigator.userAgent,q=(!!p.match(/android/gi),!!p.match(/iphone/gi)),r=q&&!!p.match(/OS 9_3/),s=a.devicePixelRatio;i=q&&!r?s>=3&&(!i||i>=3)?3:s>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var t=e.createElement("div");t.appendChild(g),e.write(t.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
 
-		function playVideo() {
-			var $vrBgVideo = document.getElementById("vrBgVideo");
-			$vrBgVideo.play();
-		}
+		// function playVideo() {
+		// 	var $vrBgVideo = document.getElementById("vrBgVideo");
+		// 	$vrBgVideo.play();
+		// }
 
 	</script>
 	<style>
@@ -56,16 +56,14 @@
 	}
 
 	/*使用选择器指定字体*/
-	html,body {
-	    font-family: 'pinghei';
-	}
+	html,body {font-family: 'pinghei'; }
 	</style>
 	<link rel="stylesheet" href="css/animate_effect.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/pageslice.1.css">
 	<link rel="stylesheet" href="css/pageslice.menu.css">
 </head>
-<body style="margin:0;padding:0;" onload="playVideo()">
+<body id="body" style="margin:0;padding:0;">
 	<header id="vrNav">
 		<nav class="vr-nav-top-layout">
 			<span id="vrLogo" class="vr-logo"></span>
@@ -81,12 +79,8 @@
 			<a id="inTeam" class="in-team"><span class="in-team-icon"></span><span class="nav-bottom-text">入驻团队</span></a>
 		</nav>
 	</header>
-	<div class="cross-layout hidden">
-		<hr class="cross-x border-image-1px">
-		<hr class="cross-y border-image-1px">
-		<a id="crossPointer" class="cross-pointer hi-icon"></a>
-	</div>
-	<video id="vrBgVideo" src="http://oa8bfh8lr.bkt.clouddn.com/vrweb" controls preload autoplay loop class="video-play"></video>
+	<!-- <div class="cross-layout hidden"><hr class="cross-x border-image-1px"><hr class="cross-y border-image-1px"><a id="crossPointer" class="cross-pointer hi-icon"></a></div> -->
+	<!-- <video id="vrBgVideo" src="http://oa8bfh8lr.bkt.clouddn.com/vrweb" type="video/mp4" controls preload autoplay loop class="video-play"></video> -->
 	<article id="vrHome" class="vr-article vr-1 vr-page-current">
 		<section class="vr-sec-1"><h1 class="vr-title-1">未来，已经到来</h1>
 			<p>虚拟现实技术让我们身临其境，想象自己伫立<span>于穿越银河系的星际飞船上，或是漫步于古罗马街道</span></p>
@@ -105,8 +99,8 @@
 	<article id="vrService" class="vr-article vr-service">
 		<a class="service-show" href="#vrService"></a>
 		<div class="vr-article-content move-from-bottom--init vr-service-content">
-			<span class="service-item service-item--mbfix service-item--mrfix">办公空间</span><span class="service-item">技术支持</span>
-			<span class="service-item service-item--mbfix service-item--mrfix">投资服务</span><span class="service-item">媒体渠道</span>
+			<span class="service-item service-item--mbfix service-item--mrfix">办公空间</span><span class="service-item">技术支持</span><br>
+			<span class="service-item service-item--mbfix service-item--mrfix">投资服务</span><span class="service-item">媒体渠道</span><br>
 			<span class="service-item service-item--mrfix">创业辅导</span><span class="service-item">社团群体</span>
 		</div>
 	</article>
@@ -120,7 +114,7 @@
 			<section class="incubator-addr"><div><h2>北京第十区 - 四惠</h2><span>朝阳区惠合南区1008号四惠大厦二号楼B1层</span></div></section>
 		</div>
 	</article>
-	<article id="vrNews" class="vr-article vr-article--fix vr-news vr-4">
+	<article id="vrNews" class="vr-article vr-news">
 		<a class="vrnews-show" href="#vrNews"></a>
 		<div class="vr-article-content move-from-bottom--init">
 			<h2>VR新闻</h2>
@@ -178,7 +172,7 @@
 		</span>
 	</article>
 
-	<script src="//cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script>
+	<!-- <script src="//cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script> -->
 	<script type="text/javascript" src="lib/require_2.1.11.js" defer async="true" data-main="js/main"></script>
 </body>
 </html>

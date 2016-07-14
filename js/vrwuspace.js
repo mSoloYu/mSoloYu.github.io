@@ -16,12 +16,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	// }
 	// console.log("drawing");
 
-	var initArticleScroll = function() {
-		$(document).scroll(function(event) {
-			// event.
-		});
-	}
-
 	var crossProcessor = {
 		timeoutId: null,
 		performProcessing: function() {
@@ -46,7 +40,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			"left": "-webkit-calc(" + event.pageX + "px - 0.375rem)",
 		});
 		$('.cross-x').css({"margin-top": "" + event.pageY + "px"});
-		var marginLeft = -25.98 * parseInt(window.getComputedStyle(document.documentElement)["fontSize"]) + event.pageX
+		var marginLeft = -26.58 * parseInt(window.getComputedStyle(document.documentElement)["fontSize"]) + event.pageX
 		// console.log("marginLeft = " + marginLeft);
 		$('.cross-y').css({
 			"margin-left": "" + marginLeft + "px",
@@ -60,10 +54,77 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		$('.cross-layout').hide();
 	};
 
+	var gotoHome = function($current) {
+		var $current = $('.vr-page-current').eq(0);
+		if ($current.hasClass('vr-1')) {return }
+		EventUtil.addHandler(document, "mousemove", mouseMoveHandler);
+		if (!window.isMobile) {$('.cross-layout').show(); }
+		$('video').show();
+		changeNavItemState();
+		backToInitState($current);
+		$current
+			.removeClass('vr-page-moveFromBottom')
+			.addClass('vr-page-moveToBottom')
+			.removeClass('vr-page-current');
+		$('#vrHome')
+			.removeClass('vr-page-moveToTop')
+			.addClass('vr-page-current vr-page-moveFromTop');
+
+		return 0; // pageIndex
+	}
+
+	var gotoMenu = function($current) {
+		var $current = $('.vr-page-current').eq(0);
+		var $menuArticle = $('#menuArticle');
+		if ($('.vr-article-menu').hasClass('vr-page-current')) {
+			closeMenuArticle();
+			return;
+		}
+		$('.vr-menu-fake-icon').css({'width': '0.75625rem'});
+		$('#vrMenu2').css({'border-color':'#000'});
+		$('#vrMenu1').addClass('vr-menu-close-top-effect');
+		$('#vrMenu3').addClass('vr-menu-close-bottom-effect');
+		changeNavItemState();
+		backToInitState($current);
+		$menuArticle
+			.removeClass('vr-page-moveToTop')
+			.addClass('vr-page-current vr-page-moveFromTop');
+			// $('.vr-menu-article').toggle();
+	}
+
+	var gotoAboutUs = function($current) {
+		var $current = $('.vr-page-current').eq(0);
+		if ($current.hasClass('vr-aboutus')) {return }
+		backToInitState($current);
+		$('.cross-layout').hide();
+		changeNavItemState($('#aboutUs'));
+		$current
+			.removeClass('vr-page-moveFromTop')
+			.addClass('vr-page-moveToTop')
+			.removeClass('vr-page-current');
+		$('#vrAboutUs')
+			.removeClass('vr-page-moveToBottom')
+			.addClass('vr-page-current vr-page-moveFromBottom');
+		setTimeout(function() {
+			$('h2', '#vrAboutUs .vr-article-content')
+				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+				.addClass('vr-item-moveFromBottom');
+		}, 1000);
+		setTimeout(function() {
+			$('p', '#vrAboutUs .vr-article-content')
+				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+				.addClass('vr-item-moveFromBottom');
+		}, 1500);
+
+		return 1; // pageIndex
+	}
+
 	var gotoService = function($current) {
+		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-service')) { return }
 		backToInitState($current);
 		$('body').addClass('service-bg');
+		$('body').addClass('scroll--hack');
 		$('.cross-layout').hide();
 		changeNavItemState($('#service'));
 		$current
@@ -78,6 +139,79 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
 		}, 800);
+
+		return 2; // pageIndex
+	}
+
+	var gotoIncubator = function($current) {
+		var $current = $('.vr-page-current').eq(0);
+		if ($current.hasClass('vr-incubator')) { return }
+		backToInitState($current);
+		$('body').addClass('scroll--hack');
+		$('.cross-layout').hide();
+		changeNavItemState($('#incubator'));
+		$current
+			.removeClass('vr-page-moveFromTop')
+			.addClass('vr-page-moveToTop')
+			.removeClass('vr-page-current');
+		$('#vrIncubator')
+			.removeClass('vr-page-moveToBottom')
+			.addClass('vr-page-current vr-page-moveFromBottom');
+		setTimeout(function() {
+			$('.incubator-addr').addClass('vr-circle-animation-effect');
+			$('.incubator-content', '#vrIncubator')
+				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+				.addClass('vr-item-moveFromBottom');
+		}, 500);
+
+		return 3; // pageIndex
+	}
+
+	var gotoVrNews = function($current) {
+		var $current = $('.vr-page-current').eq(0);
+		if ($current.hasClass('vr-service')) { return }
+		backToInitState($current);
+		$('body').addClass('service-bg');
+		$('.cross-layout').hide();
+		changeNavItemState($('#vrnews'));
+		$current
+			.removeClass('vr-page-moveFromTop')
+			.addClass('vr-page-moveToTop')
+			.removeClass('vr-page-current');
+		$('#vrNews')
+			.removeClass('vr-page-moveToBottom')
+			.addClass('vr-page-current vr-page-moveFromBottom');
+		setTimeout(function() {
+			$('.vr-article-content', '#vrNews')
+				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+				.addClass('vr-item-moveFromBottom');
+		}, 800);
+
+		return 4; // pageIndex
+	}
+
+	var gotoInTeam = function($current) {
+		var $current = $('.vr-page-current').eq(0);
+		if ($current.hasClass('vr-inteam')) { return }
+		backToInitState($current);
+		$('body').addClass('scroll--hack');
+		$('.cross-layout').hide();
+		changeNavItemState($('#inTeam'));
+		$current
+			.removeClass('vr-page-moveFromTop')
+			.addClass('vr-page-moveToTop')
+			.removeClass('vr-page-current');
+		$('#vrInteam')
+			.removeClass('vr-page-moveToBottom')
+			.addClass('vr-page-current vr-page-moveFromBottom');
+		setTimeout(function() {
+			$('.incubator-addr').addClass('vr-circle-animation-effect');
+			$('.incubator-content', '#vrInteam')
+				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+				.addClass('vr-item-moveFromBottom');
+		}, 800);
+
+		return 5; // pageIndex
 	}
 
 	var closeMenuArticle = function() {
@@ -96,142 +230,9 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		}, 400);
 	};
 
-	var initNav = function() {
-		$('#gotoService').click(function(event) {
-			gotoService($('.vr-page-current').eq(0));
-		});
-		var $vrNav = document.getElementById("vrNav");
-		EventUtil.addHandler($vrNav, "click", function(event) {
-			event = EventUtil.getEvent(event);
-			var target = EventUtil.getTarget(event);
-			$current = $('.vr-page-current').eq(0);
-			if (target.id != "vrLogo") {
-				EventUtil.removeHandler(document, "mousemove", mouseMoveHandler);
-			}
-			switch (target.id) {
-				case "vrLogo":
-					if ($current.hasClass('vr-1')) {return }
-					EventUtil.addHandler(document, "mousemove", mouseMoveHandler);
-					if (!window.isMobile) {$('.cross-layout').show(); }
-					$('video').show();
-					changeNavItemState();
-					backToInitState($current);
-					$current
-						.removeClass('vr-page-moveFromBottom')
-						.addClass('vr-page-moveToBottom')
-						.removeClass('vr-page-current');
-					$('#vrHome')
-						.removeClass('vr-page-moveToTop')
-						.addClass('vr-page-current vr-page-moveFromTop');
-					break;
-				case "vrMenu1":
-				case "vrMenu2":
-				case "vrMenu3":
-					var $menuArticle = $('#menuArticle');
-					if ($('.vr-article-menu').hasClass('vr-page-current')) {
-						closeMenuArticle();
-						return;
-					}
-					$('.vr-menu-fake-icon').css({'width': '0.75625rem'});
-					$('#vrMenu2').css({'border-color':'#000'});
-					$('#vrMenu1').addClass('vr-menu-close-top-effect');
-					$('#vrMenu3').addClass('vr-menu-close-bottom-effect');
-					changeNavItemState();
-					backToInitState($current);
-					$menuArticle
-						.removeClass('vr-page-moveToTop')
-						.addClass('vr-page-current vr-page-moveFromTop');
-					// $('.vr-menu-article').toggle();
-					break;
-				case "aboutUs":
-					console.log('target id = ' + target.id + ', boolean = ' + $current.hasClass('vr-aboutus'));
-					if ($current.hasClass('vr-aboutus')) {return }
-					backToInitState($current);
-					$('.cross-layout').hide();
-					changeNavItemState($('#aboutUs'));
-					$current
-						.removeClass('vr-page-moveFromTop')
-						.addClass('vr-page-moveToTop')
-						.removeClass('vr-page-current');
-					$('#vrAboutUs')
-						.removeClass('vr-page-moveToBottom')
-						.addClass('vr-page-current vr-page-moveFromBottom');
-					setTimeout(function() {
-						$('h2', '#vrAboutUs .vr-article-content')
-							.removeClass('vr-item-moveFromBottom move-from-bottom--init')
-							.addClass('vr-item-moveFromBottom');
-					}, 1000);
-					setTimeout(function() {
-						$('p', '#vrAboutUs .vr-article-content')
-							.removeClass('vr-item-moveFromBottom move-from-bottom--init')
-							.addClass('vr-item-moveFromBottom');
-					}, 1500);
-					break;
-				case "service":
-					gotoService($current);
-					break;
-				case "incubator":
-					if ($current.hasClass('vr-incubator')) { return }
-					backToInitState($current);
-					$('body').addClass('scroll--hack');
-					$('.cross-layout').hide();
-					changeNavItemState($('#incubator'));
-					$current
-						.removeClass('vr-page-moveFromTop')
-						.addClass('vr-page-moveToTop')
-						.removeClass('vr-page-current');
-					$('#vrIncubator')
-						.removeClass('vr-page-moveToBottom')
-						.addClass('vr-page-current vr-page-moveFromBottom');
-					setTimeout(function() {
-						$('.incubator-addr').addClass('vr-circle-animation-effect');
-						$('.incubator-content', '#vrIncubator')
-							.removeClass('vr-item-moveFromBottom move-from-bottom--init')
-							.addClass('vr-item-moveFromBottom');
-					}, 500);
-					break;
-				case "vrnews":
-					if ($current.hasClass('vr-service')) { return }
-					backToInitState($current);
-					$('body').addClass('service-bg');
-					$('.cross-layout').hide();
-					changeNavItemState($('#vrnews'));
-					$current
-						.removeClass('vr-page-moveFromTop')
-						.addClass('vr-page-moveToTop')
-						.removeClass('vr-page-current');
-					$('#vrNews')
-						.removeClass('vr-page-moveToBottom')
-						.addClass('vr-page-current vr-page-moveFromBottom');
-					setTimeout(function() {
-						$('.vr-article-content', '#vrNews')
-							.removeClass('vr-item-moveFromBottom move-from-bottom--init')
-							.addClass('vr-item-moveFromBottom');
-					}, 800);
-					break;
-				case "inTeam":
-					if ($current.hasClass('vr-inteam')) { return }
-					backToInitState($current);
-					$('body').addClass('scroll--hack');
-					$('.cross-layout').hide();
-					changeNavItemState($('#inTeam'));
-					$current
-						.removeClass('vr-page-moveFromTop')
-						.addClass('vr-page-moveToTop')
-						.removeClass('vr-page-current');
-					$('#vrInteam')
-						.removeClass('vr-page-moveToBottom')
-						.addClass('vr-page-current vr-page-moveFromBottom');
-					setTimeout(function() {
-						$('.incubator-addr').addClass('vr-circle-animation-effect');
-						$('.incubator-content', '#vrInteam')
-							.removeClass('vr-item-moveFromBottom move-from-bottom--init')
-							.addClass('vr-item-moveFromBottom');
-					}, 800);
-					break;
-			}
-		})
-	};
+	var removeCrossHandler = function() {
+		EventUtil.removeHandler(document, "mousemove", mouseMoveHandler);
+	}
 
 	var initMenu = function() {
 		var $menuArticle = document.getElementById("menuArticle");
@@ -252,7 +253,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 							.removeClass('vr-page-moveFromTop')
 							.addClass('vr-page-moveToTop')
 							.removeClass('vr-page-current');
-
 						backToInitState($current);
 						$('.cross-layout').hide();
 						$current
@@ -325,9 +325,16 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	};
 
 	return {
-		initNav: initNav,
 		initMenu: initMenu,
 		initCross: initCross,
 		initEvent: initEvent,
+		removeCrossHandler: removeCrossHandler,
+		gotoHome: gotoHome,
+		gotoMenu: gotoMenu,
+		gotoAboutUs: gotoAboutUs,
+		gotoService: gotoService,
+		gotoIncubator: gotoIncubator,
+		gotoVrNews: gotoVrNews,
+		gotoInTeam: gotoInTeam,
 	};
 });

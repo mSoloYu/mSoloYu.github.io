@@ -15,11 +15,8 @@ requirejs.config({
 });
 
 // require(['jquery', 'underscore', 'vr'], function ($, _, Backbone){
-require(['jquery', 'Init', 'VrWuspace'], function ($, Init, VrWuspace){
+require(['jquery', 'Init'], function ($, Init){
 	$(function(){
-	　　VrWuspace.initNav();
-  　　VrWuspace.initMenu();
-	　　VrWuspace.initCross();
-    VrWuspace.initEvent();
+	　　Init.start();
 	});
 });
