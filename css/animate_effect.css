@@ -216,8 +216,8 @@
 
 /* ================================================================================ */
 .vr-circle-right-animation-effect {
-	-webkit-animation: drawCircleFromRight 2s linear 1s 1;
-	animation: drawCircleFromRight 2s linear 1s 1;
+	-webkit-animation: drawCircleFromRight 0.9s linear 1s 1;
+	animation: drawCircleFromRight 0.9s linear 1s 1;
 }
 
 @-webkit-keyframes drawCircleFromRight {
@@ -226,7 +226,7 @@
 	75% { border-left: 0.0625rem solid #fff; }
 	100% { border: 0.0625rem solid #fff; }
 }
-@keyframes drawCircle {
+@keyframes drawCircleFromRight {
 	25% { border-right: 0.0625rem solid #fff; }
 	50% { border-bottom: 0.0625rem solid #fff; }
 	75% { border-left: 0.0625rem solid #fff; }

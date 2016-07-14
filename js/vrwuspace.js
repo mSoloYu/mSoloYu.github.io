@@ -89,7 +89,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		$('#vrMenu1').addClass('vr-menu-close-top-effect');
 		$('#vrMenu3').addClass('vr-menu-close-bottom-effect');
 		changeNavItemState();
-		backToInitState($current);
+		// backToInitState($current);
 		$menuArticle
 			.removeClass('vr-page-moveToTop')
 			.addClass('vr-page-current vr-page-moveFromTop');

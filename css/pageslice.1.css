@@ -281,8 +281,7 @@
 @media(max-width:750px){
 	.vr-service {
 		margin-top: 1.5rem !important;
-/*		overflow-y: scroll !important;
-		height: 70vh;*/
+		margin-bottom: 1.5rem !important;
 	}
 	.service-show {
 		display: block;
@@ -304,6 +303,9 @@
 	}
 	.service-item--mrfix {
 		margin-right: 2.25625rem;
+	}
+	.service-item--mbfix {
+		margin-bottom: 1rem;
 	}
 	.vr-service-content {
 		margin: 0 auto;

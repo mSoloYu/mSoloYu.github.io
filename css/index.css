@@ -112,10 +112,16 @@ header .vr-nav-top-layout span {
 .vr-menu-1, .vr-menu-2, .vr-menu-3 {
 	animation-fill-mode: forwards;
 	-webkit-animation-fill-mode: forwards;
-	position: fixed; right: 1.40625rem; width: 0.65625rem; height: 0.234375rem; border-top: 0.05rem solid #fff;
-	}
+	position: fixed; right: 1.40625rem; width: 0.65625rem; height: 0.234375rem;
+}
+.vr-menu-1, .vr-menu-3 {
+	border-top: 0.05rem solid #fff;
+}
+.vr-menu-2 {
+	border-bottom: 0.05rem solid #fff;
+}
 .vr-menu-1 {top: 0.78125rem; /* 50px */ }
-.vr-menu-2 {top: 1.0625rem; }
+.vr-menu-2 {top: 0.8325rem; }
 .vr-menu-3 {top: 1.328125rem; }
 
 @media(min-width:751px){
