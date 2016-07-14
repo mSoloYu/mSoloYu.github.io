@@ -40,7 +40,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			"left": "-webkit-calc(" + event.pageX + "px - 0.375rem)",
 		});
 		$('.cross-x').css({"margin-top": "" + event.pageY + "px"});
-		var marginLeft = -26.58 * parseInt(window.getComputedStyle(document.documentElement)["fontSize"]) + event.pageX
+		var marginLeft = -24.08 * parseInt(window.getComputedStyle(document.documentElement)["fontSize"]) + event.pageX
 		// console.log("marginLeft = " + marginLeft);
 		$('.cross-y').css({
 			"margin-left": "" + marginLeft + "px",
