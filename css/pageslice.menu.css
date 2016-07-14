@@ -113,6 +113,10 @@ aside {
 .partner-lkvr {background: url("/img/logo8.png") center center / contain no-repeat; }
 
 .partner-show:hover {
+	transition-delay: 0.4s;
+	-moz-transition-delay: 0.4s; /* Firefox 4 */
+	-webkit-transition-delay: 0.4s; /* Safari 和 Chrome */
+	-o-transition-delay: 0.4s; /* Opera */
 	-webkit-transform: scale(1.3);
 	transform: scale(1.3);
 }

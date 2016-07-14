@@ -60,7 +60,8 @@ header .vr-nav-top-layout span {
 	margin-top: 70vh;
 }
 .cross-layout .cross-y {
-	width: 300vh;
+	width: 600vw;
+	position: absolute;
 	transform: rotate(90deg);
 }
 .cross-layout .cross-pointer {

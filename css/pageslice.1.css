@@ -91,6 +91,10 @@
 	font-size: 36px;
 }
 .aboutus-show:hover, .service-show:hover, .vrnews-show:hover {
+	transition-delay: 0.4s;
+	-moz-transition-delay: 0.4s; /* Firefox 4 */
+	-webkit-transition-delay: 0.4s; /* Safari 和 Chrome */
+	-o-transition-delay: 0.4s; /* Opera */
 	transform: translate(0.46875rem, -0.46875rem);
 	-webkit-transform: translate(0.46875rem, -0.46875rem);
 }

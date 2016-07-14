@@ -40,10 +40,14 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			"left": "-webkit-calc(" + event.pageX + "px - 0.375rem)",
 		});
 		$('.cross-x').css({"margin-top": "" + event.pageY + "px"});
-		var marginLeft = -24.08 * parseInt(window.getComputedStyle(document.documentElement)["fontSize"]) + event.pageX
+		//  parseInt(window.getComputedStyle(document.documentElement)["fontSize"])
+		var left = -window.innerWidth + event.pageX;
 		// console.log("marginLeft = " + marginLeft);
 		$('.cross-y').css({
-			"margin-left": "" + marginLeft + "px",
+			"left": "-calc(" + event.pageX + "px - 300vw)",
+			"left": "-webkit-calc(" + event.pageX + "px - 300vw)",
+			"right": "0"
+			// "left": "" + marginLeft + "px",
 		});
 		$('.cross-layout').show();
 		crossProcessor.process();
@@ -80,7 +84,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			closeMenuArticle();
 			return;
 		}
-		$('.vr-menu-fake-icon').css({'width': '0.75625rem'});
+		$('.vr-menu-fake-icon').css({'width': '0.79625rem'});
 		$('#vrMenu2').css({'border-color':'#000'});
 		$('#vrMenu1').addClass('vr-menu-close-top-effect');
 		$('#vrMenu3').addClass('vr-menu-close-bottom-effect');
@@ -115,8 +119,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
 		}, 1500);
-
-		return 1; // pageIndex
 	}
 
 	var gotoService = function($current) {
@@ -124,7 +126,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		if ($current.hasClass('vr-service')) { return }
 		backToInitState($current);
 		$('body').addClass('service-bg');
-		$('body').addClass('scroll--hack');
 		$('.cross-layout').hide();
 		changeNavItemState($('#service'));
 		$current
@@ -139,8 +140,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
 		}, 800);
-
-		return 2; // pageIndex
 	}
 
 	var gotoIncubator = function($current) {
@@ -163,8 +162,10 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
 		}, 500);
-
-		return 3; // pageIndex
+		setTimeout(function() {
+			$('div', '.incubator-addr').removeClass('move-from-bottom--init')
+				.addClass('vr-item-moveFromBottom');
+		}, 2000);
 	}
 
 	var gotoVrNews = function($current) {
@@ -186,8 +187,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
 		}, 800);
-
-		return 4; // pageIndex
 	}
 
 	var gotoInTeam = function($current) {
@@ -210,8 +209,10 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
 		}, 800);
-
-		return 5; // pageIndex
+		setTimeout(function() {
+			$('div', '.incubator-addr').removeClass('move-from-bottom--init')
+				.addClass('vr-item-moveFromBottom');
+		}, 2000);
 	}
 
 	var closeMenuArticle = function() {
@@ -303,6 +304,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		$('h2', '#vrAboutUs .vr-article-content').addClass('move-from-bottom--init').removeClass('vr-item-moveFromBottom');
 		$('p', '#vrAboutUs .vr-article-content').addClass('move-from-bottom--init').removeClass('vr-item-moveFromBottom');
 		$('.incubator-addr').removeClass('vr-circle-animation-effect');
+		$('div', '.incubator-addr').addClass('move-from-bottom--init').removeClass('vr-item-moveFromBottom');
 	}
 
 	var changeNavItemState = function($selector) {
