@@ -237,7 +237,7 @@
 }
 @media(max-width:1200px){
 	.service-show {
-		margin-right: 1.5rem !important;
+		margin-right: 1.2rem !important;
 	}
 	.vr-service-content {
 		margin-top: 1rem;
@@ -277,8 +277,8 @@
 @media(max-width:750px){
 	.vr-service {
 		margin-top: 1.5rem !important;
-		overflow-y: scroll !important;
-		max-height: 72vh;
+/*		overflow-y: scroll !important;
+		height: 70vh;*/
 	}
 	.service-show {
 		display: block;
@@ -307,7 +307,7 @@
 }
 
 /* vrIncubator */
-.vr-incubator {
+.vr-incubator, .vr-inteam {
 	margin-bottom: 2.2rem;
 }
 .incubator-content {

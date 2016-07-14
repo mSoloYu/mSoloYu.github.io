@@ -234,8 +234,8 @@
 }
 
 .vr-circle-animation-effect {
-	-webkit-animation: drawCircle 2s linear 1s 1;
-	animation: drawCircle 2s linear 1s 1;
+	-webkit-animation: drawCircle 1s linear 1s 1;
+	animation: drawCircle 1s linear 1s 1;
 }
 
 @-webkit-keyframes drawCircle {

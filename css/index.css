@@ -85,7 +85,7 @@ header .vr-nav-top-layout span {
 	transform: translate3d(0, 0, 0);
 	text-align: center;
 }
-.vr-article--fix {max-height: 65vh; overflow-y: auto !important; }
+.vr-article--fix {max-height: 80vh; overflow-y: auto !important; }
 @media(max-width:750px){.vr-article--fix {max-height: 75vh; } }
 .vr-page-current {
 	visibility: visible;
@@ -134,9 +134,11 @@ header .vr-nav-top-layout span {
   }
 
 	header .vr-nav-top-layout .vr-logo {
-		background: url("/img/logo-2.png") center center / contain no-repeat;
-		width: 0.65625rem;
-		height: 0.921875rem;
+		background: url("/img/logo.png") center center / contain no-repeat;
+		width: 2.40625rem;
+		height: 0.953125rem;
+		/*width: 0.65625rem;
+		height: 0.921875rem;*/
 	}
 
 /*	header .vr-nav-top-layout .vr-menu {
