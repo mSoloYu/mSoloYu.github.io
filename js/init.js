@@ -9,6 +9,83 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   var scrollStep = 50;
   var pageReady = true;
 
+  var startY = 0;
+  var isFirstTop = false;
+  var isSecondTop = false;
+  var isFirstBottom = false;
+  var isSecondBottom = false;
+
+  var upWheel = function() {
+    console.log('document.body.scrollTop = ' + document.body.scrollTop + ', pageReady = ' + pageReady)
+    if (document.body.scrollTop <= 0 && pageReady) {
+      pageReady = false;
+      switch (currentPage) {
+        default: break;
+        case 1:
+          currentPage -= 1;
+          VrWuspace.gotoHome();
+          break;
+        case 2:
+          currentPage -= 1;
+          VrWuspace.gotoAboutUs();
+          break;
+        case 3:
+          currentPage -= 1;
+          VrWuspace.gotoService();
+          break;
+        case 4:
+          currentPage -= 1;
+          VrWuspace.gotoIncubator();
+          break;
+        case 5:
+          currentPage -= 1;
+          VrWuspace.gotoVrNews();
+          break;
+      }
+      currentPage == 0 && VrWuspace.initCross();
+      document.body.scrollTop = 0;
+      setTimeout(function() {pageReady = true; },1000);
+    } else {
+      document.body.scrollTop -= scrollStep;
+    }
+  }
+
+  var downWheel = function() {
+    if ((window.innerHeight + document.body.scrollTop) >= document.body.scrollHeight && pageReady) {
+      pageReady = false;
+      switch (currentPage) {
+        case 0:
+          currentPage += 1;
+          VrWuspace.gotoAboutUs();
+          break;
+        case 1:
+          currentPage += 1;
+          VrWuspace.gotoService();
+          break;
+        case 2:
+          currentPage += 1;
+          VrWuspace.gotoIncubator();
+          break;
+        case 3:
+          currentPage += 1;
+          VrWuspace.gotoVrNews();
+          break;
+        case 4:
+          currentPage += 1;
+          VrWuspace.gotoInTeam();
+          break;
+        case 5:
+          break;
+      }
+      currentPage != 0 && VrWuspace.removeCrossHandler();
+      document.body.scrollTop = 0;
+      setTimeout(function() {pageReady = true; },1000);
+    } else {
+      document.body.scrollTop += scrollStep;
+    }
+  }
+
+
   window.isMobile = false; //initiate as false
   // device detection
   if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
@@ -25,75 +102,6 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
     var $cross = $('<div class="cross-layout hidden"><hr class="cross-x border-image-1px"><hr class="cross-y border-image-1px"><a id="crossPointer" class="cross-pointer hi-icon"></a></div>');
     $('body').append($cross);
     $('.cross-layout').show();
-
-    var upWheel = function() {
-      if (document.body.scrollTop <= 0 && pageReady) {
-        pageReady = false;
-        switch (currentPage) {
-          default: break;
-          case 1:
-            currentPage -= 1;
-            VrWuspace.gotoHome();
-            break;
-          case 2:
-            currentPage -= 1;
-            VrWuspace.gotoAboutUs();
-            break;
-          case 3:
-            currentPage -= 1;
-            VrWuspace.gotoService();
-            break;
-          case 4:
-            currentPage -= 1;
-            VrWuspace.gotoIncubator();
-            break;
-          case 5:
-            currentPage -= 1;
-            VrWuspace.gotoVrNews();
-            break;
-        }
-        currentPage == 0 && VrWuspace.initCross();
-        document.body.scrollTop = 0;
-        setTimeout(function() {pageReady = true; },1000);
-      } else {
-        document.body.scrollTop -= scrollStep;
-      }
-    }
-
-    var downWheel = function() {
-      if ((window.innerHeight + document.body.scrollTop) >= document.body.scrollHeight && pageReady) {
-        pageReady = false;
-        switch (currentPage) {
-          case 0:
-            currentPage += 1;
-            VrWuspace.gotoAboutUs();
-            break;
-          case 1:
-            currentPage += 1;
-            VrWuspace.gotoService();
-            break;
-          case 2:
-            currentPage += 1;
-            VrWuspace.gotoIncubator();
-            break;
-          case 3:
-            currentPage += 1;
-            VrWuspace.gotoVrNews();
-            break;
-          case 4:
-            currentPage += 1;
-            VrWuspace.gotoInTeam();
-            break;
-          case 5:
-            break;
-        }
-        currentPage != 0 && VrWuspace.removeCrossHandler();
-        document.body.scrollTop = 0;
-        setTimeout(function() {pageReady = true; },1000);
-      } else {
-        document.body.scrollTop += scrollStep;
-      }
-    }
 
     var wheelHandler = function(isUp) {
       console.log('1 = ' + document.body.scrollHeight + ', 2 = ' + window.innerHeight + ', 3 = ' +  document.body.scrollTop);
@@ -131,6 +139,90 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
 
   } else {
     $('.vr-news').addClass('vr-article--fix');
+    var handleTouchEvent = function(event) {
+      if (event.touches.length == 1) {
+        switch (event.type) {
+          case "touchstart":
+            // event.preventDefault();
+            startY = event.touches[0].clientY;
+            console.log("startY = " + startY);
+            console.log($('.vr-nav-bottom-layout').offset());
+            console.log($('.vr-nav-bottom-layout').outerHeight());
+            var scrollTop = getScrollTop();
+            if (isFirstTop) {
+              isSecondTop = true;
+            }
+            if (scrollTop == 0) {
+              isFirstTop = true;
+            }
+
+            var dch = getClientHeight();
+            var scrollBottom = document.body.scrollHeight - scrollTop;
+            if (isFirstBottom) {
+              isSecondBottom = true;
+            }
+            if(scrollBottom >= dch && scrollBottom <= (dch+10)) {
+              isFirstBottom = true;
+            }
+            break;
+          case "touchend":
+            break;
+          case "touchmove":
+            // event.preventDefault();
+            // console.log("clientX = " + event.touches[0].clientX);
+            var dch = getClientHeight();
+            var scrollTop = getScrollTop();
+            var scrollBottom = document.body.scrollHeight - scrollTop;
+            // console.log('dch = ' + dch + ', scrollTop = '+ scrollTop);
+
+            var moveEndY = event.touches[0].clientY;
+            // console.log("clientY = " + moveEndY);
+            var moveY = moveEndY - startY;
+            if (moveY < -20) {
+              isFirstTop = false;
+              isSecondTop = false;
+              if(scrollBottom >= dch && scrollBottom <= (dch+10) && isSecondBottom) {
+                // console.log('向上滑');
+                downWheel();
+                isFirstBottom = false;
+                isSecondBottom = false;
+              }
+            } else if (scrollTop == 0 && isSecondTop) {
+              // console.log('顶部');
+              isFirstTop = false;
+              isSecondTop = false;
+              upWheel();
+            } else {
+              isFirstTop = false;
+              isSecondTop = false;
+            }
+            break;
+        }
+      }
+    }
+
+    EventUtil.addHandler(document, "touchstart", handleTouchEvent);
+    EventUtil.addHandler(document, "touchend", handleTouchEvent);
+    EventUtil.addHandler(document, "touchmove", handleTouchEvent);
+
+    $(document).scroll(function(){
+    });
+  }
+
+  var getClientHeight = function(){
+    var clientHeight=0;
+    if(document.body.clientHeight&&document.documentElement.clientHeight){
+      clientHeight=(document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;           
+    }else{
+      clientHeight=(document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;       
+    }
+    return clientHeight;
+}
+
+  var getScrollTop = function(){
+    var scrollTop=0;
+    scrollTop=(document.body.scrollTop>document.documentElement.scrollTop)?document.body.scrollTop:document.documentElement.scrollTop;
+    return scrollTop;
   }
 
   // window.Utils = {

@@ -53,7 +53,7 @@
 	.partner, .call {
 		display: block;
 		font-size: 20px;
-		color: rgba(255,255,255,0.7);
+		color: #dcdcdc;
 	}
 	.partner:hover, .call:hover {color: rgba(255,255,255,1); }
 	.partner-icon, .call-icon { opacity: 0.7; margin: 0 auto; }
@@ -134,8 +134,16 @@ aside {
 		display: inline-block;
 		width: 45%;
 		height: 1.25rem;
-		margin-bottom: 0.375rem;
+		margin-bottom: 1.175rem;
 	}
+	.partner-qtsj {background: url("/img/logo1.png") center center / 50% no-repeat; }
+	.partner-saif {background: url("/img/logo2.png") center center / 50% no-repeat; }
+	.partner-dhxy {background: url("/img/logo3.png") center center / 50% no-repeat; }
+	.partner-modou {background: url("/img/logo4.png") center center / 50% no-repeat; }
+	.partner-yivian {background: url("/img/logo5.png") center center / 50% no-repeat; }
+	.partner-sidapai {background: url("/img/logo6.png") center center / 50% no-repeat; }
+	.partner-toutiao {background: url("/img/logo7.png") center center / 50% no-repeat; }
+	.partner-lkvr {background: url("/img/logo8.png") center center / 50% no-repeat; }
 }
 
 .vr-logo-animation-layout {
@@ -171,7 +179,7 @@ aside {
 	font-size: 16px;
 	margin-top: 0;
 	margin-bottom: 0.15625rem;
-	color: #999;
+	color: #dcdcdc;
 }
 .contact-show-key, .contact-show-key--fix {
 	font-size: 20px;
@@ -186,7 +194,7 @@ aside {
 		font-size: 14px;
 		margin-top: 0;
 		margin-bottom: 0.09375rem;
-		color: #999;
+		color: #dcdcdc;
 	}
 	.contact-show-key {
 		font-size: 18px;

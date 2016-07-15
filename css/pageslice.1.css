@@ -15,7 +15,7 @@
 
 .vr-1 .vr-sec-1 p, .vr-1 .vr-sec-1 p span {
 	padding: 0;
-	color: rgba(255,255,255,0.4);
+	color: #dcdcdc;
 }
 
 @media(min-width:751px){
@@ -76,7 +76,7 @@
 }
 
 .vr-article-content h2, .vr-article-content p, .vr-article-content p span {
-	color: #999;
+	color: #dcdcdc;
 }
 .vr-article-content h2 {
 	font-size: 48px;
@@ -200,7 +200,7 @@
 	height: 1.25rem;
 	font-size: 0.5625rem;
 	padding-top: 0.3125rem;
-	color: #999;
+	color: #dcdcdc;
 }
 .service-item--mbfix {
 	margin-bottom: 1.8rem;
@@ -327,14 +327,14 @@
 .incubator-content section h2 {
 	margin: 0 0 0.375rem;
 	font-size: 36px;
-	color: #999;
+	color: #dcdcdc;
 }
 .vr-inteam .incubator-content section h2 {
 	font-size: 32px;
 }
 .incubator-content section span, .incubator-content section p {
 	font-size: 16px;
-	color: #999;
+	color: #dcdcdc;
 }
 .incubator-left {text-align: left; }
 .incubator-right {text-align: right; }
@@ -396,7 +396,7 @@
 		position: relative;
 		margin: 0.625rem auto;
 	}
- #vrInteam div {
+ 	#vrInteam div {
 		position: relative;
   	top: 0%;
   	transform: translateY(0%);
@@ -406,14 +406,15 @@
 	.incubator-content .incubator-addr div h2 {
 		/*margin: 1.34375rem 0 0.375rem;*/
 		margin: 0 0 0.375rem;
-		font-size: 28px;
+		font-size: 20px;
 	}
 	.incubator-content .incubator-addr span, .incubator-content section p {
 		display: inline-block;
 		padding-right: 0.46875rem;
-		font-size: 14px;
+		font-size: 12px;
 	}
 	.incubator-content section p {
+		line-height: 0.55rem;
 		margin-top: 0.1875rem;
 		margin-bottom: 0;
 	}

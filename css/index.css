@@ -100,7 +100,7 @@ header .vr-nav-top-layout span {
 	opacity: 0.33;
 }
 
-.about-us, .service, .enterprise-incubator, .vr-news, .in-team {color: rgba(255,255,255,0.7); }
+.about-us, .service, .enterprise-incubator, .vr-news, .in-team {color: #dcdcdc; }
 .about-us:hover, .service:hover, .enterprise-incubator:hover {color: rgba(255,255,255,1); }
 
 .nav-bottom-text {
