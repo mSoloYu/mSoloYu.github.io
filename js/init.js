@@ -15,11 +15,28 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   var isFirstBottom = false;
   var isSecondBottom = false;
 
-  var isStopScroll = false;
+  var isStopScroll = false;     // 切换菜单（“联系我们”）
+  var readyNextTouch = false;
+
+  var pageReadyProcessor = {
+    timeoutId: null,
+    performProcessing: function() {
+      pageReady = false;
+    },
+    process: function() {
+      clearTimeout(this.timeoutId);
+      var that = this;
+      this.timeoutId = setTimeout(function() {
+        that.performProcessing();
+      }, 2000);
+    }
+  };
 
   var upWheel = function() {
-    console.log('document.body.scrollTop = ' + document.body.scrollTop + ', pageReady = ' + pageReady)
-    if (document.body.scrollTop <= 0 && pageReady) {
+    // console.log('document.body.scrollTop = ' + document.body.scrollTop + ', pageReady = ' + pageReady)
+    setTimeout(function() {pageReady = true; },1000);
+    if (!pageReady) { return; }
+    if (document.body.scrollTop <= 0) {
       pageReady = false;
       switch (currentPage) {
         default: break;
@@ -46,7 +63,6 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
       }
       currentPage == 0 && VrWuspace.initCross();
       document.body.scrollTop = 0;
-      setTimeout(function() {pageReady = true; },1000);
       handleFooter(false);
     } else {
       if ($('footer').length == 0) {
@@ -58,12 +74,12 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   }
 
   var downWheel = function() {
-    if ((window.innerHeight + document.body.scrollTop) >= document.body.scrollHeight && pageReady) {
-      pageReady = false;
+    if ((window.innerHeight + document.body.scrollTop) >= document.body.scrollHeight) {
       setTimeout(function() {pageReady = true; },1000);
-      if (handleFooter(true)) {
+      if ($('footer').length == 0 && handleFooter(true)) {
         return;
       }
+      if (!pageReady) { return; }
       switch (currentPage) {
         case 0:
           currentPage += 1;
@@ -88,6 +104,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
         case 5:
           break;
       }
+      pageReady = false;
       currentPage != 0 && VrWuspace.removeCrossHandler();
       document.body.scrollTop = 0;
     } else {
@@ -96,19 +113,25 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   }
 
   var handleFooter = function(footerNeedCreated){
+    $('footer').detach();
+    $('.vr-nav-bottom-layout').removeAttr('style');
+    if (window.isMobile && currentPage != 5) {
+      return false;
+    }
+    if (window.isMobile && currentPage == 5){
+      $('.vr-nav-bottom-layout').fadeIn(500);
+    }
+
     if ($('footer').length == 0 && footerNeedCreated) {
-      $('body').append('<footer><span>Copyright ©2015 District 10 VRAR All Rights Reserved </span><span>京ICP备15034822号-2</span></footer>');
-      $('.vr-nav-bottom-layout').css({'height': '3.38375rem'});
-      if (window.isMobile){
+      if (!window.isMobile || currentPage == 5) {
+        $('body').append('<footer><span>Copyright ©2015 District 10 VRAR All Rights Reserved </span><span>京ICP备15034822号-2</span></footer>');
+        $('.vr-nav-bottom-layout').css({'height': '3.38375rem'});
+      }
+      if (window.isMobile && currentPage == 5) {
         $('.vr-nav-bottom-layout').fadeOut(500);
       }
       return true;
     }
-    $('footer').detach();
-    if (window.isMobile){
-      $('.vr-nav-bottom-layout').fadeIn(500);
-    }
-    $('.vr-nav-bottom-layout').removeAttr('style');
     return false;
   }
 
@@ -132,7 +155,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
     var wheelHandler = function(isUp) {
       console.log('1 = ' + document.body.scrollHeight + ', 2 = ' + window.innerHeight + ', 3 = ' +  document.body.scrollTop);
       if (isUp) {
-        // console.log("滑轮向上滚动");
+        console.log("滑轮向上滚动");
         upWheel();
       } else {
         // console.log("滑轮向下滚动");
@@ -173,9 +196,9 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
           case "touchstart":
             // event.preventDefault();
             startY = event.touches[0].clientY;
-            console.log("startY = " + startY);
-            console.log($('.vr-nav-bottom-layout').offset());
-            console.log($('.vr-nav-bottom-layout').outerHeight());
+            // console.log("startY = " + startY);
+            // console.log($('.vr-nav-bottom-layout').offset());
+            // console.log($('.vr-nav-bottom-layout').outerHeight());
             var scrollTop = getScrollTop();
             if (isFirstTop) {
               isSecondTop = true;
@@ -201,7 +224,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
             var dch = getClientHeight();
             var scrollTop = getScrollTop();
             var scrollBottom = document.body.scrollHeight - scrollTop;
-            // console.log('dch = ' + dch + ', scrollTop = '+ scrollTop);
+            console.log('dch = ' + dch + ', xxxx = '+ $('body').scrollTop());
 
             var moveEndY = event.touches[0].clientY;
             // console.log("clientY = " + moveEndY);
@@ -220,6 +243,8 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
               isFirstTop = false;
               isSecondTop = false;
               upWheel();
+            } else if (window.isMobile && currentPage == 5) {
+              handleFooter(false);
             }
             break;
         }
@@ -310,6 +335,10 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
           VrWuspace.gotoInTeam();
           break;
       }
+      isFirstTop = false;
+      isSecondTop = false;
+      isFirstBottom = false;
+      isSecondBottom = false;
     })
   };
 
