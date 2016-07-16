@@ -34,10 +34,16 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		event = EventUtil.getEvent(event);
 		// console.log("x = " + event.pageX + ", y = " + event.pageY);
 		$('#crossPointer').css({
-			"top": "calc(" + event.pageY + "px - 0.375rem)",
-			"top": "-webkit-calc(" + event.pageY + "px - 0.375rem)",
-			"left": "-calc(" + event.pageX + "px - 0.375rem)",
-			"left": "-webkit-calc(" + event.pageX + "px - 0.375rem)",
+			"top": "calc(" + event.pageY + "px - 0.25rem)",
+			"top": "-webkit-calc(" + event.pageY + "px - 0.25rem)",
+			"left": "-calc(" + event.pageX + "px - 0.25rem)",
+			"left": "-webkit-calc(" + event.pageX + "px - 0.25rem)",
+		});
+		$('#crossPointerSmall').css({
+			"top": "calc(" + event.pageY + "px - 0.15rem)",
+			"top": "-webkit-calc(" + event.pageY + "px - 0.15rem)",
+			"left": "-calc(" + event.pageX + "px - 0.15rem)",
+			"left": "-webkit-calc(" + event.pageX + "px - 0.15rem)",
 		});
 		$('.cross-x').css({"margin-top": "" + event.pageY + "px"});
 		//  parseInt(window.getComputedStyle(document.documentElement)["fontSize"])
