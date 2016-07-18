@@ -67,6 +67,10 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	};
 
 	var gotoHome = function($current) {
+		$('.vr-nav-bottom-layout').removeClass('vr-nav-bottom-layout-overlay');
+		$('.vr-page-current').removeAttr('style');
+    $('.vr-nav-bottom-layout').show();
+    closeMenuArticle();
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-1')) {return }
 		EventUtil.addHandler(document, "mousemove", mouseMoveHandler);
@@ -92,6 +96,9 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			closeMenuArticle();
 			return;
 		}
+		document.body.scrollTop = 0;
+		$('.vr-page-current').css({'position': 'fixed'});
+    $('.vr-nav-bottom-layout').hide();
 		$('.vr-menu-fake-icon').css({'width': '0.79625rem'});
 		$('#vrMenu2').css({'border-color':'#000'});
 		$('#vrMenu1').addClass('vr-menu-close-top-effect');
@@ -105,7 +112,10 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	}
 
 	var gotoAboutUs = function($current) {
+		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		document.body.scrollTop = 0;
+		$('.nav-clicked').removeClass('nav-clicked');
+		$('#aboutUs').addClass('nav-clicked');
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-aboutus')) {return }
 		backToInitState($current);
@@ -131,6 +141,9 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	}
 
 	var gotoService = function($current) {
+		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
+		$('.nav-clicked').removeClass('nav-clicked');
+		$('#service').addClass('nav-clicked');
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-service')) { return }
 		backToInitState($current);
@@ -153,6 +166,9 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 
 	var gotoIncubator = function($current) {
 		document.body.scrollTop = 0;
+		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
+		$('.nav-clicked').removeClass('nav-clicked');
+		$('#incubator').addClass('nav-clicked');
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-incubator')) { return }
 		backToInitState($current);
@@ -180,8 +196,11 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 
 	var gotoVrNews = function($current) {
 		document.body.scrollTop = 0;
+		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
+		$('.nav-clicked').removeClass('nav-clicked');
+		$('#vrnews').addClass('nav-clicked');
 		var $current = $('.vr-page-current').eq(0);
-		if ($current.hasClass('vr-service')) { return }
+		if ($current.hasClass('vr-news')) { return }
 		backToInitState($current);
 		$('body').addClass('service-bg');
 		$('.cross-layout').hide();
@@ -202,6 +221,9 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 
 	var gotoInTeam = function($current) {
 		document.body.scrollTop = 0;
+		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
+		$('.nav-clicked').removeClass('nav-clicked');
+		$('#inTeam').addClass('nav-clicked');
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-inteam')) { return }
 		backToInitState($current);

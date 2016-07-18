@@ -304,26 +304,32 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
           VrWuspace.gotoMenu();
           break;
         case "vrLogo":
+          isStopScroll = false;
           VrWuspace.gotoHome();
           currentPage = 0;
           break;
         case "aboutUs":
+          isStopScroll = false;
           currentPage = 1;
           VrWuspace.gotoAboutUs();
           break;
         case "service":
+          isStopScroll = false;
           currentPage = 2;
           VrWuspace.gotoService();
           break;
         case "incubator":
+          isStopScroll = false;
           currentPage = 3;
           VrWuspace.gotoIncubator();
           break;
         case "vrnews":
+          isStopScroll = false;
           currentPage = 4;
           VrWuspace.gotoVrNews();
           break;
         case "inTeam":
+          isStopScroll = false;
           currentPage = 5;
           VrWuspace.gotoInTeam();
           break;
