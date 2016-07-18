@@ -294,8 +294,11 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
         case "vrMenu4":
           isStopScroll = !isStopScroll;
           if (isStopScroll) {
+            document.body.scrollTop = 0;
+            $('.vr-page-current').css({'position': 'fixed'});
             $('.vr-nav-bottom-layout').hide();
           } else {
+            $('.vr-page-current').removeAttr('style');
             $('.vr-nav-bottom-layout').show();
           }
           VrWuspace.gotoMenu();

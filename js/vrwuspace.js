@@ -105,6 +105,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	}
 
 	var gotoAboutUs = function($current) {
+		document.body.scrollTop = 0;
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-aboutus')) {return }
 		backToInitState($current);
@@ -151,6 +152,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	}
 
 	var gotoIncubator = function($current) {
+		document.body.scrollTop = 0;
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-incubator')) { return }
 		backToInitState($current);
@@ -177,6 +179,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	}
 
 	var gotoVrNews = function($current) {
+		document.body.scrollTop = 0;
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-service')) { return }
 		backToInitState($current);
@@ -198,6 +201,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	}
 
 	var gotoInTeam = function($current) {
+		document.body.scrollTop = 0;
 		var $current = $('.vr-page-current').eq(0);
 		if ($current.hasClass('vr-inteam')) { return }
 		backToInitState($current);
