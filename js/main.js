@@ -7,10 +7,13 @@ requirejs.config({
     //never includes a ".js" extension since
     //the paths config could be for a directory.
     paths: {
-    	jquery: "https://cdn.bootcss.com/jquery/2.2.2/jquery.min",
-    	Init: "init",
-      VrWuspace: "vrwuspace",
-      EventUtil: "eventutil"
+      jquery: "https://cdn.bootcss.com/jquery/2.2.2/jquery.min",
+      Init: "init.min",
+      VrWuspace: "vrwuspace.min",
+      EventUtil: "eventutil.min"
+      // Init: "init",
+      // VrWuspace: "vrwuspace",
+      // EventUtil: "eventutil"
     }
 });
 

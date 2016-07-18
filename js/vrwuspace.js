@@ -1,4 +1,6 @@
-// vrwuspace.js
+/**
+ * 定义 1. 各屏幕加载执行流； 2. 十字架准星； 3. 
+ */
 define(['jquery', 'EventUtil'], function ($, EventUtil){
 	// var $vrWuspace = document.getElementById("vrWuspace");
 	// if ($vrWuspace.getContext) {

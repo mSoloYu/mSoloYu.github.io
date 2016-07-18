@@ -1,37 +1,23 @@
 /**
- * 定义 window 全局变量和相关 CSS Hack
+ * 定义 1. 页面整体结构; 2. window 全局变量; 3. 相关 CSS Hack
  */
 define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
 
   // home, aboutus, service, incubator, vrnews, team
-  // var pageIndex = [0,1,2,3,4,5];
+  // var pageIndex = [0,1,2,3,4,5];    // 切换屏幕索引值
   var currentPage = 0;
   var scrollStep = 50;
-  var pageReady = true;
+  var pageReady = true;   // 屏幕切换后是否准备好（比如动画效果）
 
   var startY = 0;
-  var isFirstTop = false;
-  var isSecondTop = false;
+  var isFirstTop = false;     // 滚轮切换屏幕第一次滚动到顶部
+  var isSecondTop = false;    // 第二次切换屏幕
   var isFirstBottom = false;
   var isSecondBottom = false;
 
-  var isStopScroll = false;     // 切换菜单（“联系我们”）
-  var readyNextTouch = false;
+  var isStopScroll = false;     // 切换顶部菜单（“联系我们”）时停止滚轮切换屏幕
 
-  var pageReadyProcessor = {
-    timeoutId: null,
-    performProcessing: function() {
-      pageReady = false;
-    },
-    process: function() {
-      clearTimeout(this.timeoutId);
-      var that = this;
-      this.timeoutId = setTimeout(function() {
-        that.performProcessing();
-      }, 2000);
-    }
-  };
-
+  // 向上滚动或滑动
   var upWheel = function() {
     // console.log('document.body.scrollTop = ' + document.body.scrollTop + ', pageReady = ' + pageReady)
     setTimeout(function() {pageReady = true; },1000);
@@ -73,6 +59,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
     }
   }
 
+  // 向下滚动或滑动
   var downWheel = function() {
     if ((window.innerHeight + document.body.scrollTop) >= document.body.scrollHeight) {
       setTimeout(function() {pageReady = true; },1000);
@@ -112,6 +99,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
     }
   }
 
+  // 处理后期添加的需求：备案号
   var handleFooter = function(footerNeedCreated){
     $('footer').detach();
     $('.vr-nav-bottom-layout').removeAttr('style');
@@ -153,9 +141,9 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
     $('.cross-layout').show();
 
     var wheelHandler = function(isUp) {
-      console.log('1 = ' + document.body.scrollHeight + ', 2 = ' + window.innerHeight + ', 3 = ' +  document.body.scrollTop);
+      // console.log('1 = ' + document.body.scrollHeight + ', 2 = ' + window.innerHeight + ', 3 = ' +  document.body.scrollTop);
       if (isUp) {
-        console.log("滑轮向上滚动");
+        // console.log("滑轮向上滚动");
         upWheel();
       } else {
         // console.log("滑轮向下滚动");
@@ -163,6 +151,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
       }
     }
 
+    // PC 滚轮监听
     EventUtil.addHandler(document, "mousewheel", function(e){
       if (isStopScroll) {  return; }
       e = EventUtil.getEvent(e);
@@ -187,7 +176,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
       return false;
     });
 
-  } else {
+  } else {    // 移动端
     $('.vr-news').addClass('vr-article--fix');
     var handleTouchEvent = function(event) {
       if (isStopScroll) {  return; }
@@ -229,7 +218,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
             var moveEndY = event.touches[0].clientY;
             // console.log("clientY = " + moveEndY);
             var moveY = moveEndY - startY;
-            if (moveY < -20) {
+            if (moveY < -20) {    // 滑动是否需要切换屏幕
               isFirstTop = false;
               isSecondTop = false;
               if(scrollBottom >= dch && scrollBottom <= (dch+10) && isSecondBottom) {
@@ -238,12 +227,12 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
                 isFirstBottom = false;
                 isSecondBottom = false;
               }
-            } else if (scrollTop == 0 && isSecondTop) {
+            } else if (scrollTop == 0 && isSecondTop) {   // 优化 scrollTop 无效
               // console.log('顶部');
               isFirstTop = false;
               isSecondTop = false;
               upWheel();
-            } else if (window.isMobile && currentPage == 5) {
+            } else if (window.isMobile && currentPage == 5) {   // 移动端只需在最后一屏添加备案号
               handleFooter(false);
             }
             break;
@@ -288,6 +277,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   //   }
   // };
 
+  // 初始化底部菜单栏
   var initNav = function() {
     $('#gotoService').click(function(event) {
       gotoService($('.vr-page-current').eq(0));
@@ -342,6 +332,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
     })
   };
 
+  // 页面加载后执行各功能模块
   var start = function() {
     initNav();
   　　VrWuspace.initMenu();
