@@ -88,9 +88,10 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
           currentPage += 1;
           VrWuspace.gotoInTeam();
           break;
-        case 5:
-          break;
+        default:
+          return ;
       }
+      handleFooter(false);
       pageReady = false;
       currentPage != 0 && VrWuspace.removeCrossHandler();
       document.body.scrollTop = 0;

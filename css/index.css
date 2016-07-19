@@ -1038,6 +1038,7 @@ header .vr-nav-top-layout span {
 	.incubator-content .incubator-addr {top: 1rem; }
 	.incubator-content .incubator-addr div h2 {font-size: 32px; }
 	.incubator-content .incubator-addr div span, .incubator-content section p {font-size: 14px; }
+	.incubator-left .incubator-addr div h2, .incubator-left .incubator-addr div span, .incubator-left section p {padding-left: 1.6rem; }
 }
 @media(max-width:750px){
 	.vr-incubator, .vr-inteam {
