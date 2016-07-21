@@ -49,7 +49,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		});
 		$('.cross-x').css({"margin-top": "" + event.pageY + "px"});
 		//  parseInt(window.getComputedStyle(document.documentElement)["fontSize"])
-		var left = -window.innerWidth + event.pageX;
 		// console.log("marginLeft = " + marginLeft);
 		$('.cross-y').css({
 			"left": "-calc(" + event.pageX + "px - 300vw)",
