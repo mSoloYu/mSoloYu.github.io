@@ -28,7 +28,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		hackCounter: 0,
 		performProcessing: function() {
 			$('.cross-layout').hide();
-			console.log('赶紧给我消失');
 			this.hackCounter = 0;
 		},
 		process: function() {
@@ -75,7 +74,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		if (crossProcessor.getHackCounter()) {
 			$('.cross-layout').show();
 		}
-		console.log('这是最后一次');
 		crossProcessor.process();
 		EventUtil.preventDefault(event);
 		EventUtil.stopPropagation(event);
