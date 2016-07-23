@@ -18,17 +18,34 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	// }
 	// console.log("drawing");
 
+	var isPageReady = true;
+
+	var getPageReady = function() {return isPageReady; }
+	var enablePageReady = function() {isPageReady = true; }
+	var disablePageReady = function() {isPageReady = false; }
+
 	var crossProcessor = {
-		timeoutId: null,
+		hackCounter: 0,
 		performProcessing: function() {
 			$('.cross-layout').hide();
+			console.log('赶紧给我消失');
+			this.hackCounter = 0;
 		},
 		process: function() {
-			clearTimeout(this.timeoutId);
+			this.hackCounter++;
+			if (this.timeoutId != null) {
+				clearTimeout(this.timeoutId);
+			}
+			if (this.hackCounter == 1) {
+				return ;
+			}
 			var that = this;
 			this.timeoutId = setTimeout(function() {
 				that.performProcessing();
-			}, 1000);
+			}, 600);
+		},
+		getHackCounter: function() {
+			return this.hackCounter > 0;
 		}
 	};
 
@@ -54,10 +71,15 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			"left": "-calc(" + event.pageX + "px - 300vw)",
 			"left": "-webkit-calc(" + event.pageX + "px - 300vw)",
 			"right": "0"
-			// "left": "" + marginLeft + "px",
 		});
-		$('.cross-layout').show();
+		if (crossProcessor.getHackCounter()) {
+			$('.cross-layout').show();
+		}
+		console.log('这是最后一次');
 		crossProcessor.process();
+		EventUtil.preventDefault(event);
+		EventUtil.stopPropagation(event);
+		return true;
 	};
 
 	var initCross = function() {
@@ -66,6 +88,8 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	};
 
 	var gotoHome = function($current) {
+		initCross();
+		$('.nav-clicked').removeClass('nav-clicked');
 		$('.vr-nav-bottom-layout').removeClass('vr-nav-bottom-layout-overlay');
 		$('.vr-page-current').removeAttr('style');
     $('.vr-nav-bottom-layout').show();
@@ -95,6 +119,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			closeMenuArticle();
 			return;
 		}
+		$()
 		document.body.scrollTop = 0;
 		$('.vr-page-current').css({'position': 'fixed'});
     $('.vr-nav-bottom-layout').hide();
@@ -111,6 +136,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	}
 
 	var gotoAboutUs = function($current) {
+		disablePageReady();
 		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		document.body.scrollTop = 0;
 		$('.nav-clicked').removeClass('nav-clicked');
@@ -136,10 +162,12 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			$('p', '#vrAboutUs .vr-article-content')
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
+				enablePageReady();
 		}, 1500);
 	}
 
 	var gotoService = function($current) {
+		disablePageReady();
 		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		$('.nav-clicked').removeClass('nav-clicked');
 		$('#service').addClass('nav-clicked');
@@ -160,10 +188,12 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			$('.vr-article-content', '#vrService')
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
+				enablePageReady();
 		}, 800);
 	}
 
 	var gotoIncubator = function($current) {
+		disablePageReady();
 		document.body.scrollTop = 0;
 		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		$('.nav-clicked').removeClass('nav-clicked');
@@ -190,10 +220,12 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		setTimeout(function() {
 			$('div', '.incubator-addr').removeClass('move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
+			enablePageReady();
 		}, 2000);
 	}
 
 	var gotoVrNews = function($current) {
+		disablePageReady();
 		document.body.scrollTop = 0;
 		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		$('.nav-clicked').removeClass('nav-clicked');
@@ -215,10 +247,12 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			$('.vr-article-content', '#vrNews')
 				.removeClass('vr-item-moveFromBottom move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
+				enablePageReady();
 		}, 800);
 	}
 
 	var gotoInTeam = function($current) {
+		disablePageReady();
 		document.body.scrollTop = 0;
 		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		$('.nav-clicked').removeClass('nav-clicked');
@@ -245,6 +279,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		setTimeout(function() {
 			$('div', '.incubator-addr').removeClass('move-from-bottom--init')
 				.addClass('vr-item-moveFromBottom');
+				enablePageReady();
 		}, 2000);
 	}
 
@@ -371,5 +406,8 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		gotoIncubator: gotoIncubator,
 		gotoVrNews: gotoVrNews,
 		gotoInTeam: gotoInTeam,
+		getPageReady: getPageReady,
+		enablePageReady: enablePageReady,
+		disablePageReady: disablePageReady,
 	};
 });

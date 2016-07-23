@@ -198,36 +198,41 @@
 
 /* ================================================================================ */
 .vr-circle-right-animation-effect {
+	border-style: solid;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
 	-webkit-animation: drawCircleFromRight 0.9s linear 1s 1;
 	animation: drawCircleFromRight 0.9s linear 1s 1;
 }
 
 @-webkit-keyframes drawCircleFromRight {
-	25% { border-right: 0.0625rem solid #fff; }
-	50% { border-bottom: 0.0625rem solid #fff; }
-	75% { border-left: 0.0625rem solid #fff; }
-	100% { border: 0.0625rem solid #fff; }
+	25% { border-right: 0.06rem solid #fff;}
+	50% { border-bottom: 0.06rem solid #fff; }
+	75% { border-left: 0.06rem solid #fff; }
+	100% { border: 0.06rem solid #fff; }
 }
 @keyframes drawCircleFromRight {
-	25% { border-right: 0.0625rem solid #fff; }
-	50% { border-bottom: 0.0625rem solid #fff; }
-	75% { border-left: 0.0625rem solid #fff; }
-	100% { border: 0.0625rem solid #fff; }
+	25% { border-right: 0.06rem solid #fff;}
+	50% { border-bottom: 0.06rem solid #fff; }
+	75% { border-left: 0.06rem solid #fff; }
+	100% { border: 0.06rem solid #fff; }
 }
 
 .vr-circle-animation-effect {
+	border-style: solid;
+	border-color: transparent;
 	-webkit-animation: drawCircle 1s linear 1.5s 1;
 	animation: drawCircle 1s linear 1.5s 1;
 }
 
 @-webkit-keyframes drawCircle {
-	25% { border-top: 0.3125rem solid #151515; }
+	25% { border-top: 0.3125rem solid #151515;}
 	50% { border-right: 0.3125rem solid #151515; }
 	75% { border-bottom: 0.3125rem solid #151515; }
 	100% { border: 0.3125rem solid #151515; }
 }
 @keyframes drawCircle {
-	25% { border-top: 0.3125rem solid #151515; }
+	25% { border-top: 0.3125rem solid #151515;}
 	50% { border-right: 0.3125rem solid #151515; }
 	75% { border-bottom: 0.3125rem solid #151515; }
 	100% { border: 0.3125rem solid #151515; }
@@ -998,7 +1003,7 @@ audio,canvas,video {
 
 /* vrIncubator */
 .vr-incubator, .vr-inteam {
-	margin-bottom: 2.2rem;
+	margin-bottom: 3.6rem;
 }
 .incubator-content {
 	position: relative;

@@ -7,7 +7,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   // var pageIndex = [0,1,2,3,4,5];    // 切换屏幕索引值
   var currentPage = 0;
   var scrollStep = 50;
-  var pageReady = true;   // 屏幕切换后是否准备好（比如动画效果）
+  // var pageReady = true;   // 屏幕切换后是否准备好（比如动画效果）
 
   var startY = 0;
   var isFirstTop = false;     // 滚轮切换屏幕第一次滚动到顶部
@@ -20,10 +20,13 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   // 向上滚动或滑动
   var upWheel = function() {
     // console.log('document.body.scrollTop = ' + document.body.scrollTop + ', pageReady = ' + pageReady)
-    setTimeout(function() {pageReady = true; },1000);
-    if (!pageReady) { return; }
+    // setTimeout(function() {pageReady = true; },1000);
+    // if (!pageReady) { return; }
+    if (!VrWuspace.getPageReady()) {
+      return ;
+    }
     if (document.body.scrollTop <= 0) {
-      pageReady = false;
+      // pageReady = false;
       switch (currentPage) {
         default: break;
         case 1:
@@ -62,11 +65,14 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   // 向下滚动或滑动
   var downWheel = function() {
     if ((window.innerHeight + document.body.scrollTop) >= document.body.scrollHeight) {
-      setTimeout(function() {pageReady = true; },1000);
+      // setTimeout(function() {pageReady = true; },1000);
       if ($('footer').length == 0 && handleFooter(true)) {
         return;
       }
-      if (!pageReady) { return; }
+      if (!VrWuspace.getPageReady()) {
+        return ;
+      }
+      // if (!pageReady) { return; }
       switch (currentPage) {
         case 0:
           currentPage += 1;
