@@ -421,7 +421,7 @@ footer {
 a { cursor: pointer; }
 
 .hidden { display: none; }
-.scroll--hack { position: relative !important; }
+.scroll--hack { overflow-y: scroll !important; position: relative !important; }
 .video-play {
 	position: absolute;
 	z-index: -99;
@@ -864,6 +864,9 @@ audio,canvas,video {
 	.vr-article-content h2 {
 		font-size: 40px;
 		margin: 0 0 0.75rem;
+	}
+	.vr-aboutus .vr-article-content p {
+		font-size: 14px;
 	}
 	.vr-article-content p {
 		font-size: 16px;
