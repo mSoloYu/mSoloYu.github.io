@@ -19,6 +19,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	// console.log("drawing");
 
 	var isPageReady = true;
+	var isMenuAnimaChanged = true;
 
 	var getPageReady = function() {return isPageReady; }
 	var enablePageReady = function() {isPageReady = true; }
@@ -86,10 +87,13 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 	};
 
 	var gotoHome = function($current) {
+		if (!isMenuAnimaChanged) {
+			return ;
+		}
 		initCross();
 		$('.nav-clicked').removeClass('nav-clicked');
 		$('.vr-nav-bottom-layout').removeClass('vr-nav-bottom-layout-overlay');
-		$('.vr-page-current').removeAttr('style');
+		$('.vr-article').removeAttr('style');
     $('.vr-nav-bottom-layout').show();
     closeMenuArticle();
 		var $current = $('.vr-page-current').eq(0);
@@ -101,7 +105,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 		backToInitState($current);
 		$current
 			.removeClass('vr-page-moveFromBottom')
-			.addClass('vr-page-moveToBottom')
 			.removeClass('vr-page-current');
 		$('#vrHome')
 			.removeClass('vr-page-moveToTop')
@@ -117,7 +120,6 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			closeMenuArticle();
 			return;
 		}
-		$()
 		document.body.scrollTop = 0;
 		$('.vr-page-current').css({'position': 'fixed'});
     $('.vr-nav-bottom-layout').hide();
@@ -309,6 +311,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 			$current = $('.vr-page-current').eq(0);
 			switch (target.id) {
 				case "menuPartner":
+					isMenuAnimaChanged = false;
 					closeMenuArticle();
 					$logoAnimation = $('.vr-logo-animation-layout');
 					$logoAnimation.removeClass('vr-page-moveToTop')
@@ -330,9 +333,11 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 							.removeClass('vr-page-moveToBottom')
 							.addClass('vr-page-current vr-page-moveFromBottom');
 						$('.vr-logo-animation', $logoAnimation).removeClass('vr-circle-right-animation-effect');
+						isMenuAnimaChanged = true;
 					}, 2000);
 					break;
 				case "menuCall":
+					isMenuAnimaChanged = false;
 					closeMenuArticle();
 					$logoAnimation = $('.vr-logo-animation-layout');
 					$logoAnimation.removeClass('vr-page-moveToTop')
@@ -354,6 +359,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 							.removeClass('vr-page-moveToBottom')
 							.addClass('vr-page-current vr-page-moveFromBottom');
 						$('.vr-logo-animation', $logoAnimation).removeClass('vr-circle-right-animation-effect');
+						isMenuAnimaChanged = true;
 					}, 3000);
 					break;
 			}

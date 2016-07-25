@@ -378,7 +378,6 @@
 /* 页面整体样式 */
 html {
   width: 100vw;
-  height: 100%;
 }
 
 html, body {
@@ -422,7 +421,7 @@ footer {
 a { cursor: pointer; }
 
 .hidden { display: none; }
-.scroll--hack { overflow-y: scroll !important; position: relative !important; }
+.scroll--hack { position: relative !important; }
 .video-play {
 	position: absolute;
 	z-index: -99;
@@ -1248,7 +1247,8 @@ aside {
 }
 
 .vr-partner {
-	height: 100vh;
+	height: calc(55vh + 4.09375rem);
+	height: -webkit-calc(55vh + 4.09375rem);
 	background: #000;
 }
 
@@ -1328,7 +1328,8 @@ aside {
 }
 
 .vr-logo-animation-layout {
-	height: 100vh;
+	height: calc(55vh + 4.09375rem);
+	height: -webkit-calc(55vh + 4.09375rem);
 	background: #000;
 	z-index: 1;
 }
@@ -1342,7 +1343,8 @@ aside {
 }
 
 .vr-contact {
-	height: 100vh;
+	height: calc(55vh + 4.09375rem);
+	height: -webkit-calc(55vh + 4.09375rem);
 	background: #000 url("/img/map.png") 0 0 / cover no-repeat;
 }
 

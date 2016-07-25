@@ -287,7 +287,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
   // 初始化底部菜单栏
   var initNav = function() {
     $('#gotoService').click(function(event) {
-      gotoService($('.vr-page-current').eq(0));
+       VrWuspace.gotoService($('.vr-page-current').eq(0));
     });
     var $vrNav = document.getElementById("vrNav");
     EventUtil.addHandler($vrNav, "click", function(event) {
