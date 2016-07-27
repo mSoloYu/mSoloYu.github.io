@@ -690,11 +690,11 @@ audio,canvas,video {
 /* 各屏幕的样式 */
 .vr-1 .vr-sec-1 {
 	position: relative;
-	min-width: 10.421875rem;	/* 667 = 890 * 0.75 */
-	max-width: 13.90625rem;		/* 890px */
+	width: 13.90625rem;		/* 890px */
 	height: 8.1875rem;		/* 524px */
-	margin: 0 auto;
-	text-align: center
+	margin: 0 0 0 50%;
+	text-align: center;
+	transform: translateX(-50%);
 }
 .vr-1 .vr-sec-1 .vr-title-1 {
 	position: relative;
@@ -733,6 +733,8 @@ audio,canvas,video {
 }
 @media(max-width:750px){
 	.vr-1 .vr-sec-1 {
+		min-width: 10.421875rem;	/* 667 = 890 * 0.75 */
+		max-width: 13.90625rem;		/* 890px */
 		background: url('/img/6.png') center center / 140% no-repeat,
 								url("/img/7.png") center 6.5625rem / 26% no-repeat;		/* 420px */
 	}
