@@ -551,9 +551,10 @@ header .vr-nav-top-layout span {
 		top: 0.625rem;
 	}
 	.vr-nav-bottom-layout {
-		position: fixed;
+		position: absolute;
 		left: 0;
-		bottom: 0;
+		top: calc(100vh - 2.50875rem);
+		top: -webkit-calc(100vh - 2.50875rem);
     width: 100vw;
     height: 2.13375rem;		/* 3.38375rem */
     background: -webkit-gradient(linear,0 0,0 100%,from(transparent),to(#000));
