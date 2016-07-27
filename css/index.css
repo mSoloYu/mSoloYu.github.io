@@ -608,9 +608,10 @@ header .vr-nav-top-layout span {
 	.vr-nav-bottom-layout {
 	 	display: table;
 	  width: 100vw;
-	  position: fixed;
+	  position: absolute;
 	  padding: 0.1875rem 0;
-	  bottom: 0;
+	  top: calc(100vh - 2.20875rem);
+		top: -webkit-calc(100vh - 2.20875rem);
 	  background: #000;
 	  height: 1.83375rem;
 	  text-align: center;
