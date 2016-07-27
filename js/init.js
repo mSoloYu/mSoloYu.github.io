@@ -220,7 +220,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
             var dch = getClientHeight();
             var scrollTop = getScrollTop();
             var scrollBottom = document.body.scrollHeight - scrollTop;
-            console.log('dch = ' + dch + ', xxxx = '+ $('body').scrollTop());
+            // console.log('dch = ' + dch + ', xxxx = '+ $('body').scrollTop());
 
             var moveEndY = event.touches[0].clientY;
             // console.log("clientY = " + moveEndY);

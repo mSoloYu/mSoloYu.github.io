@@ -11,6 +11,7 @@ requirejs.config({
       Init: "init.min",
       VrWuspace: "vrwuspace.min",
       EventUtil: "eventutil.min"
+      // 以下为开发环境配置
       // Init: "init",
       // VrWuspace: "vrwuspace",
       // EventUtil: "eventutil"

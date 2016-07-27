@@ -194,6 +194,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 
 	var gotoIncubator = function($current) {
 		disablePageReady();
+		$('#vrInteam').hide();			// hack，修复因为和“入驻团队”内容过长带来的样式问题
 		document.body.scrollTop = 0;
 		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		$('.nav-clicked').removeClass('nav-clicked');
@@ -253,6 +254,7 @@ define(['jquery', 'EventUtil'], function ($, EventUtil){
 
 	var gotoInTeam = function($current) {
 		disablePageReady();
+		$('#vrInteam').show();		// hack， 配合 function gotoIncubator
 		document.body.scrollTop = 0;
 		$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
 		$('.nav-clicked').removeClass('nav-clicked');
