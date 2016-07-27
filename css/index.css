@@ -387,6 +387,7 @@ html, body {
 }
 
 body {
+  height: 100vh;
 	background: #000;
 	overflow: hidden;
 	z-index: -999;
