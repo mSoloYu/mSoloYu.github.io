@@ -120,7 +120,7 @@ define(['jquery', 'EventUtil', 'VrWuspace'], function ($, EventUtil, VrWuspace){
     if ($('footer').length == 0 && footerNeedCreated) {
       if (!window.isMobile || currentPage == 5) {
         $('body').append('<footer><span>Copyright ©2015 District 10 VRAR All Rights Reserved </span><span>京ICP备15034822号-2</span></footer>');
-        $('.vr-nav-bottom-layout').css({'height': '3.38375rem'});
+        $('.vr-nav-bottom-layout').css({'transform': 'translateY(-0.8rem)'});   // refer to footer height
       }
       if (window.isMobile && currentPage == 5) {
         $('.vr-nav-bottom-layout').fadeOut(500);
