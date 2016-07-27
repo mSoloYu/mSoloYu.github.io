@@ -32,14 +32,9 @@
   <meta name="keywords" content="VRAR,VR,AR,District10,未来，虚拟，游戏,game，虚拟现实，增强,服务,孵化,,">
   <meta name="author" content="WuSpace,mSolo,Kevin">
 
+  <!-- 阿里适配js -->
 	<script type="text/javascript">
 		!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("欢迎来到VR第十区！");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=a.navigator.userAgent,q=(!!p.match(/android/gi),!!p.match(/iphone/gi)),r=q&&!!p.match(/OS 9_3/),s=a.devicePixelRatio;i=q&&!r?s>=3&&(!i||i>=3)?3:s>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var t=e.createElement("div");t.appendChild(g),e.write(t.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
-
-		// function playVideo() {
-		// 	var $vrBgVideo = document.getElementById("vrBgVideo");
-		// 	$vrBgVideo.play();
-		// }
-
 	</script>
 	<!-- 开发环境重置样式 -->
 	<!-- <link rel="stylesheet" href="css/init.css"> -->
@@ -77,11 +72,6 @@
 			<span id="vrMenu4" class="vr-menu-fake-icon vr-menu-fake"></span>
 		</nav>
 		<nav class="vr-nav-bottom-layout">
-			<!-- <a id="aboutUs" class="about-us"><span class="about-us-icon"></span><span class="nav-bottom-text">关于我们</span></a>
-			<a id="service" class="service"><span class="service-icon"></span><span class="nav-bottom-text">服务内容</span></a>
-			<a id="incubator" class="enterprise-incubator"><span class="enterprise-incubator-icon"></span><span class="nav-bottom-text">孵化空间</span></a>
-			<a id="vrnews" class="vr-news-nav"><span class="vr-news-icon"></span><span class="nav-bottom-text">VR新闻</span></a>
-			<a id="inTeam" class="in-team"><span class="in-team-icon"></span><span class="nav-bottom-text">入驻团队</span></a> -->
 			<a id="aboutUs" class="about-us">关于我们</a>
 			<a id="service" class="service">服务内容</span></a>
 			<a id="incubator" class="enterprise-incubator">孵化空间</span></a>
@@ -129,12 +119,12 @@
 		<div class="vr-article-content move-from-bottom--init">
 			<h2>VR新闻</h2>
 			<ol>
-				<li><a href="">"VRAR + 传统行业"论坛 第十区打造产学研资源平台</a><a class="goto-detail-icon"></a></li>
-				<li><a href="">"VRAR + 传统行业"高峰论坛举行 第十区打造产学研资源平台</a><a class="goto-detail-icon"></a></li>
-				<li><a href="">上海VR/AR孵化器正式宣布成立</a><a class="goto-detail-icon"></a></li>
-				<li><a href="">第十区战略牵手华夏幸福创新中心和CC 打造VR/AR产业创新生态</a><a class="goto-detail-icon"></a></li>
-				<li><a href="">众创空间开始垂直化探索？首个VR、AR连锁浮华机构“第十区”开局</a><a class="goto-detail-icon"></a></li>
-				<li><a href="">众创空间开始垂直化探索？首个VR、AR连锁浮华机构“第十区”开局</a><a class="goto-detail-icon"></a></li>
+				<li><a target="_blank" href="">"VRAR + 传统行业"论坛 第十区打造产学研资源平台</a><a class="goto-detail-icon"></a></li>
+				<li><a target="_blank" href="">"VRAR + 传统行业"高峰论坛举行 第十区打造产学研资源平台</a><a class="goto-detail-icon"></a></li>
+				<li><a target="_blank" href="">上海VR/AR孵化器正式宣布成立</a><a class="goto-detail-icon"></a></li>
+				<li><a target="_blank" href="">第十区战略牵手华夏幸福创新中心和CC 打造VR/AR产业创新生态</a><a class="goto-detail-icon"></a></li>
+				<li><a target="_blank" href="">众创空间开始垂直化探索？首个VR、AR连锁浮华机构“第十区”开局</a><a class="goto-detail-icon"></a></li>
+				<li><a target="_blank" href="">众创空间开始垂直化探索？首个VR、AR连锁浮华机构“第十区”开局</a><a class="goto-detail-icon"></a></li>
 			</ol>
 		</div>
 	</article>
@@ -181,8 +171,6 @@
 			<span class="vr-menu-text">联系我们</span>
 		</span>
 	</article>
-	<!-- <footer>Copyright ©2015 District 10 VRAR All Rights Reserved 京ICP备15034822号-2</footer> -->
-	<!-- <script src="//cdn.bootcss.com/html5media/1.1.8/html5media.min.js"></script> -->
 	<script type="text/javascript" src="lib/require_2.1.11.js" defer async="true" data-main="js/main"></script>
 </body>
 </html>
