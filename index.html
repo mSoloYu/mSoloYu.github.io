@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html style="margin:0;padding:0;">
 <head>
+    <link rel="shortcut icon" href="http://www.district-10.com/favicon.ico">
+
+    <link rel="Bookmark" href="http://www.district-10.com/favicon.ico">
 	<meta name="referrer" content="always">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<link rel="apple-touch-icon-precomposed" href="//m.baidu.com/static/index/screen_icon.png">
 	<meta name="format-detection" content="telephone=no">
-	<title>VR第十区</title>
+	<title>第十区VRAR District-10</title>
 
- 	<meta name="apple-mobile-web-app-title" content="VR第十区">
+ 	<meta name="apple-mobile-web-app-title" content="第十区VRAR District-10">
 
   <!-- UC强制全屏 -->
   <meta name="full-screen" content="yes">
@@ -29,15 +32,177 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
   <meta name="description" content="第十区整合多方资源推出全球第一家连锁的VRAR连锁孵化器品牌，与VRAR创业者以及行业一同成长">
-  <meta name="keywords" content="VRAR,VR,AR,District10,未来，虚拟，游戏,game，虚拟现实，增强,服务,孵化,,">
-  <meta name="author" content="WuSpace,mSolo,Kevin">
+  <meta name="keywords" content="第十区VRAR,第十区,District-10 VRAR,虚拟现实,孵化器,第十区孵化器,虚拟现实孵化器,第十区虚拟现实孵化器,第十区虚拟现实,增强现实孵化器,第十区增强现实孵化器,第十区增强现实,增强现实,虚拟增强现实,混合现实,VR,AR,MR,VRAR,District10,未来，虚拟，游戏,game，虚拟现实，增强,服务,孵化,,">
+  <meta name="author" content="第十区VRAR">
 
   <!-- 阿里适配js -->
 	<script type="text/javascript">
 		!function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("欢迎来到VR第十区！");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=a.navigator.userAgent,q=(!!p.match(/android/gi),!!p.match(/iphone/gi)),r=q&&!!p.match(/OS 9_3/),s=a.devicePixelRatio;i=q&&!r?s>=3&&(!i||i>=3)?3:s>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var t=e.createElement("div");t.appendChild(g),e.write(t.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
 	</script>
-	<!-- 开发环境重置样式 -->
-	<!-- <link rel="stylesheet" href="css/init.css"> -->
+	<script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var VR = (function() {
+			window.isMobile = false; //initiate as false
+	  	// device detection
+	  	if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) window.isMobile = true;
+
+	  	var jqMap = {
+	  		$body: null,
+	  		$currentArticle: null,
+	  		$homepageArticle: null,
+	  		$aboutUsArticle: null,
+	  		$vrServiceArticle: null,
+	  		$vrIncubatorArticle: null,
+	  		$vrNewsArticle: null,
+	  		$vrTeamArticle: null,
+	  		$vrPartnerArticle: null,
+	  		$vrTeamFix: false,
+	  		currentPage: 0,
+	  		currentPageHeight: 0
+	  	};
+
+	  	var stateMap = {
+	  		isPageReady: true,
+	  		isMenuOpend: false
+	  	};
+
+	  	var initModule = function() {
+	  		jqMap.$body = $('body');
+	  	}
+
+			var getPageReady = function() {return stateMap.isPageReady; }
+			var enablePageReady = function() { stateMap.isPageReady = true; }
+			var disablePageReady = function() { stateMap.isPageReady = false; }
+			var isMenuOpend = function() {return stateMap.isMenuOpend; }
+			var setMenuOpenState = function(isOpened) { stateMap.isMenuOpend = isOpened; }
+
+	  	return {
+	  		ARTICLE: {},
+	  		jqMap: jqMap,
+	  		init: initModule,
+	  		getPageReady: getPageReady,
+	  		enablePageReady: enablePageReady,
+	  		disablePageReady: disablePageReady,
+	  		isMenuOpend: isMenuOpend,
+	  		setMenuOpenState: setMenuOpenState
+	  	};
+		}());
+		// 运营人员填写
+		VR.ARTICLE = {
+			// 合作伙伴
+			vrPartner: [  // logo
+				// 青瞳视觉
+				'qtsj.png', 'lkvr.png', 'toutiao.png', 'sidapai.png',
+				'yivian.png', 'modou.png', 'dhxy.png', 'saif.png'
+			],
+			// 首页
+			homepage: {
+				title: '未来，已经到来',
+				desc: [
+					'虚拟现实技术让我们身临其境，想象自己伫立', '于穿越银河系的星际飞船上，或是漫步于古罗马街道',
+					'又或者缩小成亚原子大小的小人观察分子碰撞。', '现在，让我们重新想象'
+				]
+			},
+			// 关于我们
+			aboutUs: {
+				title: '你，在哪里？',
+				desc: [
+					'我们相信，虚拟现实、增强现实与人工智能是未来五到十年的大趋势，顺势而为才是创业正道。我们愿意与这个行业一同成长，见证行业的爆发式增长以及帮助更多企业从零到一，改变世界。',
+					'多年投资经验告诉我们，在一个行业兴起之前，成立孵化器，特别在VRAR的爆发前夜，非常之有意义。关注VRAR领域之前，创始团队在全国运营超过20家孵化器、服务过超过500家中小、创业公司。整体团队还拥有有10年以上地产领域经验和8年以上风投、私募和国际投资银行的工作经验。',
+					'第十区整合多方资源推出全球第一家连锁的VRAR连锁孵化器品牌，与VRAR创业者以及行业一同成长！'
+				]
+			},
+			// 服务内容
+			vrService: {
+				desc: [		// 下面内容可替换，但请保持 6 个
+					'办公空间','技术支持',
+					'投资服务','媒体渠道',
+					'创业辅导','社团群体'
+				]
+			},
+			// 孵化空间
+			vrIncubator: {
+				desc: [
+					{imgUrl: '/upload/images/news/20160510133446531.jpg', itemName: '北京第十区-四惠', itemAddr: '朝阳区惠河南街1008号四惠大厦二号楼B1层'},
+					{imgUrl: '/upload/images/news/20160510133620689.jpg', itemName: '北京第十区-望京', itemAddr: '望京广顺南大街19号嘉润花园A座2层'},
+					{imgUrl: '/img/portfolio/3.jpg', itemName: '上海第十区-徐汇', itemAddr: '虹桥路333号交大慧谷软件园6楼'},
+					{imgUrl: '/upload/images/news/20160510133743406.jpg', itemName: '北京第十区-丰台', itemAddr: '丰台区汉威国际广场5号楼'},
+					{imgUrl: '/upload/images/news/20160510133839555.jpg', itemName: '深圳第十区-南山科技园', itemAddr: '南山科技园科发路1号富利臻大厦7楼'},
+					{imgUrl: '/img/portfolio/6.jpg', itemName: '更多场地', itemAddr: '筹备中...'}
+				]
+			},
+			// VR 新闻
+			vrNews: {
+				title: 'VR新闻',
+				desc: [
+					{
+						link:'http://mt.sohu.com/20160607/n453416452.shtml',
+						brief: '第十区打造“VRAR+ 传统行业”资源平台-近日，由“第十区VRAR”和北京大学国家发展研究院EMBA中心联合主办的“VR+传统行业”的主题论坛，在北大朗润园内举行。'
+					},
+					{
+						link:'http://www.startup-partner.com/3000.html',
+						brief: '第十区打造“VRAR+ 传统行业”资源平台-近日，由“第十区VRAR”和北京大学国家发展研究院EMBA中心联合主办的“VR+传统行业”的主题论坛，在北大朗润园内举行。'
+					},
+					{
+						link:'http://www.ctoutiao.com/55499.html',
+						brief: '上海VRAR孵化器正式挂牌-摘要：由上海交大国家大学科技园、上海慧谷高科技创业中心、第十区VRAR孵化器、天舍文化传媒、源咖啡等多家机构共同打造的上海VR/AR孵化器正式挂牌落地，成为华东地区首家专注于VR/AR的孵化器，也标志着上海VR/AR创业团队进入联动整合阶段。'
+					},
+					{
+						link:'http://www.startup-partner.com/2360.html?hot=1',
+						brief: '第十区战略牵手华夏幸福创新中心和ICC 打造VR/AR产业创新生态-摘要：据了解,“第十区”是第一家全国连锁的,专注虚拟现实(VR)和增强现实(AR)的孵化机构,由全国领先的联合办公空间“悟空间”与“WorkInn”联手构建。'
+					},
+					{
+						link:'http://www.startup-partner.com/1663.html',
+						brief: '众创空间开始垂直化探索?VR、AR连锁孵化机构“第十区”开局-摘要：据了解,“第十区”是第一家全国连锁的,专注虚拟现实(VR)和增强现实(AR)的孵化机构,由全国领先的联合办公空间“悟空间”与“WorkInn”联手构建。'
+					},
+					{
+						link:'http://www.startup-partner.com/1663.html',
+						brief: '氪纪 2015 | 虚拟与现实的距离——VR 产业链史上最全梳理收藏版本-摘要：一个行业的发展壮大，必然会带来相当多的行业服务机会。目前 VR 领域比较明显的大概有媒体，平台和孵化器几种。其中国内VR相关孵化器仅有包括第十区在内的3家。'
+					},
+					{
+						link:'http://news.dichan.sina.com.cn/2015/09/09/1112962.html',
+						brief: '联合办公模式兴起，悟空间不做二房东专注增值服务-摘要：悟空间不久前获得和君资本的百万级天使轮投资，成立不到三个月时间已经在北京、上海、广州、深圳、杭州、青岛、南京等全国多个一二线城市布局。悟空间下一个目标就是，在全国主要城市都设立服务空间，让全国更多的创业者、中小企业能实现全国范围统一管理、方便流动办公。'
+					},
+					{
+						link:'http://news.pedaily.cn/201508/20150827387610.shtml',
+						brief: 'WorkInn：共享经济下的新衍生品，孵化器社区化运营要颠覆谁？-摘要：颠覆传统孵化器：与创业者同行，由市场选择出优胜者；孵化器社区化：共享理念和互联网平台，提供技术合伙服务；WorkInn共享办公室，孵化器基础上提供一站式解决方案。'
+					}
+				]
+			},
+			// 入驻团队
+			vrTeam: {
+				desc: [
+					{
+						imgUrl: '/upload/images/news/20160510133954706.jpg',
+						itemTitle: '天舍文化传媒：虚拟现实游戏的领航者，游戏剧情设计大师',
+						itemDesc: [
+							'公司介绍：公司是一家专注于虚拟现实内容设计、开发及运营的公司，为各种领域的客户订制虚拟现实产品。天舍的主要成员来自2K Games和五星点评的线下真人密室逃脱店，拥有丰富的游戏开发和设计体验',
+							'公司业务：虚拟游戏的开发和运营，在研的一款虚拟现实探索解密游戏，会兼容Oculus Rift，HTC Vice，Sony Morpheus虚拟现实眼镜。',
+							'业务案例：VR探索解谜游戏、VR沙漠过山车、VR电影院、毕加索作品展。'
+						]
+					},
+					{
+						imgUrl: '/upload/images/news/20160510134113924.jpg',
+						itemTitle: 'VR TV：中国VR直播领域最大PGC领导者',
+						itemDesc: [
+							'团队介绍：第一个专业VR直播内容频道；第一个全程直播运营VR电竞赛事的PGC团队；频道订阅神速；创造了最高在线的VR直播间。',
+							'团队业务：创造VR领域文化氛围（打造有趣的VR电竞直播、签约并培养VR领域各种生态的主播、围绕直播打造的KOL粉丝经济和VR内容、VR自媒体狙击生态圈）',
+							'业务案例：VR电竞赛事主办、VR视频节目制作、VR主播培养育成、VR主播演绎经纪、VR内容日常内容策划。'
+						]
+					},
+					{
+						imgUrl: '/upload/images/news/20160519122618986.jpg',
+						itemTitle: 'BeanVR：致力于VR社交系统的研发及技术应用解决方案',
+						itemDesc: [
+							'团队介绍：BeanVR团队是二次创业，团队核心成员曾为国内知名虚拟现实创业公司的创始成员。',
+							'公司业务：大型多人即时交互解决方案、社交系统架构、移动端及跨平台图形图像优化算法等核心虚拟现实技术，旨在创造适用于虚拟现实场景的全新社交。',
+							'业务案例：大型VR娱乐网络游戏'
+						]
+					}
+				]
+			}
+		};
+	</script>
 	<style>
 	/*声明 WebFont*/
 	@font-face {
@@ -55,12 +220,12 @@
 	/*使用选择器指定字体*/
 	html,body {font-family: 'pingfang', "Microsoft YaHei"; }
 	</style>
-	<link href="css/index-3c6cac30fd.min.css" rel="stylesheet">
+	<!-- <link href="css/index-3c6cac30fd.min.css" rel="stylesheet"> -->
 	<!-- 开发环境样式 -->
-	<!-- <link rel="stylesheet" href="css/animate_effect.css">
+	<link rel="stylesheet" href="css/animate_effect.css">
 	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="css/pageslice.1.css">
-	<link rel="stylesheet" href="css/pageslice.menu.css"> -->
+	<link rel="stylesheet" href="css/article.css">
+	<link rel="stylesheet" href="css/pageslice.menu.css">
 </head>
 <body id="body" style="margin:0;padding:0;">
 	<header id="vrNav">
@@ -79,77 +244,9 @@
 			<a id="inTeam" class="in-team">入驻团队</span></a>
 		</nav>
 	</header>
-	<!-- <div class="cross-layout hidden"><hr class="cross-x border-image-1px"><hr class="cross-y border-image-1px"><a id="crossPointer" class="cross-pointer hi-icon"></a></div> -->
-	<!-- <video id="vrBgVideo" src="http://oa8bfh8lr.bkt.clouddn.com/vrweb" type="video/mp4" controls preload autoplay loop class="video-play"></video> -->
-	<article id="vrHome" class="vr-article vr-1 vr-page-current">
-		<section class="vr-sec-1"><h1 class="vr-title-1">未来，已经到来</h1>
-			<p>虚拟现实技术让我们身临其境，想象自己伫立<span>于穿越银河系的星际飞船上，或是漫步于古罗马街道</span></p>
-			<p>又或者缩小成亚原子大小的小人观察分子碰撞。<span>现在，让我们重新想象</span></p>
-		</section>
-	</article>
-	<article id="vrAboutUs" class="vr-article vr-article--fix vr-aboutus">
-		<a class="aboutus-show" href="#vrAboutUs"></a>
-		<div class="vr-article-content">
-			<h2 class="move-from-bottom--init">你，在哪里？</h2>
-			<p class="move-from-bottom--init"><span class="content-start">我们</span>相信，虚拟现实、增强现实与人工智能是未来五到十年的大趋势，顺势而为才是创业正道。我们愿意与这个行业一同成长，见证行业的爆发式增长以及帮助更多企业从零到一，改变世界。</p>
-			<p class="move-from-bottom--init"><span class="content-start">多年</span>投资经验告诉我们，在一个行业兴起之前，成立孵化器，特别在VRAR的爆发前夜，非常之有意义。关注VRAR领域之前，创始团队在全国运营超过20家孵化器、服务过超过500家中小、创业公司。整体团队还拥有有10年以上地产领域经验和8年以上风投、私募和国际投资银行的工作经验。</p>
-			<p class="move-from-bottom--init"><span class="content-start">第十区</span>整合多方资源推出全球第一家连锁的VRAR连锁孵化器品牌，与VRAR创业者以及行业一同成长！<a id="gotoService" class="goto-detail-icon"></a></p>
-		</div>
-	</article>
-	<article id="vrService" class="vr-article vr-service">
-		<a class="service-show" href="#vrService"></a>
-		<div class="vr-article-content move-from-bottom--init vr-service-content">
-			<span class="service-item service-item--mbfix service-item--mrfix">办公空间</span><span class="service-item">技术支持</span><br>
-			<span class="service-item service-item--mbfix service-item--mrfix">投资服务</span><span class="service-item">媒体渠道</span><br>
-			<span class="service-item service-item--mrfix">创业辅导</span><span class="service-item">社团群体</span>
-		</div>
-	</article>
-	<article id="vrIncubator" class="vr-article vr-incubator">
-		<div class="incubator-content incubator-left move-from-bottom--init">
-			<span class="incubator-img incubator-img-1"></span>
-			<section class="incubator-addr"><div class="move-from-bottom--init"><h2>北京第十区 - 四惠</h2><span>朝阳区惠合南区1008号四惠大厦二号楼B1层</span></div></section>
-		</div>
-		<div class="incubator-content incubator--fix incubator-right move-from-bottom--init">
-			<span class="incubator-img incubator-img-2"></span>
-			<section class="incubator-addr"><div class="move-from-bottom--init"><h2>北京第十区 - 四惠</h2><span>朝阳区惠合南区1008号四惠大厦二号楼B1层</span></div></section>
-		</div>
-	</article>
-	<article id="vrNews" class="vr-article vr-news">
-		<a class="vrnews-show" href="#vrNews"></a>
-		<div class="vr-article-content move-from-bottom--init">
-			<h2>VR新闻</h2>
-			<ol>
-				<li><a target="_blank" href="">"VRAR + 传统行业"论坛 第十区打造产学研资源平台</a><a class="goto-detail-icon"></a></li>
-				<li><a target="_blank" href="">"VRAR + 传统行业"高峰论坛举行 第十区打造产学研资源平台</a><a class="goto-detail-icon"></a></li>
-				<li><a target="_blank" href="">上海VR/AR孵化器正式宣布成立</a><a class="goto-detail-icon"></a></li>
-				<li><a target="_blank" href="">第十区战略牵手华夏幸福创新中心和CC 打造VR/AR产业创新生态</a><a class="goto-detail-icon"></a></li>
-				<li><a target="_blank" href="">众创空间开始垂直化探索？首个VR、AR连锁浮华机构“第十区”开局</a><a class="goto-detail-icon"></a></li>
-				<li><a target="_blank" href="">众创空间开始垂直化探索？首个VR、AR连锁浮华机构“第十区”开局</a><a class="goto-detail-icon"></a></li>
-			</ol>
-		</div>
-	</article>
-	<article id="vrInteam" class="vr-article vr-inteam">
-		<div class="incubator-content incubator-left move-from-bottom--init">
-			<span class="incubator-img incubator-img-1"></span>
-			<section class="incubator-addr"><div class="move-from-bottom--init"><h2>天舍文化传媒:虚拟现实游戏的领航者，游戏剧情设计大师</h2><p>公司介绍： 公司是一家专注于虚拟现实内容设计、开发及运营的公司，为各种领域的客户定制虚拟现实产品。天舍得主要成员来自2K Games和五星点评的线下真人密室逃脱店，拥有丰富的游戏开发和设计体验</p><p>公司业务：虚拟游戏的开发和运营，在研的一款虚拟现实探索解密游戏，会兼容Oculus Rift, HTC Vice, Sony Morpheus虚拟现实眼镜。</p><p>业务案例： VR探索揭秘游戏、VR沙漠过山车、VR电影院、毕加索作品展。</p></div></section>
-		</div>
-		<div class="incubator-content incubator-right incubator--fix move-from-bottom--init">
-			<span class="incubator-img incubator-img-2"></span>
-			<section class="incubator-addr"><div class="move-from-bottom--init"><h2>VR TV:中国VR直播领域最大PGC领导者</h2><p>团队介绍： 第一个专业VR直播内容频道；第一个全程直播运营VR电竞赛事的PGC团队；频道订阅神速；创造了最高在线的VR直播间。</p><p>团队业务： 创造VR领域文化氛围 （打造有趣的VR电竞直播、签约并培养VR领域各种生态的主播、围绕直播打造的KOL粉丝经济和VR内容、VR自媒体狙击生态圈） </p><p>业务案例： VR电竞赛事主办、VR视频节目制作、VR主播培养育成、VR主播演绎经纪、VR内容日常策划。</p></div></section>
-		</div>
-	</article>
 
 	<aside class="vr-article vr-logo-animation-layout"><p class="vr-logo-animation"></p></aside>
-	<article id="vrPartner" class="vr-article vr-partner">
-		<section class="vr-partner-content vr-parterner-content-first">
-			<a class="partner-show partner-qtsj"></a><a class="partner-show partner-lkvr"></a>
-			<a class="partner-show partner-toutiao"></a><a class="partner-show partner-sidapai"></a>
-		</section>
-		<section class="vr-partner-content">
-			<a class="partner-show partner-yivian"></a><a class="partner-show partner-modou"></a>
-			<a class="partner-show partner-dhxy"></a><a class="partner-show partner-saif"></a>
-		</section>
-	</article>
+	<article id="vrPartner" class="vr-article vr-article--fix vr-partner"></article>
 	<article id="vrContact" class="vr-article vr-contact">
 		<section class="vr-contact-content">
 			<p class="contact-show">如有任何VR、AR、人工智能、机器人方向的创业者和团队，</p><p class="contact-show">请发送您的申请和商业技术书（BP）至：</p>
@@ -171,6 +268,1056 @@
 			<span class="vr-menu-text">联系我们</span>
 		</span>
 	</article>
-	<script type="text/javascript" src="lib/require_2.1.11.js" defer async="true" data-main="js/main"></script>
+
+	<!-- for SEO : 请往里填充更新内容的文本 -->
+	<div style="display:none;">
+	关于我们 服务内容 孵化空间 VR新闻 入驻团队 未来，已经到来虚拟现实技术让我们身临其境，想象自己伫立于穿越银河系的星际飞船上，或是漫步于古罗马街道 又或者缩小成亚原子大小的小人观察分子碰撞。现在，让我们重新想象 你，在哪里？ 我们相信，虚拟现实、增强现实与人工智能是未来五到十年的大趋势，顺势而为才是创业正道。我们愿意与这个行业一同成长，见证行业的爆发式增长以及帮助更多企业从零到一，改变世界。 多年投资经验告诉我们，在一个行业兴起之前，成立孵化器，特别在VRAR的爆发前夜，非常之有意义。关注VRAR领域之前，创始团队在全国运营超过20家孵化器、服务过超过500家中小、创业公司。整体团队还拥有有10年以上地产领域经验和8年以上风投、私募和国际投资银行的工作经验。 第十区整合多方资源推出全球第一家连锁的VRAR连锁孵化器品牌，与VRAR创业者以及行业一同成长！ 办公空间技术支持 投资服务媒体渠道 创业辅导社团群体 北京第十区-四惠 朝阳区惠河南街1008号四惠大厦二号楼B1层 北京第十区-望京 望京广顺南大街19号嘉润花园A座2层 上海第十区-徐汇 虹桥路333号交大慧谷软件园6楼 北京第十区-丰台 丰台区汉威国际广场5号楼 深圳第十区-南山科技园 南山科技园科发路1号富利臻大厦7楼 更多场地 筹备中。。。 VR新闻 第十区打造“VRAR+ 传统行业”资源平台-近日，由“第十区VRAR”和北京大学国家发展研究院EMBA中心联合主办的“VR+传统行业”的主题论坛，在北大朗润园内举行。 第十区打造“VRAR+ 传统行业”资源平台-近日，由“第十区VRAR”和北京大学国家发展研究院EMBA中心联合主办的“VR+传统行业”的主题论坛，在北大朗润园内举行。 上海VRAR孵化器正式挂牌-摘要：由上海交大国家大学科技园、上海慧谷高科技创业中心、第十区VRAR孵化器、天舍文化传媒、源咖啡等多家机构共同打造的上海VR/AR孵化器正式挂牌落地，成为华东地区首家专注于VR/AR的孵化器，也标志着上海VR/AR创业团队进入联动整合阶段。 第十区战略牵手华夏幸福创新中心和ICC 打造VR/AR产业创新生态-摘要：据了解,“第十区”是第一家全国连锁的,专注虚拟现实(VR)和增强现实(AR)的孵化机构,由全国领先的联合办公空间“悟空间”与“WorkInn”联手构建。 众创空间开始垂直化探索?VR、AR连锁孵化机构“第十区”开局-摘要：据了解,“第十区”是第一家全国连锁的,专注虚拟现实(VR)和增强现实(AR)的孵化机构,由全国领先的联合办公空间“悟空间”与“WorkInn”联手构建。 氪纪 2015 | 虚拟与现实的距离——VR 产业链史上最全梳理收藏版本-摘要：一个行业的发展壮大，必然会带来相当多的行业服务机会。目前 VR 领域比较明显的大概有媒体，平台和孵化器几种。其中国内VR相关孵化器仅有包括第十区在内的3家。 联合办公模式兴起，悟空间不做二房东专注增值服务-摘要：悟空间不久前获得和君资本的百万级天使轮投资，成立不到三个月时间已经在北京、上海、广州、深圳、杭州、青岛、南京等全国多个一二线城市布局。悟空间下一个目标就是，在全国主要城市都设立服务空间，让全国更多的创业者、中小企业能实现全国范围统一管理、方便流动办公。 WorkInn：共享经济下的新衍生品，孵化器社区化运营要颠覆谁？-摘要：颠覆传统孵化器：与创业者同行，由市场选择出优胜者；孵化器社区化：共享理念和互联网平台，提供技术合伙服务；WorkInn共享办公室，孵化器基础上提供一站式解决方案。 天舍文化传媒：虚拟现实游戏的领航者，游戏剧情设计大师 公司介绍：公司是一家专注于虚拟现实内容设计、开发及运营的公司，为各种领域的客户订制虚拟现实产品。天舍的主要成员来自2K Games和五星点评的线下真人密室逃脱店，拥有丰富的游戏开发和设计体验 公司业务：虚拟游戏的开发和运营，在研的一款虚拟现实探索解密游戏，会兼容Oculus Rift，HTC Vice，Sony Morpheus虚拟现实眼镜。 业务案例：VR探索解谜游戏、VR沙漠过山车、VR电影院、毕加索作品展。 VR TV：中国VR直播领域最大PGC领导者 团队介绍：第一个专业VR直播内容频道；第一个全程直播运营VR电竞赛事的PGC团队；频道订阅神速；创造了最高在线的VR直播间。 团队业务：创造VR领域文化氛围（打造有趣的VR电竞直播、签约并培养VR领域各种生态的主播、围绕直播打造的KOL粉丝经济和VR内容、VR自媒体狙击生态圈） 业务案例：VR电竞赛事主办、VR视频节目制作、VR主播培养育成、VR主播演绎经纪、VR内容日常内容策划。 BeanVR：致力于VR社交系统的研发及技术应用解决方案 团队介绍：BeanVR团队是二次创业，团队核心成员曾为国内知名虚拟现实创业公司的创始成员。 公司业务：大型多人即时交互解决方案、社交系统架构、移动端及跨平台图形图像优化算法等核心虚拟现实技术，旨在创造适用于虚拟现实场景的全新社交。 业务案例：大型VR娱乐网络游戏 如有任何VR、AR、人工智能、机器人方向的创业者和团队， 请发送您的申请和商业技术书（BP）至： apply@district-10.com 我们会在3个工作日内回复 基金合作项目筛选、其他商务合作的一项，欢迎不吝联系： contact@district-10.com +(86)137-6432-6480 合作伙伴 联系我们
+	</div>
+
+	<script type="text/javascript">
+		var EventUtil = {
+			addHandler: function(element, type, handler) {
+				if (element.addEventListener) {
+					element.addEventListener(type, handler, false);
+				} else if (element.attachEvent) {
+					element.attachEvent("on" + type, handler);
+				} else {
+					element["on" + type] = handler;
+				}
+			},
+
+			getEvent: function(event) {
+				return event ? event : window.event;
+			},
+
+			getTarget: function(event) {
+				return event.target || event.srcElement;
+			},
+
+			preventDefault: function(event) {
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+			},
+
+			removeHandler: function(element, type, handler) {
+				if (element.removeEventListener) {
+					element.removeEventListener(type, handler, false);
+				} else if (element.detachEvent) {
+					element.detachEvent("on" + type, handler);
+				} else {
+					element["on" + type] = null;
+				}
+			},
+
+			stopPropagation: function(event) {
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		VR.Decorator = (function(){
+			var addVideo = function(vrVideoSrc) {
+				if (!window.isMobile) {
+    			var $video = $('<video id="vrBgVideo" src="' + vrVideoSrc + '" type="video/mp4" preload autoplay loop class="video-play"></video>')
+    			$("body").append($video);
+    			$("body").one("touchstart load",function(){
+      			var $vrBgVideo = document.getElementById("vrBgVideo");
+      			$vrBgVideo.play();
+    			}).trigger("load");
+				}
+			}
+
+			var crossProcessor = {
+				hackCounter: 0,
+				performProcessing: function() {
+					$('.cross-layout').hide();
+					this.hackCounter = 0;
+				},
+				process: function() {
+					this.hackCounter++;
+					if (this.timeoutId != null) {
+						clearTimeout(this.timeoutId);
+					}
+					if (this.hackCounter == 1) {
+						return ;
+					}
+					var that = this;
+					this.timeoutId = setTimeout(function() {
+						that.performProcessing();
+					}, 600);
+				},
+				getHackCounter: function() {
+					return this.hackCounter > 0;
+				}
+			};
+
+			var mouseMoveHandler = function(event) {
+				event = EventUtil.getEvent(event);
+				// console.log("x = " + event.pageX + ", y = " + event.pageY);
+				$('#crossPointer').css({
+					"top": "calc(" + event.pageY + "px - 0.25rem)",
+					"top": "-webkit-calc(" + event.pageY + "px - 0.25rem)",
+					"left": "-calc(" + event.pageX + "px - 0.25rem)",
+					"left": "-webkit-calc(" + event.pageX + "px - 0.25rem)",
+				});
+				$('#crossPointerSmall').css({
+					"top": "calc(" + event.pageY + "px - 0.15rem)",
+					"top": "-webkit-calc(" + event.pageY + "px - 0.15rem)",
+					"left": "-calc(" + event.pageX + "px - 0.15rem)",
+					"left": "-webkit-calc(" + event.pageX + "px - 0.15rem)",
+				});
+				$('.cross-x').css({"margin-top": "" + event.pageY + "px"});
+				$('.cross-y').css({
+					"left": "-calc(" + event.pageX + "px - 300vw)",
+					"left": "-webkit-calc(" + event.pageX + "px - 300vw)",
+					"right": "0"
+				});
+				if (crossProcessor.getHackCounter()) {
+					$('.cross-layout').show();
+				}
+				crossProcessor.process();
+				EventUtil.preventDefault(event);
+				EventUtil.stopPropagation(event);
+				return true;
+			};
+
+			var addCross = function() {
+				var $cross = $('<div class="cross-layout hidden"><hr class="cross-x border-image-1px"><hr class="cross-y border-image-1px"><a id="crossPointer" class="cross-pointer hi-icon"></a><a id="crossPointerSmall" class="cross-pointer-small hi-icon-small"></a></div>');
+    		$('body').append($cross);
+    		initCross();
+			}
+
+			var initCross = function() {
+				EventUtil.addHandler(document, "mousemove", mouseMoveHandler);
+			}
+
+			var clearCross = function() {
+				EventUtil.removeHandler(document, "mousemove", mouseMoveHandler);
+			}
+
+			return { addVideo: addVideo, addCross: addCross, initCross: initCross, clearCross: clearCross };
+		}());
+	</script>
+	<script type="text/javascript">
+		VR.CONTENT = (function(){
+			var homepage = function() {
+
+				if (!VR.jqMap.$homepageArticle) {
+					VR.jqMap.$homepageArticle = $('<article id="vrHome" class="vr-article vr-page-current"></article>');
+					var $homepageSection = $('<section class="vr-home"></section>');
+					var $homepageTitle = $('<h1 class="vr-home-title">' + VR.ARTICLE.homepage.title + '</h1>');
+
+					var $p = null;
+					$homepageSection.append($homepageTitle);
+					for (var i=0, size=VR.ARTICLE.homepage.desc.length; i < size; ++i) {
+						if (i % 2 === 1) {
+							$p = $('p:last', $homepageSection);
+							$('<span>' + VR.ARTICLE.homepage.desc[i] + '</span>').appendTo($p);
+						} else {
+							$('<p>' + VR.ARTICLE.homepage.desc[i] + '</p>').appendTo($homepageSection);
+						}
+					}
+
+					VR.jqMap.$homepageArticle.append($homepageSection);
+				}
+
+				VR.jqMap.$body.append(VR.jqMap.$homepageArticle);
+			}
+
+			var aboutUs = function() {
+
+				if (!VR.jqMap.$aboutUsArticle || window.isMobile) {
+					if (window.isMobile) {
+						VR.jqMap.$aboutUsArticle = $('<article id="vrAboutUs" class="vr-article vr-article--fix vr-aboutus vr-page-current"></article>');
+					} else {
+						VR.jqMap.$aboutUsArticle = $('<article id="vrAboutUs" class="vr-article vr-aboutus vr-page-current"></article>');
+					}
+					var $aboutUsShow = $('<a class="content-sign aboutus-show" href="#vrAboutUs"></a>');
+					var $articleContent = $('<div class="vr-article-content"></div>')
+					var $articleTitle = $('<h2 class="move-from-bottom--init">' + VR.ARTICLE.aboutUs.title + '</h2>');
+
+					$articleContent.append($articleTitle);
+					for (var i=0, size=VR.ARTICLE.aboutUs.desc.length; i < size; ++i) {
+						var contentStartStr = VR.ARTICLE.aboutUs.desc[i].substring(0, 2);
+						var contantLeftStr = VR.ARTICLE.aboutUs.desc[i].substring(2);
+						if (i === (size - 1)) {
+							$('<p class="move-from-bottom--init"><span class="content-start">' + contentStartStr + '</span>' + contantLeftStr + '<a id="gotoService" class="goto-detail-icon"></a></p>')
+							.appendTo($articleContent);
+						} else {
+							$('<p class="move-from-bottom--init"><span class="content-start">' + contentStartStr + '</span>' + contantLeftStr + '</p>')
+							.appendTo($articleContent);
+						}
+					}
+
+					VR.jqMap.$aboutUsArticle.append($aboutUsShow).append($articleContent);
+				}
+
+				VR.jqMap.$body.append(VR.jqMap.$aboutUsArticle);
+
+				if (window.isMobile) {
+					$('p:last', '.vr-article-content:last').css({'margin-bottom': '2.5rem'});
+				}
+
+			};
+
+			var vrService = function() {
+
+				if (!VR.jqMap.$vrServiceArticle || window.isMobile) {
+					VR.jqMap.$vrServiceArticle = $('<article id="vrService" class="vr-article vr-service vr-page-current"></article>');
+					var $serviceShow = $('<a class="content-sign service-show" href="#vrService"></a>');
+					var $articleContent = $('<div class="vr-article-content move-from-bottom--init vr-service-content"></div>')
+
+					// 特定于内容的构造
+					$('<span class="service-item service-item--mbfix service-item--mrfix">' +
+							VR.ARTICLE.vrService.desc[0] + '</span><span class="service-item">' + VR.ARTICLE.vrService.desc[1] + '</span><br>' +
+						'<span class="service-item service-item--mbfix service-item--mrfix">' +
+							VR.ARTICLE.vrService.desc[2] + '</span><span class="service-item">' + VR.ARTICLE.vrService.desc[3] + '</span><br>' +
+						'<span class="service-item service-item--mrfix">' +
+							VR.ARTICLE.vrService.desc[4] + '</span><span class="service-item">' + VR.ARTICLE.vrService.desc[5] + '</span>')
+							.appendTo($articleContent);
+
+					VR.jqMap.$vrServiceArticle.append($serviceShow).append($articleContent);
+				}
+
+				VR.jqMap.$body.append(VR.jqMap.$vrServiceArticle);
+			};
+
+			var vrIncubator = function() {
+
+				if (!VR.jqMap.$vrIncubatorArticle) {
+					VR.jqMap.$vrIncubatorArticle = $('<article id="vrIncubator" class="vr-article vr-article--fix vr-incubator vr-page-current"></article>');
+
+					for (var i=0, size=VR.ARTICLE.vrIncubator.desc.length; i < size; ++i) {
+						if (i % 2 === 1) {
+							$('<div class="incubator-content incubator--fix incubator-right move-from-bottom--init"><span class="incubator-img "><img src="' +
+								VR.ARTICLE.vrIncubator.desc[i].imgUrl + '" width="540px" height="290px" class="incubator-img" alt="" ></span>' +
+								'<section class="incubator-addr"><div class="move-from-bottom--init"><h2>' + VR.ARTICLE.vrIncubator.desc[i].itemName +
+								'</h2><span>' + VR.ARTICLE.vrIncubator.desc[i].itemAddr + '</span></div></section></div>')
+									.appendTo(VR.jqMap.$vrIncubatorArticle);
+						} else {
+							$('<div class="incubator-content incubator-left move-from-bottom--init"><span class="incubator-img "><img src="' +
+								VR.ARTICLE.vrIncubator.desc[i].imgUrl + '" width="540px" height="290px" class="incubator-img" alt="" ></span>' +
+								'<section class="incubator-addr"><div class="move-from-bottom--init"><h2>' + VR.ARTICLE.vrIncubator.desc[i].itemName +
+								'</h2><span>' + VR.ARTICLE.vrIncubator.desc[i].itemAddr + '</span></div></section></div>')
+									.appendTo(VR.jqMap.$vrIncubatorArticle);
+						}
+					}
+				}
+
+				VR.jqMap.$body.append(VR.jqMap.$vrIncubatorArticle);
+			};
+
+			var vrNews = function() {
+
+				if (!VR.jqMap.$vrNewsArticle || window.isMobile) {
+					if (window.isMobile) {
+						VR.jqMap.$vrNewsArticle = $('<article id="vrNews" class="vr-article vr-article--fix vr-news vr-page-current"></article>');
+					} else {
+						VR.jqMap.$vrNewsArticle = $('<article id="vrNews" class="vr-article vr-news vr-page-current"></article>');
+					}
+					var $vrNewsShow = $('<a class="content-sign vrnews-show" href="#vrNews"></a>');
+					var $articleContent = $('<div class="vr-article-content move-from-bottom--init"></div>')
+					var $articleTitle = $('<h2>' + VR.ARTICLE.vrNews.title + '</h2>');
+					var $articleDescOl = $('<ol></ol>');
+
+					for (var i=0, size=VR.ARTICLE.vrNews.desc.length; i < size; ++i) {
+						$('<li><a target="_blank" href="' + VR.ARTICLE.vrNews.desc[i].link + '">' + VR.ARTICLE.vrNews.desc[i].brief +
+							'<a class="goto-detail-icon" href="' + VR.ARTICLE.vrNews.desc[i].link + '"></a></li>')
+								.appendTo($articleDescOl);
+					}
+
+					$articleContent.append($articleTitle).append($articleDescOl);
+					VR.jqMap.$vrNewsArticle.append($vrNewsShow).append($articleContent);
+				}
+
+				VR.jqMap.$body.append(VR.jqMap.$vrNewsArticle);
+
+			};
+
+			var vrTeam = function() {
+
+				if (!VR.jqMap.$vrTeamArticle) {
+					VR.jqMap.$vrTeamArticle = $('<article id="vrInteam" class="vr-article vr-article--fix vr-inteam vr-page-current"></article>')
+
+					var $teamContainer = null;
+					var $teamSection = null;
+					var $teamDiv = null;
+					for (var i=0, size=VR.ARTICLE.vrTeam.desc.length; i < size; ++i) {
+						if (i % 2 === 1) {
+							$teamContainer = $('<div class="incubator-content incubator--fix incubator-right move-from-bottom--init"></div>');
+							$('<span class="incubator-img "><img src="' + VR.ARTICLE.vrTeam.desc[i].imgUrl +
+								'" width="540px" height="290px" class="incubator-img" alt="" ></span>')
+									.appendTo($teamContainer);
+							$teamSection = $('<section class="incubator-addr"></section>')
+							$teamDiv = $('<div class="move-from-bottom--init"></div>');
+							$('<h2>' + VR.ARTICLE.vrTeam.desc[i].itemTitle + '</h2>')
+									.appendTo($teamDiv);
+							for (var j=0, jSize=VR.ARTICLE.vrTeam.desc[i].itemDesc.length; j < jSize; ++j) {
+								$('<p>' + VR.ARTICLE.vrTeam.desc[i].itemDesc[j] + '</p>')
+										.appendTo($teamDiv);
+							}
+							$teamDiv.appendTo($teamSection);
+							$teamSection.appendTo($teamContainer);
+						} else {
+							$teamContainer = $('<div class="incubator-content incubator-left move-from-bottom--init"></div>');
+							$('<span class="incubator-img "><img src="' + VR.ARTICLE.vrTeam.desc[i].imgUrl +
+								'" width="540px" height="290px" class="incubator-img" alt="" ></span>')
+									.appendTo($teamContainer);
+							$teamSection = $('<section class="incubator-addr"></section>')
+							$teamDiv = $('<div class="move-from-bottom--init"></div>');
+							$('<h2>' + VR.ARTICLE.vrTeam.desc[i].itemTitle + '</h2>')
+									.appendTo($teamDiv);
+							for (var j=0, jSize=VR.ARTICLE.vrTeam.desc[i].itemDesc.length; j < jSize; ++j) {
+								$('<p>' + VR.ARTICLE.vrTeam.desc[i].itemDesc[j] + '</p>')
+										.appendTo($teamDiv);
+							}
+							$teamDiv.appendTo($teamSection);
+							$teamSection.appendTo($teamContainer);
+						}
+						$teamContainer.appendTo(VR.jqMap.$vrTeamArticle);
+					}
+				}
+
+				VR.jqMap.$body.append(VR.jqMap.$vrTeamArticle);
+
+				if (window.isMobile) {
+					var $lastDiv = $('section.incubator-addr:last');
+					$lastDiv.css({'margin-bottom': '6rem'})
+					$('<footer><span>Copyright ©2015 District 10 VRAR All Rights Reserved </span><span>京ICP备15034822号-2</span></footer>')
+							.css({'transform': 'translateY(1.5rem)'})
+							.appendTo($('.incubator-content:last'));
+				}
+
+				if (!VR.jqMap.vrTeamFix && !window.isMobile) {
+					var originHeight = 0;
+					var divHeight = 0;
+					var containerHeight = 0;
+					var fixHeight = 100;
+					var splitHeight = 100;
+					var imgOffsetTop= 80;
+					if (document.body.offsetWidth < 1024) {
+						fixHeight = 20;
+						splitHeight = 160;
+						imgOffsetTop= 240;
+					}
+					var $contentOrigins = $('.incubator-addr');
+					var $contentDivs = $('.incubator-addr > div');
+					var $contentContainers = $('.incubator-content');
+					originHeight = $contentOrigins.eq(0).height();
+					containerHeight = $contentContainers.eq(0).height()
+					for (var i=0, size=$contentDivs.length; i < size; ++i) {
+						divHeight = $contentDivs.eq(i).height() + fixHeight;
+						console.log('originHeight = ' + originHeight + ', divHeight = ' + divHeight + 'document.body.offsetWidth = ' + document.body.offsetWidth);
+						if (divHeight > originHeight) {
+							$contentOrigins.eq(i).height(divHeight);
+							$contentContainers.eq(i).height(imgOffsetTop + divHeight + splitHeight);
+						}
+					}
+					VR.jqMap.vrTeamFix = true;
+				}
+
+			};
+
+			var vrPartner = function() {
+
+				VR.jqMap.$vrPartnerArticle = $('#vrPartner');
+				var $section;
+
+				var cssRule = '';
+				for (var i=0, size=VR.ARTICLE.vrPartner.length; i < size; ++i) {
+					if (i % 4 === 0) {
+						if (i === 0) {
+							$section = $('<section class="vr-partner-content vr-parterner-content-first"></section>');
+						} else {
+							VR.jqMap.$vrPartnerArticle.append($section);
+							$section = $('<section class="vr-partner-content"></section>');
+						}
+					}
+					cssRule = 'url("/img/' + VR.ARTICLE.vrPartner[i] + '") center center / contain no-repeat';
+					console.log('cssRule = ' + cssRule);
+					$('<a class="partner-show"></a>')
+							.css({'background': cssRule})
+							.appendTo($section);
+				}
+				VR.jqMap.$vrPartnerArticle.append($section);
+
+			}
+
+			return {
+				showHomepage: homepage,
+				showAboutUs: aboutUs,
+				showVrService: vrService,
+				showVrIncubator: vrIncubator,
+				showVrNews: vrNews,
+				showVrTeam: vrTeam,
+				showVrPartner: vrPartner
+			};
+		}());
+	</script>
+	<script type="text/javascript">
+		VR.EVENT = (function(){
+
+			var isMenuAnimaChanged = true;
+
+			var changeNavItemState = function($selector) {
+				if ($selector) {
+					$('video').hide();
+					$('a span', $selector.parent()).removeAttr('style');
+					$('span:first', $selector).css({'opacity': '0.67'});
+					$('.nav-bottom-text', $selector).css({'color': '#fff'});
+				} else {
+					$('a span', '.vr-nav-bottom-layout').removeAttr('style');
+				}
+			};
+
+			var closeMenuArticle = function() {
+				var $menuArticle = $('#menuArticle');
+				$menuArticle.removeClass('vr-page-moveFromBottom')
+						.addClass('vr-page-moveToBottom')
+						.removeClass('vr-page-current');
+				$('#vrMenu1').addClass('vr-menu-close-ntop-effect');
+				$('#vrMenu3').addClass('vr-menu-close-nbottom-effect');
+				$('.vr-menu-fake-icon').removeAttr('style');
+				setTimeout(function() {
+					$('#vrMenu2').removeAttr('style');
+					$menuArticle.removeClass('vr-page-moveToBottom vr-page-moveFromTop');
+					$('#vrMenu1').removeClass('vr-menu-close-top-effect vr-menu-close-ntop-effect');
+					$('#vrMenu3').removeClass('vr-menu-close-bottom-effect vr-menu-close-nbottom-effect');
+				}, 400);
+			};
+
+			bodyBgForService = function(isServiceBg) {
+				if (isServiceBg) {
+					$('body').addClass('service-bg');
+				} else {
+					$('body').removeClass('service-bg');
+				}
+			}
+
+			var gotoHome = function() {
+				// 如果logo菜单动画在进行，不允许切换
+				if (!isMenuAnimaChanged) {return ; }
+				// 如果本身是首页，则直接返回
+				var $current = $('.vr-page-current').eq(0);
+				if ($current.hasClass('vr-home')) {return; }
+
+				// 关闭“合作伙伴” 和 “联系我们”
+				$current
+					.removeClass('vr-page-moveFromBottom')
+					.removeClass('vr-page-current');
+
+				VR.jqMap.$currentArticle.remove();
+		    VR.CONTENT.showHomepage();
+				VR.jqMap.$currentArticle = VR.jqMap.$homepageArticle;
+				VR.jqMap.currentPage = 0;
+				VR.jqMap.currentPageHeight = 0;
+
+				$('video').show();
+				VR.Decorator.initCross();
+				// if (!window.isMobile) {$('.cross-layout').show(); }
+				// 恢复底部导航栏样式
+				$('.nav-clicked').removeClass('nav-clicked');
+				$('.vr-nav-bottom-layout').removeClass('vr-nav-bottom-layout-overlay').show();
+				changeNavItemState();
+				// 去掉 hack 样式
+				bodyBgForService(false);
+				$('.vr-article').removeAttr('style');
+
+		    closeMenuArticle();
+				$('#vrHome')
+					.removeClass('vr-page-moveToTop')
+					.addClass('vr-page-current vr-page-moveFromTop');
+
+				return 0; // pageIndex
+			}
+
+			var commonArticleOp = function() {
+				VR.disablePageReady();
+				document.body.scrollTop = 0;
+				$('.vr-nav-bottom-layout').addClass('vr-nav-bottom-layout-overlay');
+				$('.nav-clicked').removeClass('nav-clicked');
+				$('.cross-layout').hide();
+			}
+
+			var gotoAboutUs = function($current) {
+				commonArticleOp();
+				$('#aboutUs').addClass('nav-clicked');
+
+				var $current = $('.vr-page-current').eq(0);
+				if ($current.hasClass('vr-aboutus')) {return; }
+
+				$current
+					.removeClass('vr-page-moveFromBottom')
+					.removeClass('vr-page-current');
+
+				bodyBgForService(false);
+
+				VR.jqMap.$currentArticle.remove();
+		    VR.CONTENT.showAboutUs();
+				VR.jqMap.$currentArticle = VR.jqMap.$aboutUsArticle;
+				VR.jqMap.currentPage = 1;
+				VR.jqMap.currentPageHeight = 0;
+
+				changeNavItemState($('#aboutUs'));
+				// $current
+				// 	.removeClass('vr-page-moveFromTop')
+				// 	.addClass('vr-page-moveToTop')
+				// 	.removeClass('vr-page-current');
+				$('#vrAboutUs')
+					.removeClass('vr-page-moveToBottom')
+					.addClass('vr-page-current vr-page-moveFromBottom');
+				setTimeout(function() {
+					$('h2', '#vrAboutUs .vr-article-content')
+						.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+				}, 1000);
+				setTimeout(function() {
+					$('p', '#vrAboutUs .vr-article-content')
+						.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+						VR.enablePageReady();
+				}, 1500);
+			}
+
+			var gotoService = function($current) {
+				commonArticleOp();
+				$('#service').addClass('nav-clicked');
+				var $current = $('.vr-page-current').eq(0);
+				if ($current.hasClass('vr-service')) { return }
+
+				$current
+					.removeClass('vr-page-moveFromBottom')
+					.removeClass('vr-page-current');
+
+				bodyBgForService(true);
+
+				VR.jqMap.$currentArticle.remove();
+		    VR.CONTENT.showVrService();
+				VR.jqMap.$currentArticle = VR.jqMap.$vrServiceArticle;
+				VR.jqMap.currentPage = 2;
+				VR.jqMap.currentPageHeight = 0;
+
+				changeNavItemState($('#service'));
+				$('#vrService')
+					.removeClass('vr-page-moveToBottom')
+					.addClass('vr-page-current vr-page-moveFromBottom');
+				setTimeout(function() {
+					$('.vr-article-content', '#vrService')
+						.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+						VR.enablePageReady();
+				}, 800);
+			}
+
+			var gotoIncubator = function($current) {
+				commonArticleOp();
+				$('#incubator').addClass('nav-clicked');
+				var $current = $('.vr-page-current').eq(0);
+				if ($current.hasClass('vr-incubator')) { return }
+
+				$current
+					.removeClass('vr-page-moveFromBottom')
+					.removeClass('vr-page-current');
+
+				bodyBgForService(false);
+
+				VR.jqMap.$currentArticle.remove();
+		    VR.CONTENT.showVrIncubator();
+				VR.jqMap.$currentArticle = VR.jqMap.$vrIncubatorArticle;
+				VR.jqMap.currentPage = 3;
+				VR.jqMap.currentPageHeight = 0;
+
+				changeNavItemState($('#incubator'));
+				$('#vrIncubator')
+					.removeClass('vr-page-moveToBottom')
+					.addClass('vr-page-current vr-page-moveFromBottom');
+				setTimeout(function() {
+					$('.incubator-addr').addClass('vr-circle-animation-effect');
+					$('.incubator-content', '#vrIncubator')
+						.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+				}, 500);
+				setTimeout(function() {
+					$('div', '.incubator-addr').removeClass('move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+					VR.enablePageReady();
+				}, 2000);
+			}
+
+			var gotoVrNews = function($current) {
+				commonArticleOp();
+				$('#vrnews').addClass('nav-clicked');
+				var $current = $('.vr-page-current').eq(0);
+				if ($current.hasClass('vr-news')) { return }
+
+				$current
+					.removeClass('vr-page-moveFromBottom')
+					.removeClass('vr-page-current');
+
+				bodyBgForService(true);
+
+				VR.jqMap.$currentArticle.remove();
+		    VR.CONTENT.showVrNews();
+				VR.jqMap.$currentArticle = VR.jqMap.$vrNewsArticle;
+				VR.jqMap.currentPage = 4;
+				VR.jqMap.currentPageHeight = 0;
+
+				changeNavItemState($('#vrnews'));
+				$('#vrNews')
+					.removeClass('vr-page-moveToBottom')
+					.addClass('vr-page-current vr-page-moveFromBottom');
+				setTimeout(function() {
+					$('.vr-article-content', '#vrNews')
+						.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+						VR.enablePageReady();
+				}, 800);
+			}
+
+			var gotoInTeam = function($current) {
+				commonArticleOp();
+				$('#inTeam').addClass('nav-clicked');
+				var $current = $('.vr-page-current').eq(0);
+				if ($current.hasClass('vr-inteam')) { return }
+
+				$current
+					.removeClass('vr-page-moveFromBottom')
+					.removeClass('vr-page-current');
+
+				bodyBgForService(false);
+
+				VR.jqMap.$currentArticle.remove();
+		    VR.CONTENT.showVrTeam();
+				VR.jqMap.$currentArticle = VR.jqMap.$vrTeamArticle;
+				VR.jqMap.currentPage = 5;
+				VR.jqMap.currentPageHeight = 0;
+
+				changeNavItemState($('#inTeam'));
+				$('#vrInteam')
+					.removeClass('vr-page-moveToBottom')
+					.addClass('vr-page-current vr-page-moveFromBottom');
+				setTimeout(function() {
+					$('.incubator-addr').addClass('vr-circle-animation-effect');
+					$('.incubator-content', '#vrInteam')
+						.removeClass('vr-item-moveFromBottom move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+				}, 800);
+				setTimeout(function() {
+					$('div', '.incubator-addr').removeClass('move-from-bottom--init')
+						.addClass('vr-item-moveFromBottom');
+						VR.enablePageReady();
+				}, 2000);
+			}
+
+			var gotoMenu = function($current) {
+				var $current = $('.vr-page-current').eq(0);
+				var $menuArticle = $('#menuArticle');
+				if ($('.vr-article-menu').hasClass('vr-page-current')) {
+					closeMenuArticle();
+					if ($('.vr-page-current').length === 1) {
+						VR.jqMap.$currentArticle.removeAttr('style');
+			      VR.setMenuOpenState(false);
+			    	$('.vr-nav-bottom-layout').show();
+					}
+					return;
+				}
+				document.body.scrollTop = 0;
+
+				VR.jqMap.$currentArticle.css({'visibility': 'hidden'});
+
+				if (window.isMobile) {
+					$('.vr-menu-fake-icon').css({'width': '0.8rem'});
+				} else {
+					$('.vr-menu-fake-icon').css({'width': '0.79625rem'});
+				}
+				$('#vrMenu2').css({'border-color':'#000'});
+				$('#vrMenu1').addClass('vr-menu-close-top-effect');
+				$('#vrMenu3').addClass('vr-menu-close-bottom-effect');
+				$menuArticle
+					.removeClass('vr-page-moveToTop')
+					.addClass('vr-page-current vr-page-moveFromTop');
+			}
+
+			// 处理后期添加的需求：备案号
+		  var handleFooter = function(footerNeedCreated){
+		    $('footer').detach();
+		    if (window.isMobile && VR.jqMap.currentPage != 5) {
+		      return false;
+		    }
+		    if (window.isMobile && VR.jqMap.currentPage == 5){
+		      $('.vr-nav-bottom-layout').fadeIn(500);
+		    }
+		    $('.vr-nav-bottom-layout').removeAttr('style');
+
+		    if ($('footer').length == 0 && footerNeedCreated) {
+		      if (!window.isMobile || VR.jqMap.currentPage == 5) {
+		        $('body').append('<footer><span>Copyright ©2015 District 10 VRAR All Rights Reserved </span><span>京ICP备15034822号-2</span></footer>');
+		        $('.vr-nav-bottom-layout').css({'transform': 'translateY(-0.8rem)'});   // refer to footer height
+		      }
+		      if (window.isMobile && VR.jqMap.currentPage == 5) {
+		        $('.vr-nav-bottom-layout').fadeOut(500);
+		      }
+		      return true;
+		    }
+		    return false;
+		  }
+
+		  var scrollStep = 50;
+		  var getClientHeight = function(){
+		    var clientHeight=0;
+		    if(document.body.clientHeight&&document.documentElement.clientHeight){
+		      clientHeight=(document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+		    }else{
+		      clientHeight=(document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;
+		    }
+		    return clientHeight;
+			}
+
+			var getScrollTop = function(){
+		    var scrollTop=0;
+		    scrollTop=(document.body.scrollTop>document.documentElement.scrollTop)?document.body.scrollTop:document.documentElement.scrollTop;
+		    return scrollTop;
+		  }
+
+			// 向上滚动或滑动
+		  var upWheel = function() {
+		    // console.log('document.body.scrollTop = ' + document.body.scrollTop + ', pageReady = ' + pageReady)
+		    // setTimeout(function() {pageReady = true; },1000);
+		    // if (!pageReady) { return; }
+		    if (!VR.getPageReady()) {
+		      return ;
+		    }
+		    if (document.body.scrollTop <= 0) {
+		      // pageReady = false;
+		      switch (VR.jqMap.currentPage) {
+		        default: break;
+		        case 1:
+		          gotoHome();
+		          break;
+		        case 2:
+		          gotoAboutUs();
+		          break;
+		        case 3:
+		          gotoService();
+		          break;
+		        case 4:
+		          gotoIncubator();
+		          break;
+		        case 5:
+		          gotoVrNews();
+		          break;
+		      }
+		      VR.jqMap.currentPage == 0 && VR.Decorator.initCross();
+		      document.body.scrollTop = 0;
+		      handleFooter(false);
+		    } else {
+		      if ($('footer').length == 0) {
+		        document.body.scrollTop -= scrollStep;
+		      } else {
+		        handleFooter(false);
+		      }
+		    }
+		  }
+
+		  // 向下滚动或滑动
+		  var downWheel = function() {
+		  	if (VR.jqMap.currentPageHeight === 0) {
+		  		VR.jqMap.currentPageHeight = $('.vr-page-current:first').height();
+		  	}
+		  	var scrollTop = getScrollTop();
+		  	var fixFactor = 0;
+		  	switch (VR.jqMap.currentPage) {
+		  		case 0:
+		  			fixFactor = 0;
+		  			break;
+		  		case 1:
+		  			var width = document.body.offsetWidth;
+		  			if ( width > 1280 ) {
+		  				fixFactor = 0;
+		  			} else {
+		  				fixFactor = 1.5;
+		  			}
+		  			break;
+		  		case 2:
+		  			fixFactor = 0;
+		  			break;
+		  		case 3:
+		  			fixFactor = 4;
+		  			break;
+		  		case 4:
+		  			if (document.body.offsetWidth > 1440) {
+		  				fixFactor = 4;
+		  			} else {
+		  				fixFactor = 2.5;
+		  			}
+		  			break;
+		  		case 5:
+		  			if (document.body.offsetWidth < 1024) {
+		  				fixFactor = 4.5;
+		  			} else {
+		  				fixFactor = 3.2;
+		  			}
+		  			break;
+		  	}
+		  	// console.log('1 = ' + getClientHeight() + ', 2 = ' + VR.jqMap.currentPageHeight + ', 3 = ' + scrollTop);
+		    if ((VR.jqMap.currentPageHeight - getClientHeight() + fixFactor*scrollStep) <= scrollTop) {
+		      // setTimeout(function() {pageReady = true; },1000);
+		      if ($('footer').length == 0 && handleFooter(true)) {
+		        return;
+		      }
+		      if (!VR.getPageReady()) {
+		        return ;
+		      }
+		      // if (!pageReady) { return; }
+		      switch (VR.jqMap.currentPage) {
+		        case 0:
+		          gotoAboutUs();
+		          break;
+		        case 1:
+		          gotoService();
+		          break;
+		        case 2:
+		          gotoIncubator();
+		          break;
+		        case 3:
+		          gotoVrNews();
+		          break;
+		        case 4:
+		          gotoInTeam();
+		          break;
+		        default:
+		          return ;
+		      }
+		      handleFooter(false);
+		      VR.disablePageReady();
+		      VR.jqMap.currentPage != 0 && VR.Decorator.clearCross();
+		      document.body.scrollTop = 0;
+		    } else {
+		    	VR.jqMap.$body.scrollTop(scrollTop + scrollStep);
+		    }
+		  }
+
+		  var wheelHandler = function(isUp) {
+	      if (isUp) {
+	        // console.log("滑轮向上滚动");
+	        upWheel();
+	      } else {
+	        // console.log("滑轮向下滚动");
+	        downWheel();
+	      }
+	    }
+
+	    // PC 滚轮监听
+	    EventUtil.addHandler(document, "mousewheel", function(e){
+	      // if (isStopScroll) {  return; }
+	      e = EventUtil.getEvent(e);
+	      if(e.preventDefault) { e.preventDefault(); }
+	      e.returnValue = false;
+	      if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
+	        if (e.wheelDelta > 0) { //当滑轮向上滚动时
+	          wheelHandler(true);
+	        }
+	        if (e.wheelDelta < 0) { //当滑轮向下滚动时
+	          wheelHandler(false);
+	        }
+	      } else if (e.detail) {  //Firefox滑轮事件
+	        if (e.detail> 0) { //当滑轮向上滚动时
+	          wheelHandler(true);
+	        }
+	        if (e.detail< 0) { //当滑轮向下滚动时
+	          wheelHandler(false);
+	        }
+	      }
+	      return false;
+	    });
+
+	    // if (window.isMobile) {
+	    // 	var handleTouchEvent = function(event) {
+		   //    if (event.touches.length == 1) {
+		   //      switch (event.type) {
+		   //        // case "touchstart":
+		   //          // event.preventDefault();
+		   //          // startY = event.touches[0].clientY;
+		   //          // console.log("startY = " + startY);
+		   //          // console.log($('.vr-nav-bottom-layout').offset());
+		   //          // var $current = $('.vr-page-current').eq(0);
+		   //          // console.log('height = ' + $current.height());
+		   //          // break;
+		   //        case "touchend":
+		   //          if (window.isMobile && currentPage == 5) {   // 移动端只需在最后一屏添加备案号
+		   //            handleFooter(false);
+		   //          }
+		   //          break;
+		   //        case "touchmove":
+		   //          event.preventDefault();
+		   //          console.log("clientX = " + event.touches[0].clientX);
+		   //          var dch = getClientHeight();
+		   //          var scrollTop = getScrollTop();
+		   //          var scrollBottom = document.body.scrollHeight - scrollTop;
+		   //          console.log('dch = ' + dch + ', xxxx = '+ $('body').scrollTop());
+
+		   //          var moveEndY = event.touches[0].clientY;
+		   //          // console.log("clientY = " + moveEndY);
+		   //          var moveY = moveEndY - startY;
+		   //          if (moveY < -20) {    // 滑动是否需要切换屏幕
+		   //            // isFirstTop = false;
+		   //            // isSecondTop = false;
+		   //            if(scrollBottom >= dch && scrollBottom <= (dch+10) ) {
+		   //              // console.log('向上滑');
+		   //              downWheel();
+		   //              // isFirstBottom = false;
+		   //              // isSecondBottom = false;
+		   //            }
+		   //          } else if (scrollTop == 0 && isSecondTop) {   // 优化 scrollTop 无效
+		   //            // console.log('顶部');
+		   //            // isFirstTop = false;
+		   //            // isSecondTop = false;
+		   //            upWheel();
+		   //          } else if (window.isMobile && currentPage == 5) {   // 移动端只需在最后一屏添加备案号
+		   //            handleFooter(false);
+		   //          }
+		   //          break;
+		   //      }
+		   //    }
+		   //  }
+
+		   //  EventUtil.addHandler(document, "touchstart", handleTouchEvent);
+		   //  EventUtil.addHandler(document, "touchend", handleTouchEvent);
+		   //  EventUtil.addHandler(document, "touchmove", handleTouchEvent);
+	    // }
+
+			var clicker = function() {
+				var $vrNav = document.getElementById("vrNav");
+		    EventUtil.addHandler($vrNav, "click", function(event) {
+		      event = EventUtil.getEvent(event);
+		      var target = EventUtil.getTarget(event);
+		      if (target.id != "vrLogo") { VR.Decorator.clearCross(); }
+		      switch (target.id) {
+		        case "vrMenu1":
+		        case "vrMenu2":
+		        case "vrMenu3":
+		        case "vrMenu4":
+		        	VR.setMenuOpenState(true);
+		    			$('.vr-nav-bottom-layout').hide();
+		          gotoMenu();
+		          break;
+		        case "vrLogo":
+		        	VR.setMenuOpenState(false);
+		          gotoHome();
+		          break;
+		        case "aboutUs":
+		          gotoAboutUs();
+		          break;
+		        case "service":
+		          gotoService();
+		          break;
+		        case "incubator":
+		          gotoIncubator();
+		          break;
+		        case "vrnews":
+		          gotoVrNews();
+		          break;
+		        case "inTeam":
+		          gotoInTeam();
+		          break;
+		      }
+		    })
+			};
+
+			var initMenu = function() {
+				var $menuArticle = document.getElementById("menuArticle");
+				EventUtil.addHandler($menuArticle, "click", function(event) {
+					event = EventUtil.getEvent(event);
+					var target = EventUtil.getTarget(event);
+					$current = $('.vr-page-current').eq(0);
+					switch (target.id) {
+						case "menuPartner":
+							if (!VR.jqMap.$vrPartnerArticle) {
+								VR.CONTENT.showVrPartner();
+							}
+							isMenuAnimaChanged = false;
+							closeMenuArticle();
+							$logoAnimation = $('.vr-logo-animation-layout');
+							$logoAnimation.removeClass('vr-page-moveToTop')
+								.addClass('vr-page-current vr-page-moveFromTop');
+							$('.vr-logo-animation', $logoAnimation).addClass('vr-circle-right-animation-effect');
+							$('.vr-menu-article').toggle();
+							setTimeout(function(){
+								$logoAnimation
+									.removeClass('vr-page-moveFromTop')
+									.addClass('vr-page-moveToTop')
+									.removeClass('vr-page-current');
+								$('.cross-layout').hide();
+								$current
+									.removeClass('vr-page-moveFromTop')
+									.addClass('vr-page-moveToTop')
+									.removeClass('vr-page-current');
+								$('#vrPartner')
+									.removeClass('vr-page-moveToBottom')
+									.addClass('vr-page-current vr-page-moveFromBottom');
+								$('.vr-logo-animation', $logoAnimation).removeClass('vr-circle-right-animation-effect');
+								isMenuAnimaChanged = true;
+							}, 2000);
+							break;
+						case "menuCall":
+							isMenuAnimaChanged = false;
+							closeMenuArticle();
+							$logoAnimation = $('.vr-logo-animation-layout');
+							$logoAnimation.removeClass('vr-page-moveToTop')
+								.addClass('vr-page-current vr-page-moveFromTop');
+							$('.vr-logo-animation', $logoAnimation).addClass('vr-circle-right-animation-effect');
+							$('.vr-menu-article').toggle();
+							setTimeout(function(){
+								$logoAnimation
+									.removeClass('vr-page-moveFromTop')
+									.addClass('vr-page-moveToTop')
+									.removeClass('vr-page-current');
+								$('.cross-layout').hide();
+								$current
+									.removeClass('vr-page-moveFromTop')
+									.addClass('vr-page-moveToTop')
+									.removeClass('vr-page-current');
+								$('#vrContact')
+									.removeClass('vr-page-moveToBottom')
+									.addClass('vr-page-current vr-page-moveFromBottom');
+								$('.vr-logo-animation', $logoAnimation).removeClass('vr-circle-right-animation-effect');
+								isMenuAnimaChanged = true;
+							}, 3000);
+							break;
+					}
+				})
+			};
+
+
+			return {
+				initArticleClick: clicker,
+				initMenuClick: initMenu
+			};
+
+		}());
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			VR.init();
+			if (window.isMobile) {
+				$('.vr-nav-bottom-layout:first').addClass('vr-nav-bottom-layout--mobile');
+			}
+			VR.Decorator.addVideo('http://oa8bfh8lr.bkt.clouddn.com/vr_galaxy');
+			VR.Decorator.addCross();
+			VR.CONTENT.showHomepage();
+			VR.jqMap.$currentArticle = VR.jqMap.$homepageArticle;
+			VR.EVENT.initArticleClick();
+			VR.EVENT.initMenuClick();
+		});
+	</script>
+
+	<!-- <script type="text/javascript" src="lib/require_2.1.11.js" defer async="true" data-main="js/main"></script> -->
 </body>
 </html>

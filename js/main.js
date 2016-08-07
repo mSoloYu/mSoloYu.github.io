@@ -8,13 +8,13 @@ requirejs.config({
     //the paths config could be for a directory.
     paths: {
       jquery: "https://cdn.bootcss.com/jquery/2.2.2/jquery.min",
-      Init: "init.min",
-      VrWuspace: "vrwuspace.min",
-      EventUtil: "eventutil.min"
+      // Init: "init.min",
+      // VrWuspace: "vrwuspace.min",
+      // EventUtil: "eventutil.min"
       // 以下为开发环境配置
-      // Init: "init",
-      // VrWuspace: "vrwuspace",
-      // EventUtil: "eventutil"
+      Init: "init",
+      VrWuspace: "vrwuspace",
+      EventUtil: "eventutil"
     }
 });
 
