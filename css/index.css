@@ -634,6 +634,7 @@
 /* vrService */
 .service-bg {
 	background: #000 url("/img/bg2.jpg") 0 0 no-repeat;
+	background-size: cover;
 }
 .service-item {
 	display: inline-block;

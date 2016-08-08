@@ -220,12 +220,12 @@
 	/*使用选择器指定字体*/
 	html,body {font-family: 'pingfang', "Microsoft YaHei"; }
 	</style>
-	<!-- <link href="css/index-3c6cac30fd.min.css" rel="stylesheet"> -->
+	<link href="css/index-fd41d5f5a0.min.css" rel="stylesheet">
 	<!-- 开发环境样式 -->
-	<link rel="stylesheet" href="css/animate_effect.css">
+	<!-- <link rel="stylesheet" href="css/animate_effect.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/article.css">
-	<link rel="stylesheet" href="css/pageslice.menu.css">
+	<link rel="stylesheet" href="css/pageslice.menu.css"> -->
 </head>
 <body id="body" style="margin:0;padding:0;">
 	<header id="vrNav">
@@ -470,7 +470,11 @@
 			var vrService = function() {
 
 				if (!VR.jqMap.$vrServiceArticle || window.isMobile) {
-					VR.jqMap.$vrServiceArticle = $('<article id="vrService" class="vr-article vr-service vr-page-current"></article>');
+					if (window.isMobile) {
+						VR.jqMap.$vrServiceArticle = $('<article id="vrService" class="vr-article vr-service vr-page-current"></article>');
+					} else {
+						VR.jqMap.$vrServiceArticle = $('<article id="vrService" class="vr-article vr-service vr-page-current service-bg"></article>');
+					}
 					var $serviceShow = $('<a class="content-sign service-show" href="#vrService"></a>');
 					var $articleContent = $('<div class="vr-article-content move-from-bottom--init vr-service-content"></div>')
 
@@ -520,7 +524,7 @@
 					if (window.isMobile) {
 						VR.jqMap.$vrNewsArticle = $('<article id="vrNews" class="vr-article vr-article--fix vr-news vr-page-current"></article>');
 					} else {
-						VR.jqMap.$vrNewsArticle = $('<article id="vrNews" class="vr-article vr-news vr-page-current"></article>');
+						VR.jqMap.$vrNewsArticle = $('<article id="vrNews" class="vr-article vr-news vr-page-current service-bg"></article>');
 					}
 					var $vrNewsShow = $('<a class="content-sign vrnews-show" href="#vrNews"></a>');
 					var $articleContent = $('<div class="vr-article-content move-from-bottom--init"></div>')
@@ -693,20 +697,13 @@
 				}, 400);
 			};
 
-			bodyBgForService = function(isServiceBg) {
-				if (isServiceBg) {
-					$('body').addClass('service-bg');
-				} else {
-					$('body').removeClass('service-bg');
-				}
-			}
-
 			var gotoHome = function() {
 				// 如果logo菜单动画在进行，不允许切换
 				if (!isMenuAnimaChanged) {return ; }
 				// 如果本身是首页，则直接返回
 				var $current = $('.vr-page-current').eq(0);
 				if ($current.hasClass('vr-home')) {return; }
+				document.body.scrollTop = 0;
 
 				// 关闭“合作伙伴” 和 “联系我们”
 				$current
@@ -727,7 +724,6 @@
 				$('.vr-nav-bottom-layout').removeClass('vr-nav-bottom-layout-overlay').show();
 				changeNavItemState();
 				// 去掉 hack 样式
-				bodyBgForService(false);
 				$('.vr-article').removeAttr('style');
 
 		    closeMenuArticle();
@@ -756,8 +752,6 @@
 				$current
 					.removeClass('vr-page-moveFromBottom')
 					.removeClass('vr-page-current');
-
-				bodyBgForService(false);
 
 				VR.jqMap.$currentArticle.remove();
 		    VR.CONTENT.showAboutUs();
@@ -796,8 +790,6 @@
 					.removeClass('vr-page-moveFromBottom')
 					.removeClass('vr-page-current');
 
-				bodyBgForService(true);
-
 				VR.jqMap.$currentArticle.remove();
 		    VR.CONTENT.showVrService();
 				VR.jqMap.$currentArticle = VR.jqMap.$vrServiceArticle;
@@ -825,8 +817,6 @@
 				$current
 					.removeClass('vr-page-moveFromBottom')
 					.removeClass('vr-page-current');
-
-				bodyBgForService(false);
 
 				VR.jqMap.$currentArticle.remove();
 		    VR.CONTENT.showVrIncubator();
@@ -861,8 +851,6 @@
 					.removeClass('vr-page-moveFromBottom')
 					.removeClass('vr-page-current');
 
-				bodyBgForService(true);
-
 				VR.jqMap.$currentArticle.remove();
 		    VR.CONTENT.showVrNews();
 				VR.jqMap.$currentArticle = VR.jqMap.$vrNewsArticle;
@@ -890,8 +878,6 @@
 				$current
 					.removeClass('vr-page-moveFromBottom')
 					.removeClass('vr-page-current');
-
-				bodyBgForService(false);
 
 				VR.jqMap.$currentArticle.remove();
 		    VR.CONTENT.showVrTeam();
@@ -924,6 +910,7 @@
 					if ($('.vr-page-current').length === 1) {
 						VR.jqMap.$currentArticle.removeAttr('style');
 			      VR.setMenuOpenState(false);
+			      VR.Decorator.initCross();
 			    	$('.vr-nav-bottom-layout').show();
 					}
 					return;
